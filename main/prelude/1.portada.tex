@@ -1,0 +1,49 @@
+\newcommand{\touppercase}[1]{\MakeUppercase{#1}}
+
+\newcommand{\universidad}{Universidad Católica Andrés Bello}
+\newcommand{\titulo}{Título Trabajo de grado \\}
+\newcommand{\estudiante}{Apellidos del estudiante, Nombres del estudiante }
+\newcommand{\tutor}{Apellidos del tutor, Nombre del tutor}
+\newcommand{\fecha}{Mes, Año}
+
+\newcommand{\membrete}{
+  \normalsize\selectfont\bfseries
+  \universidad \par
+  Facultad de Ingeniería \par
+  Escuela de Ingeniería Informática \par
+}
+
+\newcommand{\prelude}{
+  \textbf{Trabajo de Grado} \par
+  presentado ante la \par
+  \touppercase{\textbf{\universidad}} \par
+  como parte de los requisitos para optar al título de \par
+  \touppercase{\textbf{Ingeniero en Informática}} \par
+}
+
+\newcommand{\details}{
+  \begin{tabularx}{\textwidth}{X >{\hsize=1.35\hsize}X}
+    Realizado por & \estudiante \\
+    % \\
+    Tutor         & \tutor      \\
+    Fecha         & \fecha      \\
+  \end{tabularx}
+}
+
+\begin{center}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.65\textwidth]{ucab-logo.png} \\
+    \centering
+    \renewcommand{\baselinestretch}{1.5}
+    \membrete
+  \end{figure}
+  \vspace*{\fill}
+  \textbf{\titulo}
+  \vspace*{\fill}
+  \prelude
+  \vspace*{\fill}
+  \details
+\end{center}
+
+\clearpage
