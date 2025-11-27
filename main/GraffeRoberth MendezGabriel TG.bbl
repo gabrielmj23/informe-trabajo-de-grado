@@ -1,6 +1,118 @@
 \begin{thebibliography}{}
 
 \bibitem [\protect \citeauthoryear {%
+Aho%
+}{%
+Aho%
+}{%
+{\protect \APACyear {2011}}%
+}]{%
+aho2011}
+\APACinsertmetastar {%
+aho2011}%
+\begin{APACrefauthors}%
+Aho, A\BPBI V.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{enero}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Ubiquity symposium: Computation and Computational
+  Thinking} {Ubiquity symposium: Computation and computational
+  thinking}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Ubiquity}{2011}{}{1--8}.
+\newblock
+\begin{APACrefDOI} \doi{10.1145/1922681.1922682} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Bers%
+}{%
+Bers%
+}{%
+{\protect \APACyear {2023}}%
+}]{%
+bers2023}
+\APACinsertmetastar {%
+bers2023}%
+\begin{APACrefauthors}%
+Bers, M\BPBI U.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {El desarrollo de Scratch-Jr: el aprendizaje de
+  programación en primera infancia como nueva alfabetización} {El desarrollo
+  de scratch-jr: el aprendizaje de programación en primera infancia como nueva
+  alfabetización}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Virtualidad, Educación y Ciencia}{26}{14}{43--62}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Espejo%
+}{%
+Espejo%
+}{%
+{\protect \APACyear {2022}}%
+}]{%
+espejo2022}
+\APACinsertmetastar {%
+espejo2022}%
+\begin{APACrefauthors}%
+Espejo, P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2022}.
+\unskip\
+\newblock
+\APACrefbtitle {Entorno de robótica educativa multiagente orientado a
+  favorecer el desarrollo del pensamiento computacional en jóvenes cursantes
+  de educación media} {Entorno de robótica educativa multiagente orientado a
+  favorecer el desarrollo del pensamiento computacional en jóvenes cursantes
+  de educación media}\ \APACtypeAddressSchool {Trabajo de Grado pregrado}{}{}.
+\unskip\
+\newblock
+\APACaddressSchool {Ciudad Guayana, Venezuela}{Universidad Católica Andrés
+  Bello}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Hasselbring%
+, M.%
+\BCBL {}\ \BBA {} Dustdar%
+}{%
+Hasselbring%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2021}}%
+}]{%
+hasselbring2021}
+\APACinsertmetastar {%
+hasselbring2021}%
+\begin{APACrefauthors}%
+Hasselbring, W.%
+, M., W.%
+\BCBL {}\ \BBA {} Dustdar, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2021}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Control Flow Versus Data Flow in Distributed Systems
+  Integration: Revival of Flow-Based Programming for the Industrial Internet of
+  Things} {Control flow versus data flow in distributed systems integration:
+  Revival of flow-based programming for the industrial internet of
+  things}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{IEEE Internet Computing}{52}{4}{}.
+\newblock
+\begin{APACrefDOI} \doi{10.1109/MIC.2021.3053712} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Lodi%
 \ \BBA {} Martini%
 }{%
@@ -29,6 +141,29 @@ Lodi, M.%
   \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1007/s11191-021-00202-5} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Marinescu%
+}{%
+Marinescu%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+marinescu2013}
+\APACinsertmetastar {%
+marinescu2013}%
+\begin{APACrefauthors}%
+Marinescu, D\BPBI C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2013}.
+\newblock
+\APACrefbtitle {Cloud Computing - Theory and Practice} {Cloud computing -
+  theory and practice}.
+\newblock
+\APACaddressPublisher{}{Elsevier}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -192,6 +327,75 @@ Resnick, M.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Sommerville%
+}{%
+Sommerville%
+}{%
+{\protect \APACyear {2016}}%
+}]{%
+sommerville2015}
+\APACinsertmetastar {%
+sommerville2015}%
+\begin{APACrefauthors}%
+Sommerville, I.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2016}.
+\newblock
+\APACrefbtitle {Software Engineering} {Software engineering}\
+  (\PrintOrdinal{10}\ \BEd).
+\newblock
+\APACaddressPublisher{}{Pearson}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Tran%
+}{%
+Tran%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+tran2024}
+\APACinsertmetastar {%
+tran2024}%
+\begin{APACrefauthors}%
+Tran, M\BPBI Q.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{mayo}{}.
+\newblock
+\APACrefbtitle {Dataflow Programming with a Functional Programming Language.}
+  {Dataflow programming with a functional programming language.}
+\newblock
+\APAChowpublished {Medium}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Trigo%
+}{%
+Trigo%
+}{%
+{\protect \APACyear {2004}}%
+}]{%
+trigo2004}
+\APACinsertmetastar {%
+trigo2004}%
+\begin{APACrefauthors}%
+Trigo, V.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2004}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Historia y evolución de los lenguajes de programación}
+  {Historia y evolución de los lenguajes de programación}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Manual formativo de ACTA}{34}{}{85--95}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Wadge%
 \ \BBA {} Ashcroft%
 }{%
@@ -292,6 +496,32 @@ Zapata-Ros, M.%
 \APACjournalVolNumPages{Revista de Educación a Distancia}{}{46}{}.
 \newblock
 \begin{APACrefURL} \url{https://revistas.um.es/red/article/view/240321}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Zeil%
+}{%
+Zeil%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+zeil2024}
+\APACinsertmetastar {%
+zeil2024}%
+\begin{APACrefauthors}%
+Zeil, S\BPBI J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+\APACrefbtitle {Turing Completeness.} {Turing completeness.}
+\newblock
+\APAChowpublished {Old Dominion University}.
+\newblock
+\begin{APACrefURL}
+  \url{https://www.cs.odu.edu/~zeil/cs390/latest/Public/turing-complete/index.html}
   \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 

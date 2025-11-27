@@ -1,3 +1,23 @@
 \usection{Metodología de Desarrollo Utilizada}
 
-\lipsum[9]
+\usubsection{Justificación de la metodología}
+
+Para facilitar la validación constante del lenguaje desarrollado, se utilizará un enfoque iterativo que permita hacer ciclos de desarrollo que evolucionen el sistema y, de ser necesario, agreguen o modifiquen funcionalidades ya existentes o requeridas. Esto abre la posibilidad a utilizar una metodología basada en el modelo incremental, o una metodología ágil de desarrollo.
+
+Las metodologías ágiles, aunque permiten estar constantemente abierto y preparado para el cambio en los requerimientos, tienen exigencias en las actividades a realizar, los roles del equipo de desarrollo, y la frecuencia de contacto con el cliente; cosas que pueden representar una limitación para el contexto en el que se llevará a cabo el trabajo.
+
+Según \cite{sommerville2015}, el modelo incremental intercala actividades de especificación, desarrollo y validación, desarrollando el sistema como una serie de incrementos que agregan funcionalidad al anterior. Se considera que una metodología basada en este modelo cumple con todas las características requeridas para el desarrollo exitoso del proyecto.
+
+\usubsection{Fases del modelo incremental}
+
+Cada uno de los incrementos seguirá etapas fundamentales de comunicación, planificación, modelado, construcción y validación, para garantizar un proceso de desarrollo estructurado y evolutivo. La comunicación consistirá en la definición de los objetivos a cumplir en el incremento. En la planeación se distribuirán las tareas entre los integrantes del equipo y entre los días que cubran el incremento. La construcción consistirá en la implementación del código, y de ser requerido, hardware; necesario para cumplir los objetivos. Por último, la validación consistirá de una comprobación del cumplimiento de los objetivos con el cliente del proyecto.
+
+Ahora bien, a nivel general, la aplicación de la metodología abarcará cinco etapas clave, descritas a continuación:
+
+\begin{enumerate}
+    \item \textbf{Análisis:} consistirá en la investigación de la problemática acerca del desarrollo del pensamiento computacional y los avances actuales en el campo, la definición de requerimientos y la planificación de las tareas y del alcance de cada incremento. Se obtendrá una caracterización del lenguaje y el entorno a desarrollar, consistente de un listado de requerimientos y diagramas de modelado.
+    \item \textbf{Diseño:} consistirá en la descripción de cada uno de los módulos a desarrollar del entorno de programación, la arquitectura técnica del sistema, y características propias del lenguaje como su sintaxis formal y su semántica; todo esto por medio de distintas iteraciones de diseño basadas en la caracterización ya elaborada.
+    \item \textbf{Implementación:} consistirá en la construcción del sistema, desarrollando el código en cada incremento correspondiente para responder a cada una de las características planteadas en el diseño de la solución.
+    \item \textbf{Pruebas:} presente en cada incremento, se evaluará la implementación de las características planificadas para el mismo, permitiendo hacer mejoras oportunas al lenguaje. Las oportunidades de mejora detectadas en cada incremento, serán clave para incorporarse en el siguiente.
+    \item \textbf{Documentación:} consiste en la redacción de manuales y documentación técnica que especifique los productos de cada una de las etapas anteriores, características de la arquitectura del sistema, de su implementación, y de su modo de uso para usuarios finales. Esto permitirá un registro concreto de los resultados que facilitará el avance futuro del proyecto.
+\end{enumerate}
