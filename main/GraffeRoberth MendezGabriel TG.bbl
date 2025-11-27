@@ -1,0 +1,214 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Lodi%
+\ \BBA {} Martini%
+}{%
+Lodi%
+\ \BBA {} Martini%
+}{%
+{\protect \APACyear {2021}}%
+}]{%
+lodimartini2021}
+\APACinsertmetastar {%
+lodimartini2021}%
+\begin{APACrefauthors}%
+Lodi, M.%
+\BCBT {}\ \BBA {} Martini, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2021}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Computational Thinking, Between Papert and Wing}
+  {Computational thinking, between papert and wing}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Science & Education}{4}{30}{883--908}.
+\newblock
+\begin{APACrefURL} \url{https://doi.org/10.1007/s11191-021-00202-5}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Noss%
+\ \BBA {} Hoyles%
+}{%
+Noss%
+\ \BBA {} Hoyles%
+}{%
+{\protect \APACyear {2019}}%
+}]{%
+nosshoyles2019}
+\APACinsertmetastar {%
+nosshoyles2019}%
+\begin{APACrefauthors}%
+Noss, R.%
+\BCBT {}\ \BBA {} Hoyles, C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2019}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Microworlds, Constructionism and Mathematics}
+  {Microworlds, constructionism and mathematics}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Educación Matemática}{2}{31}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Resnick%
+}{%
+Resnick%
+}{%
+{\protect \APACyear {2009}}%
+}]{%
+resnick2009seeds}
+\APACinsertmetastar {%
+resnick2009seeds}%
+\begin{APACrefauthors}%
+Resnick, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Sowing the Seeds for a more Creative Society} {Sowing
+  the seeds for a more creative society}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {CHI '09: Proceedings of the SIGCHI Conference on Human
+  Factors in Computing Systems.} {Chi '09: Proceedings of the sigchi conference
+  on human factors in computing systems.}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Resnick%
+}{%
+Resnick%
+}{%
+{\protect \APACyear {2012}}%
+}]{%
+resnick2012}
+\APACinsertmetastar {%
+resnick2012}%
+\begin{APACrefauthors}%
+Resnick, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Reviving Papert's Dream} {Reviving papert's
+  dream}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Educational Technology}{4}{52}{42--46}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Resnick%
+\ \protect \BOthers {.}}{%
+Resnick%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2009}}%
+}]{%
+resnicketal2009}
+\APACinsertmetastar {%
+resnicketal2009}%
+\begin{APACrefauthors}%
+Resnick, M.%
+, Maloney, J.%
+, Monroy-Hernández, A.%
+, Rusk, N.%
+, Eastmond, E.%
+, Brennan, K.%
+\BDBL {}Kafai, Y.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Scratch: programming for all} {Scratch: programming for
+  all}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Communications of the ACM}{11}{52}{60--67}.
+\newblock
+\begin{APACrefURL} \url{https://doi.org/10.1145/1592761.1592779}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Wing%
+}{%
+Wing%
+}{%
+{\protect \APACyear {2006}}%
+}]{%
+wing2006}
+\APACinsertmetastar {%
+wing2006}%
+\begin{APACrefauthors}%
+Wing, J\BPBI M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2006}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Computational Thinking} {Computational thinking}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Communications of the ACM}{3}{49}{33--35}.
+\newblock
+\begin{APACrefURL} \url{https://doi.org/10.1145/1118178.1118215}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Wing%
+}{%
+Wing%
+}{%
+{\protect \APACyear {2010}}%
+}]{%
+wing2010}
+\APACinsertmetastar {%
+wing2010}%
+\begin{APACrefauthors}%
+Wing, J\BPBI M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Computational Thinking: What and Why?} {Computational
+  thinking: What and why?}{\BBCQ}.
+\newblock
+\begin{APACrefURL} \url{https://api.semanticscholar.org/CorpusID:63382972}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Zapata-Ros%
+}{%
+Zapata-Ros%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+zapataros2015}
+\APACinsertmetastar {%
+zapataros2015}%
+\begin{APACrefauthors}%
+Zapata-Ros, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Pensamiento computacional: Una nueva alfabetización
+  digital} {Pensamiento computacional: Una nueva alfabetización
+  digital}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Revista de Educación a Distancia}{}{46}{}.
+\newblock
+\begin{APACrefURL} \url{https://revistas.um.es/red/article/view/240321}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}
