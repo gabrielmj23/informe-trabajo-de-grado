@@ -23,10 +23,64 @@ Lodi, M.%
 {\BBOQ}\APACrefatitle {Computational Thinking, Between Papert and Wing}
   {Computational thinking, between papert and wing}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{Science & Education}{4}{30}{883--908}.
+\APACjournalVolNumPages{Science and Education}{30}{4}{883--908}.
 \newblock
 \begin{APACrefURL} \url{https://doi.org/10.1007/s11191-021-00202-5}
   \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1007/s11191-021-00202-5} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Meyer%
+, Rose%
+\BCBL {}\ \BBA {} Gordon%
+}{%
+Meyer%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2014}}%
+}]{%
+meyer2014}
+\APACinsertmetastar {%
+meyer2014}%
+\begin{APACrefauthors}%
+Meyer, A.%
+, Rose, D\BPBI H.%
+\BCBL {}\ \BBA {} Gordon, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2014}.
+\newblock
+\APACrefbtitle {Universal Design for Learning: Theory and Practice} {Universal
+  design for learning: Theory and practice}.
+\newblock
+\APACaddressPublisher{}{CAST}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+\APACcitebtitle {n8n-io/n8n: Fair-code workflow automation platform with native
+  AI capabilities. Combine visual building with custom code, self-host or
+  cloud, 400+ integrations}}{%
+\APACcitebtitle {n8n-io/n8n: Fair-code workflow automation platform with native
+  AI capabilities. Combine visual building with custom code, self-host or
+  cloud, 400+ integrations}}{%
+{\protect \APACyear {2025}}%
+}]{%
+n8n2025}
+\APACinsertmetastar {%
+n8n2025}%
+\APACrefbtitle {n8n-io/n8n: Fair-code workflow automation platform with native
+  AI capabilities. Combine visual building with custom code, self-host or
+  cloud, 400+ integrations.} {n8n-io/n8n: Fair-code workflow automation
+  platform with native ai capabilities. combine visual building with custom
+  code, self-host or cloud, 400+ integrations.}
+\newblock
+\APACrefYearMonthDay{2025}{}{}.
+\newblock
+\APAChowpublished {GitHub}.
+\newblock
+\begin{APACrefURL} \url{https://github.com/n8n-io/n8n} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -52,7 +106,7 @@ Noss, R.%
 {\BBOQ}\APACrefatitle {Microworlds, Constructionism and Mathematics}
   {Microworlds, constructionism and mathematics}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{Educación Matemática}{2}{31}{}.
+\APACjournalVolNumPages{Educación Matemática}{31}{2}{}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -100,7 +154,7 @@ Resnick, M.%
 {\BBOQ}\APACrefatitle {Reviving Papert's Dream} {Reviving papert's
   dream}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{Educational Technology}{4}{52}{42--46}.
+\APACjournalVolNumPages{Educational Technology}{52}{4}{42--46}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -129,10 +183,38 @@ Resnick, M.%
 {\BBOQ}\APACrefatitle {Scratch: programming for all} {Scratch: programming for
   all}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{Communications of the ACM}{11}{52}{60--67}.
+\APACjournalVolNumPages{Communications of the ACM}{52}{11}{60--67}.
 \newblock
 \begin{APACrefURL} \url{https://doi.org/10.1145/1592761.1592779}
   \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1145/1592761.1592779} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Wadge%
+\ \BBA {} Ashcroft%
+}{%
+Wadge%
+\ \BBA {} Ashcroft%
+}{%
+{\protect \APACyear {1985}}%
+}]{%
+wadge1985}
+\APACinsertmetastar {%
+wadge1985}%
+\begin{APACrefauthors}%
+Wadge, W.%
+\BCBT {}\ \BBA {} Ashcroft, E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1985}.
+\newblock
+\APACrefbtitle {Lucid, the Dataflow Programming Langugage} {Lucid, the dataflow
+  programming langugage}.
+\newblock
+\APACaddressPublisher{}{Academic Press}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -154,10 +236,12 @@ Wing, J\BPBI M.%
 \newblock
 {\BBOQ}\APACrefatitle {Computational Thinking} {Computational thinking}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{Communications of the ACM}{3}{49}{33--35}.
+\APACjournalVolNumPages{Communications of the ACM}{49}{3}{33--35}.
 \newblock
 \begin{APACrefURL} \url{https://doi.org/10.1145/1118178.1118215}
   \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1145/1118178.1118215} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
