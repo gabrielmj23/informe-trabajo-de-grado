@@ -6,6 +6,17 @@ Según \citeA{aho2011}, el pensamiento computacional es el conjunto de procesos 
 
 Por otro lado, \citeA{wing2006} resalta un par de características para el pensamiento computacional, como que por ejemplo el pensamiento computacional se conceptualiza, no se programa, dando a entender que lo importante de este es la forma en la que abstrae un problema más que en la elaboración de su solución. Otro punto que resalta es que en el pensamiento computacional resaltan más las habilidades de creatividad e innovación que las de memorización. Por último resalta que el pensamiento computacional no es una forma de pensar como una computadora, sino más bien una habilidad humana fundamental que permite usar la lógica de la informática para resolver problemas en cualquier ámbito de la vida.
 
+\usubsection{Teoría del desarrollo cognitivo de Piaget}
+
+Se trata de un modelo de desarrollo cognitivo que explica cómo los individuos adquieren, construyen y transforman su conocimiento a lo largo del tiempo, siguiendo patrones de desarrollo desde la infancia, basados en la formación de representaciones mentales basadas en su interacción con el ambiente, y que estas mismas representaciones dan soporte a nuevas estructuras del conocimiento \cite[p.~1]{linares2007}. Piaget propone cuatro etapas principales en el desarrollo, considerando que los individuos atraviesan estas etapas en un orden fijo según su rango de edad, y que cada etapa representa un nivel diferente de pensamiento y comprensión del mundo. De las cuatro etapas, las siguientes dos cubren el rango de edad del público objetivo:
+
+\begin{itemize}
+    \item \textbf{Etapa de operaciones concretas:} “El niño aprende las operaciones lógicas de seriación, de clasificación y de conservación. El pensamiento está ligado a los fenómenos y objetos del mundo real” \cite[p.~2]{linares2007}.
+    \item \textbf{Etapa de operaciones formales:} “El niño aprende sistemas abstractos del pensamiento que le permiten usar la lógica proposicional, el razonamiento científico y el razonamiento proporcional” \cite[p.~2]{linares2007}.
+\end{itemize}
+
+A pesar de que Piaget defiende un orden en el que se desarrollan distintas formas de pensar, \citeA{mindstorms1980} destaca la influencia de los materiales y el entorno, particularmente de la computadora, como una herramienta para evolucionar de una forma de pensamiento a otra. Particularmente, habla del computador como un recurso que permite concretizar y personalizar lo formal, cerrando la brecha entre las dos etapas (p. 20-21).
+
 \usubsection{Lenguaje de programación}
 
 Un lenguaje de programación se puede definir como un sistema de notación que se adapta al pensamiento humano, a través de él los programadores pueden desarrollar conjunto de órdenes e instrucciones para que un computador las ejecute \cite{trigo2004}. A diferencia de los lenguajes de máquina, que exigen un conocimiento profundo del código binario, estos lenguajes resultan muy útiles, ya que actúan como un puente que permite a los programadores desarrollar software sin tener que interactuar directamente con el lenguaje de la computadora.
@@ -22,7 +33,7 @@ Un lenguaje de programación se considera Turing-completo cuando es capaz de rea
 
 \citeA{wadge1985} plantean dataflow como una forma de computación alternativa al paradigma de flujo de control (control flow), basada en el principio de procesar datos en movimiento, fluyendo en una red de nodos y estaciones de procesamiento (p. 8). De esta manera, la construcción de programas en dataflow permite describir la solución basándose en las transformaciones de datos, estableciendo una conexión clara entre los datos de entrada y las salidas del programa. En contraste, el paradigma de control flow tiende a enfatizar el orden de las operaciones.
 
-Los lenguajes de programación imperativos, basados en el paradigma de control flow, suelen ser más comunes y ampliamente utilizados. Sin embargo, los lenguajes basados en dataflow ofrecen ventajas significativas en ciertos contextos, como la programación paralela y la gestión de flujos de datos complejos. Al centrarse en las transformaciones de datos, los lenguajes dataflow pueden facilitar la comprensión y el desarrollo de programas que manejan grandes volúmenes de información o que requieren procesamiento concurrente.
+Los lenguajes de programación imperativos, basados en el paradigma de control flow, suelen ser más comunes y ampliamente utilizados. \citeA{wadge1985} señalan que este dominio proviene de la arquitectura von Neumann dominante en aquella época (p. 10). Estos lenguajes tienden a ocupar al programador con asuntos como la gestión del estado del programa, el uso de memoria y la secuenciación de instrucciones. Además, la implementación de problemas concurrentes no es natural en este paradigma. Por otro lado, los lenguajes basados en dataflow facilitan la expresión de problemas concurrentes, ya que las operaciones pueden ejecutarse tan pronto como los datos necesarios estén disponibles, permitiendo una mayor paralelización y eficiencia en la ejecución de programas.
 
 \usubsection{Programación concurrente}
 

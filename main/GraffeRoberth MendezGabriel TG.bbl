@@ -81,6 +81,33 @@ Espejo, P.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Linares%
+}{%
+Linares%
+}{%
+{\protect \APACyear {2007}}%
+}]{%
+linares2007}
+\APACinsertmetastar {%
+linares2007}%
+\begin{APACrefauthors}%
+Linares, A\BPBI R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+\APACrefbtitle {Desarrollo Cognitivo: Las Teorías de Piaget y de Vygotsky.}
+  {Desarrollo cognitivo: Las teorías de piaget y de vygotsky.}
+\newblock
+\APAChowpublished {Universitat Autònoma de Barcelona}.
+\newblock
+\begin{APACrefURL}
+  \url{http://www.paidopsiquiatria.cat/archivos/teorias_desarrollo_cognitivo_07-09_m1}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Lodi%
 \ \BBA {} Martini%
 }{%
