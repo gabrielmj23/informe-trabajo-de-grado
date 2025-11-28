@@ -81,38 +81,6 @@ Espejo, P.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Hasselbring%
-, M.%
-\BCBL {}\ \BBA {} Dustdar%
-}{%
-Hasselbring%
-\ \protect \BOthers {.}}{%
-{\protect \APACyear {2021}}%
-}]{%
-hasselbring2021}
-\APACinsertmetastar {%
-hasselbring2021}%
-\begin{APACrefauthors}%
-Hasselbring, W.%
-, M., W.%
-\BCBL {}\ \BBA {} Dustdar, S.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2021}{}{}.
-\newblock
-{\BBOQ}\APACrefatitle {Control Flow Versus Data Flow in Distributed Systems
-  Integration: Revival of Flow-Based Programming for the Industrial Internet of
-  Things} {Control flow versus data flow in distributed systems integration:
-  Revival of flow-based programming for the industrial internet of
-  things}.{\BBCQ}
-\newblock
-\APACjournalVolNumPages{IEEE Internet Computing}{52}{4}{}.
-\newblock
-\begin{APACrefDOI} \doi{10.1109/MIC.2021.3053712} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Lodi%
 \ \BBA {} Martini%
 }{%
@@ -194,24 +162,27 @@ Meyer, A.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-\APACcitebtitle {n8n-io/n8n: Fair-code workflow automation platform with native
-  AI capabilities. Combine visual building with custom code, self-host or
-  cloud, 400+ integrations}}{%
-\APACcitebtitle {n8n-io/n8n: Fair-code workflow automation platform with native
-  AI capabilities. Combine visual building with custom code, self-host or
-  cloud, 400+ integrations}}{%
+n8n%
+}{%
+n8n%
+}{%
 {\protect \APACyear {2025}}%
 }]{%
 n8n2025}
 \APACinsertmetastar {%
 n8n2025}%
+\begin{APACrefauthors}%
+n8n.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2025}{}{}.
+\newblock
 \APACrefbtitle {n8n-io/n8n: Fair-code workflow automation platform with native
   AI capabilities. Combine visual building with custom code, self-host or
   cloud, 400+ integrations.} {n8n-io/n8n: Fair-code workflow automation
   platform with native ai capabilities. combine visual building with custom
   code, self-host or cloud, 400+ integrations.}
-\newblock
-\APACrefYearMonthDay{2025}{}{}.
 \newblock
 \APAChowpublished {GitHub}.
 \newblock
@@ -242,6 +213,29 @@ Noss, R.%
   {Microworlds, constructionism and mathematics}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Educación Matemática}{31}{2}{}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Papert%
+}{%
+Papert%
+}{%
+{\protect \APACyear {1980}}%
+}]{%
+mindstorms1980}
+\APACinsertmetastar {%
+mindstorms1980}%
+\begin{APACrefauthors}%
+Papert, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1980}.
+\newblock
+\APACrefbtitle {Mindstorms: children, computers and powerful ideas}
+  {Mindstorms: children, computers and powerful ideas}.
+\newblock
+\APACaddressPublisher{}{Basic Books, Inc.}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -327,6 +321,35 @@ Resnick, M.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Rodríguez%
+}{%
+Rodríguez%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+rodriguez2024}
+\APACinsertmetastar {%
+rodriguez2024}%
+\begin{APACrefauthors}%
+Rodríguez, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2024}.
+\unskip\
+\newblock
+\APACrefbtitle {Extensiones de programación de aplicaciones distribuidas para
+  fomentar pensamiento computacional en niños de educación básica}
+  {Extensiones de programación de aplicaciones distribuidas para fomentar
+  pensamiento computacional en niños de educación básica}\
+  \APACtypeAddressSchool {Trabajo de Grado pregrado}{}{}.
+\unskip\
+\newblock
+\APACaddressSchool {Ciudad Guayana, Venezuela}{Universidad Católica Andrés
+  Bello}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Sommerville%
 }{%
 Sommerville%
@@ -350,29 +373,6 @@ Sommerville, I.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-Tran%
-}{%
-Tran%
-}{%
-{\protect \APACyear {2024}}%
-}]{%
-tran2024}
-\APACinsertmetastar {%
-tran2024}%
-\begin{APACrefauthors}%
-Tran, M\BPBI Q.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2024}{mayo}{}.
-\newblock
-\APACrefbtitle {Dataflow Programming with a Functional Programming Language.}
-  {Dataflow programming with a functional programming language.}
-\newblock
-\APAChowpublished {Medium}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Trigo%
 }{%
 Trigo%
@@ -393,6 +393,32 @@ Trigo, V.%
   {Historia y evolución de los lenguajes de programación}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Manual formativo de ACTA}{34}{}{85--95}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Van~Steen%
+\ \BBA {} Tanenbaum%
+}{%
+Van~Steen%
+\ \BBA {} Tanenbaum%
+}{%
+{\protect \APACyear {2020}}%
+}]{%
+vansteen2020}
+\APACinsertmetastar {%
+vansteen2020}%
+\begin{APACrefauthors}%
+Van~Steen, M.%
+\BCBT {}\ \BBA {} Tanenbaum, A\BPBI S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2020}.
+\newblock
+\APACrefbtitle {Distributed Systems} {Distributed systems}\ (\PrintOrdinal{3}\
+  \BEd).
+\newblock
+\APACaddressPublisher{}{Marteen van Steen}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
