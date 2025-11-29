@@ -6,23 +6,68 @@ Según \citeA{aho2011}, el pensamiento computacional es el conjunto de procesos 
 
 Por otro lado, \citeA{wing2006} resalta un par de características para el pensamiento computacional, como que por ejemplo el pensamiento computacional se conceptualiza, no se programa, dando a entender que lo importante de este es la forma en la que abstrae un problema más que en la elaboración de su solución. Otro punto que resalta es que en el pensamiento computacional resaltan más las habilidades de creatividad e innovación que las de memorización. Por último resalta que el pensamiento computacional no es una forma de pensar como una computadora, sino más bien una habilidad humana fundamental que permite usar la lógica de la informática para resolver problemas en cualquier ámbito de la vida.
 
+\usubsection{Teoría del desarrollo cognitivo de Piaget}
+
+Se trata de un modelo de desarrollo cognitivo que explica cómo los individuos adquieren, construyen y transforman su conocimiento a lo largo del tiempo, siguiendo patrones de desarrollo desde la infancia, basados en la formación de representaciones mentales basadas en su interacción con el ambiente, y que estas mismas representaciones dan soporte a nuevas estructuras del conocimiento \cite[p.~1]{linares2007}. Piaget propone cuatro etapas principales en el desarrollo, considerando que los individuos atraviesan estas etapas en un orden fijo según su rango de edad, y que cada etapa representa un nivel diferente de pensamiento y comprensión del mundo. De las cuatro etapas, las siguientes dos cubren el rango de edad del público objetivo:
+
+\begin{itemize}
+    \item \textbf{Etapa de operaciones concretas:} “El niño aprende las operaciones lógicas de seriación, de clasificación y de conservación. El pensamiento está ligado a los fenómenos y objetos del mundo real” \cite[p.~2]{linares2007}.
+    \item \textbf{Etapa de operaciones formales:} “El niño aprende sistemas abstractos del pensamiento que le permiten usar la lógica proposicional, el razonamiento científico y el razonamiento proporcional” \cite[p.~2]{linares2007}.
+\end{itemize}
+
+\usubsection{Construccionismo}
+
+Es una teoría del aprendizaje propuesta por Seymour Papert, que se basa en las ideas del constructivismo de Piaget, compartiendo la idea de la construcción activa del conocimiento por parte del estudiante. Sin embargo, el construccionismo añade que el aprendizaje es más efectivo cuando los estudiantes están involucrados en la creación activa de objetos significativos para ellos \cite[p.~892]{lodimartini2021}. Papert argumenta que al construir artefactos tangibles, los estudiantes pueden externalizar sus pensamientos, reflexionar sobre ellos, compartirlos y desarrollar modelos mentales de cómo funciona el mundo, para resolver problemas cada vez más complejos.
+
+Una consideración de suma importancia en la teoría construccionista es que, para que los estudiantes puedan construir sus artefactos de aprendizaje, necesitan de los materiales concretos o abstractos. Como pilar del construccionismo, se admite que la computadora es un material poderoso para el aprendizaje, ya que cuenta con la capacidad única de simular cualquier modelo, adaptándose a las necesidades de los estudiantes y habilitando el aprendizaje de conceptos abstractos mediante la experimentación.
+
+A pesar de que Piaget, en su teoría del desarrollo cognitivo, defiende un orden en el que se desarrollan distintas formas de pensar, \citeA{mindstorms1980} destaca la influencia de los materiales y el entorno, particularmente de la computadora, como una herramienta para evolucionar de una forma de pensamiento a otra. Particularmente, se refiere al computador como un recurso que permite concretizar y personalizar lo formal, cerrando la brecha entre las dos etapas (p. 20-21). Este argumento ha servido de base para el desarrollo de entornos educativos basados en programación, como es el caso de Scratch.
+
 \usubsection{Lenguaje de programación}
 
 Un lenguaje de programación se puede definir como un sistema de notación que se adapta al pensamiento humano, a través de él los programadores pueden desarrollar conjunto de órdenes e instrucciones para que un computador las ejecute \cite{trigo2004}. A diferencia de los lenguajes de máquina, que exigen un conocimiento profundo del código binario, estos lenguajes resultan muy útiles, ya que actúan como un puente que permite a los programadores desarrollar software sin tener que interactuar directamente con el lenguaje de la computadora.
+
+\usubsection{Programación visual}
+
+Para \citeA{myers1986}, la programación visual hace referencia a cualquier sistema que permita al usuario especificar un programa de forma bidimensional o multidimensional. A diferencia de lenguajes convencionales donde el compilador o intérprete procesa el programa como un flujo unidimensional largo de texto. También destaca que este tipo de programación aprovecha la capacidad humana para procesar información visual de manera más intuitiva, mejorando el entendimiento del flujo del programa.
+
+El pensamiento computacional utiliza abstracción y descomposición al atacar una tarea compleja o diseñar un sistema grande \cite{wing2006}. Esto se refleja directamente en la programación visual, donde los bloques o componentes gráficos representan operaciones abstractas que permiten a los aprendices enfocarse en la lógica del programa más que en la sintaxis del lenguaje.
 
 \usubsection{Tesis de Church-Turing}
 
 \citeA{aho2011} explica que la teoría de la computación explora las capacidades y limitaciones de los modelos de computación. El modelo más importante para la computación secuencial es la Máquina de Turing, propuesta por Alan Turing en 1936. La tesis de Church-Turing postula que cualquier función que pueda ser computada, puede serlo por una Máquina de Turing. Esto significa que modelos de computación como el cálculo lambda, las máquinas de acceso aleatorio y todos los lenguajes de programación de propósito general son equivalentes a las Máquinas de Turing, ya que pueden computar el mismo conjunto de funciones. Aho destaca que, aunque se utilizan diferentes notaciones y lenguajes de programación por ser más fáciles de escribir y entender, la tesis de Church-Turing sugiere que no importa la notación que se elija, una Máquina de Turing puede computar cualquier función.
 
-\usubsection{Lenguaje de programación Turing-completo}
+\usubsubsection{Lenguaje de programación Turing-completo}
 
 Un lenguaje de programación se considera Turing-completo cuando es capaz de realizar cualquier cómputo que una máquina de Turing teórica puede llevar a cabo. Para lograr esto, debe incluir tres elementos esenciales: operaciones secuenciales para ejecutar instrucciones una tras otra, operaciones condicionales que permiten tomar decisiones lógicas, e iteración o recursión ilimitada, lo que posibilita la repetición de un proceso sin un número fijo de veces. La combinación de estos componentes básicos garantiza que el lenguaje tenga el poder de simular la lógica de cualquier algoritmo, lo que lo hace universalmente aplicable para resolver una amplia gama de problemas computacionales \cite{zeil2024}.
+
+La tesis de Church-Turing aplicada sobre lenguajes de programación permite demostrar teóricamente que un lenguaje visual basado en flujos tiene la misma potencia expresiva que un lenguaje de programación tradicional basado en texto, convirtiéndolo en una herramienta capaz de cubrir un rango amplio de tareas, sin poner un límite a las capacidades del estudiante con la herramienta.
 
 \usubsection{Programación por flujos de datos (dataflow)}
 
 \citeA{wadge1985} plantean dataflow como una forma de computación alternativa al paradigma de flujo de control (control flow), basada en el principio de procesar datos en movimiento, fluyendo en una red de nodos y estaciones de procesamiento (p. 8). De esta manera, la construcción de programas en dataflow permite describir la solución basándose en las transformaciones de datos, estableciendo una conexión clara entre los datos de entrada y las salidas del programa. En contraste, el paradigma de control flow tiende a enfatizar el orden de las operaciones.
 
-Los lenguajes de programación imperativos, basados en el paradigma de control flow, suelen ser más comunes y ampliamente utilizados. Sin embargo, los lenguajes basados en dataflow ofrecen ventajas significativas en ciertos contextos, como la programación paralela y la gestión de flujos de datos complejos. Al centrarse en las transformaciones de datos, los lenguajes dataflow pueden facilitar la comprensión y el desarrollo de programas que manejan grandes volúmenes de información o que requieren procesamiento concurrente.
+Los lenguajes de programación imperativos, basados en el paradigma de control flow, suelen ser más comunes y ampliamente utilizados. \citeA{wadge1985} señalan que este dominio proviene de la arquitectura von Neumann dominante en aquella época, por lo que su aparente éxito se basa más en la popularidad que en la capacidad de modelar efectivamente la solución de problemas (p. 10). Estos lenguajes tienden a ocupar al programador con asuntos como la gestión del estado del programa, el uso de memoria y la secuenciación de instrucciones. Además, la implementación de problemas concurrentes no es natural en este paradigma. En contraste, los lenguajes basados en dataflow permiten hacer programas que describan la solución, además de facilitar la expresión de algoritmos basados en concurrencia, ya que las operaciones pueden ejecutarse tan pronto como los datos necesarios estén disponibles, permitiendo una mayor paralelización y eficiencia en la ejecución de programas.
+
+Según \citeA{carkci2014}, algunos de los conceptos a tener en consideración para el diseño de lenguajes de programación basados en dataflow son:
+
+\usubsubsection{Nodo}
+
+Unidad de computación que recibe entradas, procesa los datos y emite salidas. Los puntos en los que el nodo recibe datos se conocen como puertos. Un mismo nodo puede tener más de un puerto de entrada y más de un puerto de salida. En estos casos, es útil etiquetarlos para poder diferenciarlos.
+
+Existen casos especiales de nodos, como los nodos fuente que no tienen puertos de entrada y solo generan datos, y lo nodos sumidero (\emph{sink}) que no tienen puertos de salida y solo reciben datos para su procesamiento final (por ejemplo, mostrar resultados en pantalla).
+
+\usubsubsection{Arco}
+
+También conocido como conexión o enlace, es el canal a través del cual los datos fluyen entre los nodos. Los arcos conectan los puertos de salida de un nodo con los puertos de entrada de otro nodo, permitiendo la transferencia de datos dentro del sistema.
+
+\usubsubsection{Modelos para el flujo de datos}
+
+Se trabaja con dos modelos principales: \emph{Push}, donde los nodos envían datos a los nodos receptores tan pronto como los generan, y \emph{Pull}, donde los nodos receptores solicitan datos a los nodos emisores cuando los necesitan. \citeA{carkci2014} señala que el modelo \emph{Push} es el más utilizado y simple de implementar, mientras que \emph{Pull} es de utilidad cuando los nodos ejecutan acciones costosas (p. 16-17).
+
+\usubsubsection{Modelos de activación}
+
+El modelo asíncrono implica que la ejecución de un nodo ocurre apenas tenga datos disponibles, sin esperar a que otros nodos terminen su procesamiento. En contraste, el modelo síncrono requiere que todos los nodos involucrados en una operación completen su procesamiento antes de que cualquier nodo pueda continuar con la siguiente etapa. El modelo asíncrono es más flexible y eficiente, pues un nodo puede pasar por varias activaciones mientras otro tiene una ejecución más lenta. También cabe la posibilidad de establecer modelos híbridos, con secciones síncronas y asíncronas.
 
 \usubsection{Programación concurrente}
 
@@ -34,4 +79,4 @@ Según \citeA{marinescu2013}, la concurrencia implica la ejecución simultánea 
 
 \citeA{vansteen2020} definen un sistema distribuido como un conjunto de elementos computacionales autónomos que aparecen antes los usuarios como un solo sistema coherente. Estos elementos computacionales pueden hacer referencia a componentes de hardware o de software, que suelen interconectarse a través de redes de comunicación.
 
-\citeA{mindstorms1980} hace un acercamiento a la aplicación de sistemas distribuidos en la formación del pensamiento computacional, utilizando modelos de múltiples agentes (tortugas, en el caso de su propuesta) que interactúan entre sí para demostrar conceptos de física para estudiantes de educación media (p. 130). De hecho, el mismo autor argumenta que la mente de los estudiantes puede modelarse como una metáfora de un sistema distribuido, dónde múltiples “agentes” trabajan en conjunto para resolver problemas (p. 167-169), por lo que puede argumentarse que el estudio de sistemas distribuidos puede ayudar a comprender mejor el pensamiento computacional y sus componentes desde edades tempranas.
+\citeA{mindstorms1980} hace un acercamiento a la aplicación de sistemas distribuidos en la formación del pensamiento computacional, utilizando modelos de múltiples agentes (tortugas, en su propuesta) que interactúan entre sí para demostrar conceptos de física para estudiantes de educación media (p. 130). De hecho, el mismo autor argumenta que la mente de los estudiantes puede modelarse como una metáfora de un sistema distribuido, dónde múltiples “agentes” trabajan en conjunto para resolver problemas, presentándose como un solo “sistema” (la mente del niño) (p. 167-169), por lo que puede argumentarse que el estudio de sistemas distribuidos puede ayudar a comprender mejor el pensamiento computacional y sus componentes desde edades tempranas.

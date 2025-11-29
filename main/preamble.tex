@@ -8,6 +8,10 @@
 \usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black]{hyperref}
 \usepackage{apacite}
 \bibliographystyle{apacite}
+\AtBeginDocument{
+  \renewcommand{\BOthers}{et al}
+  \renewcommand{\BOthersPeriod}{et al.}
+}
 \usepackage{lipsum} % For placeholder text
 
 % Interlineado y Espacio entre párrafos 
