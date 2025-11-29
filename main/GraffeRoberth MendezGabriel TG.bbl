@@ -52,6 +52,39 @@ Bers, M\BPBI U.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Brennan%
+\ \BBA {} Resnick%
+}{%
+Brennan%
+\ \BBA {} Resnick%
+}{%
+{\protect \APACyear {2012}}%
+}]{%
+brennan2012}
+\APACinsertmetastar {%
+brennan2012}%
+\begin{APACrefauthors}%
+Brennan, K.%
+\BCBT {}\ \BBA {} Resnick, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{}{}.
+\newblock
+\APACrefbtitle {Using artifact-based interviews to study the development of
+  computational thinking in interactive media design.} {Using artifact-based
+  interviews to study the development of computational thinking in interactive
+  media design.}
+\newblock
+\APAChowpublished {Paper presented at the Annual Meeting of the American
+  Educational Research Association (AERA)}.
+\newblock
+\APACaddressPublisher{Vancouver, BC, Canada}{}.
+\newblock
+\APACrefnote{Presented at AERA 2012}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Espejo%
 }{%
 Espejo%
