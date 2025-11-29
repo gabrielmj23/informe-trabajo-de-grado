@@ -52,6 +52,29 @@ Bers, M\BPBI U.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Carkci%
+}{%
+Carkci%
+}{%
+{\protect \APACyear {2014}}%
+}]{%
+carkci2014}
+\APACinsertmetastar {%
+carkci2014}%
+\begin{APACrefauthors}%
+Carkci, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2014}.
+\newblock
+\APACrefbtitle {Dataflow and Reactive Programming Systems} {Dataflow and
+  reactive programming systems}.
+\newblock
+\APACaddressPublisher{}{Leanpub}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Espejo%
 }{%
 Espejo%
