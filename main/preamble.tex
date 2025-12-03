@@ -127,12 +127,32 @@
   \addcontentsline{toc}{paragraph}{#1}
 }
 
+% Helper para insertar la línea de fuente en captions de figuras.
+% Uso: \figsource{<título>}{<autor>}{<año>}{<página>}{<derechos y/o nota opcional>}
+% Ejemplo: \figsource{Título del artículo}{Sánchez-Vera}{2019}{30}{Derechos reservados.}
+\newcommand{\figsource}[5]{Tomado de \emph{#1} (#2, #3, p.~#4). #5}
+
+% Variante que sigue el formato exacto solicitado:
+% "Tomado de TÍTULO, (p. N), por AUTOR, AÑO."
+% Uso: \figtakenfrom{<título>}{<página>}{<autor(es)>}{<año>}{<nota opcional>}
+\newcommand{\figtakenfrom}[5]{Tomado de \emph{#1}, (p.~#2), por #3, #4. #5}
+
 % Formato de figuras, tablas y ecuaciones
 \usepackage{caption}
 \usepackage{chngcntr}
 
 % Figuras
-\captionsetup[figure]{labelformat=default,labelsep=colon,name=Figura}
+% Poner el título de la figura en la parte inferior (por defecto), con la palabra
+% "Figura" seguida del número en cursiva y el texto del caption también en
+% cursiva. Además se fuerza el tamaño de letra del caption para que coincida
+% con el del texto normal (no \small ni otro tamaño reducido).
+\captionsetup[figure]{
+  labelformat=default,
+  labelsep=period,
+  name=Figura,
+  labelfont={it},
+  textfont={it,normalfont}
+}
 \renewcommand{\thefigure}{\arabic{figure}}
 \counterwithout{figure}{chapter}
 
@@ -148,8 +168,11 @@
 \usepackage{calc}
 \renewcommand{\cftfigpresnum}{Figura~}
 \setlength{\cftfignumwidth}{\widthof{Figura 0. }}
-\renewcommand{\cftfigaftersnum}{. }
+% Queda solo un punto: el que añade `caption` con `labelsep=period`.
+% Evitamos añadir otro punto en la lista de figuras.
+\renewcommand{\cftfigaftersnum}{}
 
 \renewcommand{\cfttabpresnum}{Tabla~}
 \setlength{\cfttabnumwidth}{\widthof{Tabla 0. }}
-\renewcommand{\cfttabaftersnum}{. }
+% Evitar punto extra en la lista de tablas, el punto se gestiona con `caption`.
+\renewcommand{\cfttabaftersnum}{}
