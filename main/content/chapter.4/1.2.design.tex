@@ -1,0 +1,46 @@
+\usubsection{Diseño del lenguaje y de su entorno}
+
+Tras definir los requerimientos y analizar las bases teóricas del pensamiento computacional, se procedió al diseño arquitectónico y funcional del lenguaje. Este diseño se fundamenta en el paradigma de flujo de datos (dataflow), priorizando la visualización explícita del movimiento de la información y la ejecución concurrente, elementos críticos para la comprensión de sistemas modernos.
+
+\usubsubsection{Arquitectura del entorno de ejecución}
+
+Para cumplir con el requisito de ejecución en entornos web y facilitar la interactividad necesaria en el ámbito educativo, se optó por una arquitectura basada en un intérprete en lugar de un compilador. Esto permite ciclos de prueba rápidos (“imaginación, construcción y pruebas”) esenciales para el aprendizaje iterativo.
+
+El núcleo del motor de ejecución se diseñó bajo el principio de activación por disponibilidad de datos (data readiness). A diferencia de los modelos imperativos tradicionales que siguen un contador de programa secuencial, este motor examina continuamente el grafo de nodos para identificar cuáles poseen todos sus datos de entrada listos para ser procesados. Este enfoque permite explotar el paralelismo implícito, ya que múltiples nodos pueden activarse simultáneamente sin que el estudiante deba gestionar hilos de ejecución manualmente.
+
+El ciclo de vida del motor se estructuró en un bucle de eventos compuesto por cuatro unidades lógicas, inspirado en modelos de sistemas reactivos:
+
+\begin{enumerate}
+    \item \textbf{Unidad de Habilitación (Enable Unit):} Verifica las reglas de disparo de cada nodo comparando los tokens (datos) entrantes con los requisitos del nodo.
+    \item \textbf{Cola de Tareas (Task Queue):} Almacena los nodos que han cumplido sus precondiciones y están listos para ejecutarse, desacoplando la detección de la ejecución.
+    \item \textbf{Unidad de Ejecución (Execute Unit):} Procesa la lógica interna del nodo (operaciones matemáticas, lógicas o de I/O).
+    \item \textbf{Unidad de Transmisión (Transmit Unit):} Enruta los resultados hacia los puertos de entrada de los nodos siguientes, reiniciando el ciclo.
+\end{enumerate}
+
+\usubsubsection{Diseño de la sintaxis visual y los nodos}
+
+El diseño de los nodos, definidos como las unidades mínimas de procesamiento, se realizó siguiendo los principios de la “Física de las Notaciones” para garantizar la efectividad cognitiva. Se estableció una gramática visual que utiliza la discriminabilidad perceptual y la codificación dual (texto + icono) para facilitar el reconocimiento rápido de las funciones por parte de los niños.
+
+Se clasificó el catálogo de nodos en categorías alineadas con los componentes del Pensamiento Computacional:
+
+\begin{enumerate}
+    \item \textbf{Nodos de Procesamiento (Descomposición):} Incluyen operaciones aritméticas (Suma, Resta, Multiplicación) y de manejo de texto (Concatenar). Su diseño visual es rectangular con bordes redondeados para denotar transformación.
+    \item \textbf{Nodos de Control (Lógica Algorítmica):} Para garantizar la completitud de Turing, se diseñaron nodos de operadores booleanos (AND, OR, NOT) y, fundamentalmente, el nodo Switch. Este último permite la bifurcación del flujo de datos basándose en condiciones lógicas, introduciendo la toma de decisiones sin recurrir a la sintaxis textual compleja.
+    \item \textbf{Nodos de Iteración y Listas (Reconocimiento de Patrones):} Para evitar la complejidad visual de los bucles imperativos, se adoptó un enfoque de procesamiento de flujos (streams). Se incluyeron nodos como Generar Secuencia (emisor de rangos), Zip (sincronización de flujos paralelos) y Acumular (reducción de datos), permitiendo operaciones sobre conjuntos de datos de manera intuitiva.
+    \item \textbf{Nodos de Abstracción:} Se introdujo el nodo Subflujo, el cual permite encapsular una secuencia compleja de nodos dentro de un único bloque reutilizable. Esto fomenta la capacidad de abstracción y la gestión de la complejidad en proyectos grandes.
+    \item \textbf{Entradas y Eventos:} Se diseñaron con forma circular para evocar puntos de origen. Incluyen nodos como Timer (para introducir asincronía y eventos temporales) y Constante.
+\end{enumerate}
+
+\usubsubsection{Modelado del comportamiento de los nodos}
+
+Dado que el sistema es concurrente, el estado de cada nodo es independiente del resto. Para modelar este comportamiento, se diseñó una máquina de estados finitos que gobierna el ciclo de vida de cada componente visual durante la ejecución:
+
+\begin{itemize}
+    \item \textbf{Idle (Inactivo):} El nodo espera la llegada de datos.
+    \item \textbf{Waiting (Esperando/Acumulando):} El nodo ha recibido datos en algunos de sus puertos, pero no en todos. Los datos parciales se almacenan en la memoria local del nodo.
+    \item \textbf{Ready (Listo):} Todas las precondiciones de disparo se han cumplido. El nodo se traslada a la cola de ejecución.
+    \item \textbf{Running (Ejecutando):} La lógica interna del nodo está siendo procesada por el motor.
+    \item \textbf{Finished (Finalizado):} El nodo ha emitido su salida y limpia su memoria temporal para reiniciar el ciclo.
+\end{itemize}
+
+Este modelo de estados permite que el entorno de desarrollo proporcione retroalimentación visual continua (iluminando nodos activos o en espera), lo cual es una característica crítica para la depuración pedagógica, permitiendo a los estudiantes visualizar el flujo de la información en tiempo real.
