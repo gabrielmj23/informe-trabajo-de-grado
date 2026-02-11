@@ -135,7 +135,10 @@
 % Variante que sigue el formato exacto solicitado:
 % "Tomado de TÍTULO, (p. N), por AUTOR, AÑO."
 % Uso: \figtakenfrom{<título>}{<página>}{<autor(es)>}{<año>}{<nota opcional>}
-\newcommand{\figtakenfrom}[5]{Tomado de \emph{#1}, (p.~#2), por #3, #4. #5}
+\newcommand{\figtakenfrom}[5]{%
+  Tomado de \emph{#1}%
+  \if\relax\detokenize{#2}\relax\else, (p.~#2)\fi, por #3, #4. #5%
+}
 
 % Formato de figuras, tablas y ecuaciones
 \usepackage{caption}
