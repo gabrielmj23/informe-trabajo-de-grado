@@ -42,3 +42,48 @@ Como resultado de este incremento, se obtuvo una versión funcional del lenguaje
     \caption[Interfaz del editor en el primer incremento]{\normalfont Interfaz del editor en el primer incremento}
     \label{fig:editor-incr1}
 \end{figure}
+
+\usubsection{Segundo incremento}
+
+El objetivo central de este segundo incremento fue expandir las capacidades del motor de ejecución, evolucionando de un intérprete local a un sistema distribuido capaz de orquestar procesos en múltiples dispositivos. Se abordó la integración de hardware externo (tarjetas micro:bit) y la ejecución paralela en computadoras remotas, lo que requirió la implementación de protocolos de comunicación robustos para garantizar la consistencia del flujo de datos.
+
+\usubsubsection{Protocolo de distribución a micro:bit}
+
+Para habilitar la ejecución de lógica en el hardware educativo, se diseñó e implementó un protocolo apodado \emph{Micro:bit Dataflow Protocol 1.0} (DFP1). Este protocolo permite desplegar subflujos de lógica compilada directamente en el dispositivo, reduciendo la latencia y la dependencia de la conexión constante, delegando la ejecución del subflujo a la tarjeta.
+
+Se estableció un canal de comunicación híbrido que soporta tanto USB Serial (Web Serial en navegadores) como BLE UART (Web Bluetooth en navegadores), que son los principales canales de comunicación remota con los que cuentan las tarjetas micro:bit V2. Dado que el enlace Bluetooth posee una unidad máxima de transferencia (MTU) limitada, a menudo truncando mensajes cercanos a los 20 caracteres, se implementó un mecanismo de fragmentación (\emph{chunking}). Los mensajes se estructuran como líneas de texto terminadas en salto de línea, manteniendo una longitud controlada para evitar pérdidas de datos.
+
+Los subflujos creados en el editor visual se compilan a un formato binario personalizado denominado DFBC1 (\emph{Dataflow Byte Code 1.0}). Este formato incluye un encabezado con metadatos y una sección de instrucciones basada en una máquina de pila LIFO (\emph{Last-In, First-Out}). El motor en el micro:bit procesa comandos específicos (como ADD, CONCAT, RETURN) que consumen operandos de la pila, ejecutan la operación y devuelven el resultado.
+
+El proceso de comunicación se divide en fases de transmisión de metadatos (BEGIN), envío del bytecode fragmentado (CHUNK) y confirmación del programa (COMMIT). Una vez el programa reside totalmente en la memoria del micro:bit, el orquestador envía un comando de ejecución (RUN) con los argumentos necesarios, recibiendo posteriormente los resultados o eventos de vuelta en el navegador a través del canal de comunicación establecido (Serial o Bluetooth).
+
+\usubsubsection{Implementación del servidor orquestador}
+
+Para la distribución de tareas entre múltiples computadoras (PCs), se desarrolló una arquitectura cliente-servidor basada en WebSockets. Esta tecnología fue seleccionada por su capacidad de mantener canales bidireccionales persistentes y de baja latencia, esenciales para la sincronización de un flujo de datos en tiempo real.
+
+Se implementó un servidor central que actúa como el orquestador del sistema. Su responsabilidad principal es gestionar el ciclo de vida del grafo de ejecución global. Cuando el usuario inicia el programa, el orquestador analiza el flujo y determina qué nodos deben ejecutarse localmente y cuáles deben delegarse a otros dispositivos conectados (conocidos como \emph{workers}).
+
+El servidor mantiene una tabla de estado de las conexiones. Al recibir un resultado parcial de una PC remota o un micro:bit, el orquestador actualiza las dependencias de los nodos subsiguientes y, si se cumplen las condiciones de disparo (principalmente, disponibilidad de los datos de entrada), envía inmediatamente las nuevas instrucciones a los dispositivos correspondientes. Este diseño centralizado simplifica la gestión de la concurrencia y asegura que los datos fluyan correctamente entre dispositivos heterogéneos.
+
+En la figura \ref{fig:orchestrator-incr2} se muestra un esquema de la arquitectura implementada, evidenciando la comunicación entre el servidor orquestador, los clientes WebSockets y los dispositivos físicos (micro:bits). Este diseño permitió validar la capacidad del sistema para ejecutar algoritmos distribuidos, donde diferentes partes del procesamiento ocurren en distintos dispositivos pero coordinados de manera transparente para el usuario final.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{../images/ws-orchestrator-architecture.png}
+    \caption[Esquema de comunicación distribuida]{\normalfont Esquema de comunicación distribuida entre el orquestador y los dispositivos}
+    \label{fig:orchestrator-incr2}
+\end{figure}
+
+\usubsubsection{Ampliación del catálogo de nodos}
+
+Para soportar estas nuevas capacidades distribuidas, se incorporaron nuevos nodos al lenguaje visual, permitiendo al usuario interactuar explícitamente con las entradas y salidas del sistema distribuido:
+
+\begin{itemize}
+    \item \textbf{Interacción con usuario:} Se añadieron los nodos de Entrada (solicitud de datos por teclado) y Opción Aleatoria, para permitir la generación de datos desde el entorno local.
+    \item \textbf{Control de Micro:bit:} Se implementaron nodos específicos para interacciones puntuales con las tarjetas micro:bit, tales como Leer botón, Escribir en matriz LED y Emitir Sonido, permitiendo la interacción directa con el hardware.
+    \item \textbf{Lógica de control:} Se introdujo el nodo Condicional + Selector, el cual evalúa condiciones lógicas y dirige el flujo de datos hacia diferentes salidas, permitiendo bifurcaciones en la lógica distribuida. Este nodo representa una evolución sobre el planteamiento original de la lógica condicional en el lenguaje, que se basaba en el enrutamiento de datos a través de una condición (Switch). Este enfoque permite una mayor flexibilidad e independencia entre los datos usados en las condiciones, y los datos de salida para cada caso.
+\end{itemize}
+
+\usubsubsection{Resultados del incremento}
+
+Como resultado de esta iteración, se obtuvo un entorno capaz de ejecutar algoritmos distribuidos donde una parte del procesamiento ocurre en el navegador, otra en dispositivos micro:bit (controlando sensores y actuadores) y otra en PCs remotas, todo coordinado transparentemente por un servidor orquestador. Esta arquitectura validó la viabilidad de la propuesta para soportar sistemas distribuidos de manera accesible para niños y jóvenes, permitiendo la creación de proyectos que integren tanto software como hardware de forma fluida.
