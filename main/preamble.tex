@@ -5,6 +5,8 @@
 \usepackage{times}
 \usepackage{setspace}
 \usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
 \usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black]{hyperref}
 \usepackage{apacite}
 \bibliographystyle{apacite}
@@ -144,6 +146,38 @@
 \usepackage{caption}
 \usepackage{chngcntr}
 
+% === Comportamiento de floats (tablas/figuras) ===
+% Evita que floats relativamente pequeños se vayan a una página exclusiva.
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.8}
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{1}
+\setcounter{totalnumber}{3}
+
+% === Columnas para tablas con ajuste de texto ===
+% Útil con tabularx: columnas tipo X que envuelven texto.
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+% Especificación por defecto para tablas de 3 columnas:
+% 1ra col con ancho fijo, 2da/3ra col se ajustan y envuelven.
+\newcommand{\ThreeColWrapSpec}{L{0.28\textwidth} Y Y}
+
+% Espaciado vertical entre filas en tablas (1.0 = normal).
+% Sube a 1.15, 1.2, 1.3, etc. según necesidad.
+\newcommand{\TableRowStretch}{1.0}
+
+% === Estilo de captions (configurable) ===
+% Separador: "Tabla 1." en una línea y el caption en la siguiente.
+% Cambia este comando a: period, colon, newline, etc. según necesites.
+\newcommand{\TableCaptionLabelSep}{periodnewline}
+\DeclareCaptionLabelSeparator{periodnewline}{.\newline}
+
+% Alineación del caption de tablas (izquierda).
+% Valores típicos: raggedright, centering, justified
+\newcommand{\TableCaptionJustification}{raggedright}
+
 % Figuras
 % Poner el título de la figura en la parte inferior (por defecto), con la palabra
 % "Figura" seguida del número en cursiva y el texto del caption también en
@@ -161,7 +195,13 @@
 \counterwithout{figure}{chapter}
 
 % Tablas
-\captionsetup[table]{labelformat=default,labelsep=colon,name=Tabla}
+\captionsetup[table]{
+  labelformat=default,
+  labelsep=\TableCaptionLabelSep,
+  name=Tabla,
+  justification=\TableCaptionJustification,
+  singlelinecheck=false
+}
 \renewcommand{\thetable}{\arabic{table}}
 \counterwithout{table}{chapter}
 

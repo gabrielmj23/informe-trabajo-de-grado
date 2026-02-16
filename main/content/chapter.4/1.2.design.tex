@@ -1,8 +1,8 @@
-\usubsection{Diseño del lenguaje y de su entorno}
+\usection{Diseño del lenguaje y de su entorno}
 
 Tras definir los requerimientos y analizar las bases teóricas del pensamiento computacional, se procedió al diseño arquitectónico y funcional del lenguaje. Este diseño se fundamenta en el paradigma de flujo de datos (dataflow), priorizando la visualización explícita del movimiento de la información y la ejecución concurrente, elementos críticos para la comprensión de sistemas modernos.
 
-\usubsubsection{Arquitectura del entorno de ejecución}
+\usubsection{Arquitectura del entorno de ejecución}
 
 Para cumplir con el requisito de ejecución en entornos web y facilitar la interactividad necesaria en el ámbito educativo, se optó por una arquitectura basada en un intérprete en lugar de un compilador. Esto permite ciclos de prueba rápidos (“imaginación, construcción y pruebas”) esenciales para el aprendizaje iterativo.
 
@@ -17,7 +17,7 @@ El ciclo de vida del motor se estructuró en un bucle de eventos compuesto por c
     \item \textbf{Unidad de Transmisión (Transmit Unit):} Enruta los resultados hacia los puertos de entrada de los nodos siguientes, reiniciando el ciclo.
 \end{enumerate}
 
-\usubsubsection{Diseño de la sintaxis visual y los nodos}
+\usubsection{Diseño de la sintaxis visual y los nodos}
 
 El diseño de los nodos, definidos como las unidades mínimas de procesamiento, se realizó siguiendo los principios de la “Física de las Notaciones” para garantizar la efectividad cognitiva. Se estableció una gramática visual que utiliza la discriminabilidad perceptual y la codificación dual (texto + icono) para facilitar el reconocimiento rápido de las funciones por parte de los niños.
 
@@ -31,7 +31,7 @@ Se clasificó el catálogo de nodos en categorías alineadas con los componentes
     \item \textbf{Entradas y Eventos:} Se diseñaron con forma circular para evocar puntos de origen. Incluyen nodos como Timer (para introducir asincronía y eventos temporales) y Constante.
 \end{enumerate}
 
-\usubsubsection{Modelado del comportamiento de los nodos}
+\usubsection{Modelado del comportamiento de los nodos}
 
 Dado que el sistema es concurrente, el estado de cada nodo es independiente del resto. Para modelar este comportamiento, se diseñó una máquina de estados finitos que gobierna el ciclo de vida de cada componente visual durante la ejecución:
 
