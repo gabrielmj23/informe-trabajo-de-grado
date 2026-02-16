@@ -171,8 +171,8 @@
 % === Estilo de captions (configurable) ===
 % Separador: "Tabla 1." en una línea y el caption en la siguiente.
 % Cambia este comando a: period, colon, newline, etc. según necesites.
-\newcommand{\TableCaptionLabelSep}{periodnewline}
-\DeclareCaptionLabelSeparator{periodnewline}{.\newline}
+\newcommand{\TableCaptionLabelSep}{capnewline}
+\DeclareCaptionLabelSeparator{capnewline}{\newline}
 
 % Alineación del caption de tablas (izquierda).
 % Valores típicos: raggedright, centering, justified
@@ -199,6 +199,8 @@
   labelformat=default,
   labelsep=\TableCaptionLabelSep,
   name=Tabla,
+  textfont={it},
+  font=small,
   justification=\TableCaptionJustification,
   singlelinecheck=false
 }
