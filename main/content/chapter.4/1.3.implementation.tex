@@ -1,1 +1,44 @@
 \usection{Implementación del lenguaje y su entorno}
+
+Siguiendo la metodología incremental seleccionada, el desarrollo se dividió en fases iterativas. A continuación, se detallan las actividades, decisiones técnicas y resultados obtenidos en el primer incremento.
+
+\usubsection{Primer incremento}
+
+El objetivo primordial de este primer incremento fue establecer las bases de la herramienta, centrándose en dos componentes críticos: la interfaz gráfica para la construcción de programas (editor) y el núcleo de procesamiento (motor de ejecución). En esta etapa, el alcance se limitó a la ejecución en un solo dispositivo (el navegador web), postergando la distribución de procesos para siguientes iteraciones.
+
+\usubsubsection{Desarrollo del editor visual}
+
+Se procedió a la implementación de la interfaz de usuario que permite la programación visual. De acuerdo con lo establecido en el diseño preliminar, el énfasis de esta primera versión se colocó en la funcionalidad operativa más que en la estética final. Las principales tareas realizadas fueron:
+
+\begin{itemize}
+    \item \textbf{Lienzo de trabajo:} Se desarrolló un entorno de “arrastrar y soltar” (\emph{drag and drop}) que permite a los usuarios seleccionar nodos desde un panel lateral y depositarlos en un área de trabajo infinita.
+    \item \textbf{Gestión de conexiones:} Se implementó la lógica para trazar “arcos” o cables entre los puertos de salida de un nodo y los puertos de entrada de otro, estableciendo así el grafo de flujo de datos.
+    \item \textbf{Representación visual de nodos:} Se utilizaron íconos temporales para los nodos, priorizando la correcta identificación de los tipos de puertos (entradas y salidas) sobre el diseño gráfico definitivo del lenguaje.
+\end{itemize}
+
+\usubsubsection{Desarrollo del motor de ejecución}
+
+Para procesar los grafos creados en el editor, se construyó un motor de ejecución basado en un intérprete, lo que permitió evitar la compilación para facilitar la depuración y la ejecución inmediata en entornos web.
+
+El motor se diseñó bajo el principio de activación por disponibilidad de datos. A diferencia de la ejecución secuencial tradicional, se implementó un bucle de eventos (event loop) que gestiona el ciclo de vida de los nodos a través de las unidades lógicas definidas en la fase de diseño. Este diseño permitió validar que múltiples ramas del grafo pudieran ejecutarse lógicamente en paralelo sin bloquear el hilo principal del navegador.
+
+\usubsubsection{Refinamiento del catálogo de nodos}
+
+Tras realizar las primeras pruebas de integración entre el editor y el motor, se identificaron oportunidades de mejora en la especificación original de los nodos, lo que llevó a realizar ajustes técnicos respecto al diseño inicial:
+
+\begin{itemize}
+    \item \textbf{Especialización de constantes:} Se eliminó el nodo genérico de “Constante” a favor de una tipificación más estricta para reducir errores en tiempo de ejecución. Se implementaron nodos específicos: Constante numérica, Constante lógica y Constante de texto.
+    \item \textbf{Expansión de operaciones matemáticos:} Para aumentar la capacidad expresiva del lenguaje en el ámbito aritmético, se agregaron los nodos de Módulo (residuo de la división), Piso (redondeo hacia abajo), Techo (redondeo hacia arriba) y Redondear.
+    \item \textbf{Generación de datos:} Se introdujo el nodo “Generar pulsos”, el cual permite emitir valores enteros secuenciales entre un inicio y un fin con un paso definido, fundamental para probar el comportamiento de flujos continuos en el motor, como pudiera ocurrir en un sistema de IoT, por ejemplo.
+\end{itemize}
+
+\usubsubsection{Resultados del incremento}
+
+Como resultado de este incremento, se obtuvo una versión funcional del lenguaje capaz de ejecutar algoritmos matemáticos y lógicos dentro del navegador. Aunque la interfaz visual era preliminar, el motor demostró capacidad para manejar la concurrencia local y la gestión de memoria de los tokens de datos, validando la arquitectura base antes de proceder con la implementación de la comunicación distribuida. En la figura \ref{fig:editor-incr1} se muestra la interfaz del editor en esta etapa, evidenciando la paleta de nodos, el área de diseño del programa y el área de consola para la salida de datos.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{../images/editor-incr1.png}
+    \caption[Interfaz del editor en el primer incremento]{\normalfont Interfaz del editor en el primer incremento}
+    \label{fig:editor-incr1}
+\end{figure}
