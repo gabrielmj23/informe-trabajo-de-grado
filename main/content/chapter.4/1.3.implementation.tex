@@ -84,6 +84,25 @@ Para soportar estas nuevas capacidades distribuidas, se incorporaron nuevos nodo
     \item \textbf{Lógica de control:} Se introdujo el nodo Condicional + Selector, el cual evalúa condiciones lógicas y dirige el flujo de datos hacia diferentes salidas, permitiendo bifurcaciones en la lógica distribuida. Este nodo representa una evolución sobre el planteamiento original de la lógica condicional en el lenguaje, que se basaba en el enrutamiento de datos a través de una condición (Switch). Este enfoque permite una mayor flexibilidad e independencia entre los datos usados en las condiciones, y los datos de salida para cada caso.
 \end{itemize}
 
+\usubsubsection{Soporte y gestión de la recursividad}
+
+Un avance fundamental de este incremento fue la implementación de la recursividad en el paradigma de flujos de datos. Visualmente, esto se resolvió mediante el nodo de abstracción de subflujos: el estudiante puede instanciar este nodo dentro de su propio lienzo interno, haciendo explícita la autorreferencia y asumiendo la responsabilidad de construir un caso base lógico.
+
+Para evitar bucles infinitos y garantizar la estabilidad del sistema, el control se estructuró en dos fases arquitectónicas. Durante la compilación, el motor utiliza un contexto global para rastrear las plantillas activas; al detectar una llamada recursiva, reutiliza la definición ya registrada en lugar de repetir el análisis, evitando ciclos de resolución infinitos. Por otro lado, en tiempo de ejecución, se gestiona un contexto dinámico que actúa como una pila de llamadas controlada. Cada invocación genera una instancia de ejecución independiente para aislar los datos y aumenta un contador de profundidad. Si el caso base del estudiante falla y se alcanza el límite máximo de seguridad preestablecido, el sistema intercepta el flujo y detiene la ejecución con una excepción. Esta arquitectura garantiza un equilibrio óptimo entre la libertad algorítmica del usuario y la protección del entorno en el navegador.
+
 \usubsubsection{Resultados del incremento}
 
 Como resultado de esta iteración, se obtuvo un entorno capaz de ejecutar algoritmos distribuidos donde una parte del procesamiento ocurre en el navegador, otra en dispositivos micro:bit (controlando sensores y actuadores) y otra en PCs remotas, todo coordinado transparentemente por un servidor orquestador. Esta arquitectura validó la viabilidad de la propuesta para soportar sistemas distribuidos de manera accesible para niños y jóvenes, permitiendo la creación de proyectos que integren tanto software como hardware de forma fluida.
+
+\usubsection{Tercer incremento}
+
+El objetivo central de este tercer incremento fue la conceptualización e implementación del módulo de ``Desafíos''. Tras consolidar un motor de ejecución y un editor funcional en las etapas previas, se abordó la necesidad de dotar a la herramienta de una estructura de apoyo que permitiera a los futuros usuarios familiarizarse con el paradigma de flujos de datos. Por ello, este módulo se diseñó para funcionar como un sistema de tutoriales gamificados. 
+
+\usubsubsection{Diseño del módulo de desafíos}
+
+El diseño de este módulo se fundamentó en principios de gamificación y psicología cognitiva. De acuerdo con \cite{sandhu2013}, la gamificación consiste en utilizar el pensamiento y las dinámicas de los juegos para involucrar a las audiencias en la resolución de problemas. En el contexto del diseño de interfaces para niños, la inclusión de elementos gamificados basados en el aprendizaje resulta fundamental para fomentar la comprensión de conceptos abstractos. Bajo esta premisa, el módulo de desafíos se estructuró para proporcionar una ruta de aprendizaje interactiva e incremental.
+
+Para asegurar la efectividad de los retos, los usuarios se clasificaron según la teoría del desarrollo cognitivo de Piaget. El grupo de 8 a 11 años, ubicado en la etapa de Operaciones Concretas, comprende la causalidad pero presenta dificultades ante conceptos puramente abstractos. Por tanto, sus desafíos emplean metáforas visuales manipulables donde la relación entrada-salida es empíricamente observable. En contraste, los jóvenes de 12 a 16 años, en la etapa de Operaciones Formales, poseen un razonamiento abstracto e hipotético-deductivo. Sus retos prescinden de metáforas directas para introducir lógicas complejas y estructuras de datos abstractas, requiriendo planificación algorítmica y manejo concurrente de variables.
+
+Adicionalmente, para evitar la sobrecarga cognitiva en ambos grupos, el módulo implementa el principio de andamiaje (scaffolding). A diferencia del modo de creación libre, el entorno restringe dinámicamente la paleta de herramientas, exponiendo únicamente los nodos necesarios para resolver el nivel en curso. Para complementar esto, se desarrolló un motor de validación automática que evalúa en tiempo real el flujo construido, comparando la salida final generada con el resultado esperado del reto. Esta validación emite un veredicto inmediato de éxito o fallo, fomentando el aprendizaje autónomo basado en el ensayo y error.
+
