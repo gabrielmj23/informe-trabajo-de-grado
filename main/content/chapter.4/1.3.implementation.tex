@@ -102,11 +102,11 @@ El objetivo central de este tercer incremento fue la conceptualización e implem
 Para garantizar una experiencia de usuario fluida y minimizar la carga cognitiva, se rediseñó la interfaz del editor principal, transitando de un prototipo funcional a un entorno visualmente pulido y estructurado. Las mejoras implementadas se centraron en la jerarquización de la información, la maximización del espacio de trabajo y el uso de la psicología del color para guiar la interacción. Los cambios más relevantes incluyen:
 
 \begin{itemize}
-\item \textbf{Estructuración de la cabecera (Header):} Se incorporó una barra superior persistente de color azul que dota de identidad visual al lenguaje (logo y nombre). En este espacio se reubicaron las acciones globales del sistema, como la carga y descarga de programas y la conexión de dispositivos, separándolas lógicamente del área de construcción de algoritmos.
-\item \textbf{Jerarquización de los controles de ejecución:} Los botones de ''Ejecutar'' y ''Detener'' pasaron de ser texto plano a elementos prominentes con colores semánticos universales (verde para inicio y rojo/rosa para detención). Esto proporciona \textit{affordance} visual, permitiendo a los niños identificar instintivamente las acciones de control del programa sin necesidad de leer.
-\item \textbf{Optimización de la paleta de nodos:} Se redujo el tamaño general de la barra lateral izquierda para ceder mayor espacio en pantalla al lienzo de trabajo. Para mantener la accesibilidad, se integró una nueva columna de navegación rápida con iconos categorizados (Entradas, Proceso, Control, etc.) que coinciden cromáticamente con los nodos, facilitando la búsqueda visual.
-\item \textbf{Compactación de los componentes visuales:} La geometría de los nodos fue rediseñada y recortada. Al ocupar menos espacio individual, se permite que programas con un mayor número de nodos e interconexiones sean visibles simultáneamente en pantalla, reduciendo la necesidad de desplazamiento y facilitando la comprensión de la arquitectura general del flujo de datos.
-\item \textbf{Delimitación del área de salida (Consola):} Se aplicó un borde y un fondo de color a la consola de resultados, contrastándola con la cuadrícula del lienzo. Esta separación visual clara ayuda al estudiante a distinguir rápidamente entre el área de construcción lógica y el área de resultados.
+    \item \textbf{Estructuración de la cabecera (header):} Se incorporó una barra superior persistente de color azul que dota de identidad visual al lenguaje (logo y nombre). En este espacio se reubicaron las acciones globales del sistema, como la carga y descarga de programas y la conexión de dispositivos, separándolas lógicamente del área de construcción de algoritmos.
+    \item \textbf{Jerarquización de los controles de ejecución:} Los botones de “Ejecutar” y “Detener” pasaron de ser texto plano a ser elementos prominentes con colores semánticos universales (verde para inicio y rojo para detener). Esto proporciona \textit{affordance} visual, permitiendo a los usuarios identificar instintivamente las acciones de control del programa sin la necesidad estricta de leer.
+    \item \textbf{Optimización de la paleta de nodos:} Se redujo el tamaño general de la barra lateral izquierda para ceder mayor espacio en pantalla al lienzo de trabajo. Para mantener la accesibilidad, se integró una nueva columna de navegación rápida con iconos categorizados (Entradas, Proceso, Control, etc.) que coinciden cromáticamente con los nodos, facilitando la búsqueda visual.
+    \item \textbf{Compactación de los componentes visuales:} La geometría de los nodos fue rediseñada para ser de menor longitud cuando sea posible. Al ocupar menos espacio individual, se permite que programas con un mayor número de nodos e interconexiones sean visibles simultáneamente en pantalla, reduciendo la necesidad de desplazamiento y facilitando la comprensión de la arquitectura general del flujo de datos.
+    \item \textbf{Delimitación del área de salida (consola):} Se aplicó un borde y un fondo de color a la consola de resultados, contrastándola con la cuadrícula del lienzo. Esta separación visual clara ayuda al estudiante a distinguir rápidamente entre el área de construcción lógica y el área de resultados.
 \end{itemize}
 
 El resultado de estas optimizaciones puede apreciarse en la figura \ref{fig:editor-incr2}, la cual ilustra el editor renovado, ofreciendo un entorno de trabajo más accesible, espacioso y estéticamente adaptado a las capacidades cognitivas y motoras del público objetivo.
@@ -138,28 +138,28 @@ Para sistematizar la creación de estos retos interactivos y garantizar que cada
     \renewcommand{\arraystretch}{\TableRowStretch}
     \begin{tabularx}{\textwidth}{ l X }
         \hline
-        \textbf{Campo} & \textbf{Descripción} \\
+        \textbf{Campo}              & \textbf{Descripción}                                                                            \\
         \hline
-        \textbf{Título del Desafío} & Un nombre atractivo y temático. \\
-        \textbf{Nivel en Roadmap} & Ubicación en la curva de aprendizaje. \\
-        \textbf{Grupo Objetivo} & Exploradores (8-11 años) o Ingenieros (12-16 años). \\
-        \textbf{Objetivo} & ¿Qué concepto de Dataflow queremos que entiendan? \\
+        \textbf{Título del Desafío} & Un nombre atractivo y temático.                                                                 \\
+        \textbf{Nivel en Roadmap}   & Ubicación en la curva de aprendizaje.                                                           \\
+        \textbf{Grupo Objetivo}     & niños (8-11 años) o jóvenes (12-16 años).                                                       \\
+        \textbf{Objetivo}           & ¿Qué concepto de Dataflow queremos que entiendan?                                               \\
         \textbf{Escenario (Canvas)} & Lienzo en blanco (construir desde cero) o lienzo roto (arreglar/completar nodos preexistentes). \\
-        \textbf{Nodos Disponibles} & Lista restrictiva de nodos que el usuario puede usar. \\
-        \textbf{Misión (Enunciado)} & La historia o problema a resolver en lenguaje natural. \\
-        \textbf{Output Esperado} & El resultado exacto que debe mostrar el nodo "Escribir" o la consola. \\
+        \textbf{Nodos Disponibles}  & Lista restrictiva de nodos que el usuario puede usar.                                           \\
+        \textbf{Misión (Enunciado)} & La historia o problema a resolver en lenguaje natural.                                          \\
+        \textbf{Output Esperado}    & El resultado exacto que debe mostrar el nodo "Escribir" o la consola.                           \\
         \hline
     \end{tabularx}
     \endgroup
 \end{table}
 
-Utilizando este formato estandarizado como guía, se diseñó un currículo inicial compuesto por 18 desafíos. Estos se distribuyeron equitativamente, destinando 9 retos para el grupo de Exploradores y 9 para el grupo de Ingenieros. Cada conjunto de desafíos fue estructurado para abarcar progresivamente los conceptos fundamentales del lenguaje, comenzando desde la simple interconexión de nodos de lectura y escritura, hasta llegar a la resolución de problemas lógicos y la manipulación concurrente de datos. Esta distribución garantiza una curva de aprendizaje secuencial, asegurando que cada nuevo reto se construya sobre los conocimientos consolidados en el nivel anterior.
+Utilizando este formato estandarizado como guía, se diseñó un currículo inicial compuesto por 18 desafíos. Estos se distribuyeron equitativamente, destinando 9 retos para el grupo de niños y 9 para el grupo de jóvenes. Cada conjunto de desafíos fue estructurado para abarcar progresivamente los conceptos fundamentales del lenguaje, comenzando desde la simple interconexión de nodos de lectura y escritura, hasta llegar a la resolución de problemas lógicos y la manipulación concurrente de datos. Esta distribución garantiza una curva de aprendizaje secuencial, asegurando que cada nuevo reto se construya sobre los conocimientos consolidados en el nivel anterior.
 
 \usubsubsection{Diseño de la interfaz de usuario del módulo de desafíos}
 
-Para materializar el módulo de desafíos, el primer paso consistió en reestructurar la arquitectura de la información del sistema. Originalmente, la aplicación constaba de una única vista centralizada en el editor de código. Para integrar la nueva funcionalidad, se implementó un sistema de enrutamiento web y una página de inicio que bifurca la experiencia del usuario, permitiéndole elegir entre el modo de creación libre (editor base) y la ruta de aprendizaje guiada (desafíos).
+Para materializar el módulo de desafíos, el primer paso consistió en reestructurar la arquitectura de la información del sistema. Originalmente, la aplicación constaba de una única vista centralizada en el editor de código. Para integrar la nueva funcionalidad, se implementó un sistema de enrutamiento web a partir de una página de inicio que bifurca la experiencia del usuario, permitiéndole elegir entre el modo de creación libre (editor base) y la ruta de aprendizaje guiada (desafíos).
 
-Al ingresar al módulo de aprendizaje, el flujo de interacción inicia con una pantalla de perfilamiento donde el usuario debe seleccionar su rango de edad. Esta decisión de interfaz es fundamental, ya que conecta directamente con la estructuración cognitiva definida previamente; permite al sistema cargar dinámicamente el currículo de retos correspondiente a la etapa de desarrollo del estudiante. En la figura \ref{fig:seleccion-edad} se ilustra esta pantalla de selección de perfil.
+Al ingresar al módulo de aprendizaje, el flujo de interacción inicia con una pantalla donde el usuario debe seleccionar su rango de edad. Esta interfaz conecta directamente con la estructuración cognitiva definida previamente, y permite al sistema cargar dinámicamente el currículo de retos correspondiente a la etapa de desarrollo del estudiante. En la figura \ref{fig:seleccion-edad} se ilustra esta pantalla de selección de perfil.
 
 \begin{figure}[H]
     \centering
@@ -168,7 +168,7 @@ Al ingresar al módulo de aprendizaje, el flujo de interacción inicia con una p
     \label{fig:seleccion-edad}
 \end{figure}
 
-Una vez establecido el perfil del usuario, los niveles no se presentan como una simple lista de tareas, sino que se integran en una interfaz altamente gamificada en forma de mapa de progreso o \textit{roadmap}. Como se aprecia en la figura \ref{fig:desafio-roadmap}, los desafíos se distribuyen secuencialmente a lo largo de un camino ilustrado. Cada parada en este recorrido actúa como un nivel bloqueado o desbloqueado, acompañado de una imagen gráfica representativa de la temática del reto.
+Una vez establecido el perfil del usuario, los niveles se integran en una interfaz gamificada en forma de mapa de progreso o \textit{roadmap}. Como se aprecia en la figura \ref{fig:desafio-roadmap}, los desafíos se distribuyen secuencialmente a lo largo de un camino ilustrado. Cada parada en este recorrido actúa como un nivel bloqueado o desbloqueado, acompañado de una imagen gráfica representativa de la temática del reto.
 
 \begin{figure}[H]
     \centering
@@ -179,13 +179,13 @@ Una vez establecido el perfil del usuario, los niveles no se presentan como una 
 
 Esta disposición espacial y lúdica ofrece al estudiante un sentido claro de progresión y meta. Al interactuar con cada nodo del mapa, el usuario puede visualizar la descripción y los objetivos específicos del desafío, contando con un botón de acción directa para transicionar hacia la pantalla de resolución del nivel seleccionado.
 
-Al seleccionar un nivel específico desde el mapa interactivo, el estudiante ingresa a la pantalla de resolución del desafío, la cual se ilustra en la figura \ref{fig:editor-desafio}. En esta vista, el concepto de andamiaje cognitivo se materializa de forma evidente: la paleta de nodos en el panel izquierdo se restringe automáticamente para mostrar únicamente los componentes habilitados para esa misión en particular. Por su parte, el lienzo central se inicializa según el escenario definido, pudiendo presentarse completamente en blanco o desplegar una configuración de nodos iniciales preestablecida, estableciendo así el punto de partida lógico para el estudiante.
+Al seleccionar un nivel específico desde el mapa interactivo, el estudiante ingresa a la pantalla de resolución del desafío, la cual se ilustra en la figura \ref{fig:editor-desafio}. En esta vista, el concepto de andamiaje cognitivo se hace presente, dado que la paleta de nodos en el panel izquierdo se restringe automáticamente para mostrar únicamente los componentes habilitados para esa misión en particular. Por su parte, el lienzo central se inicializa según el escenario definido, pudiendo presentarse completamente en blanco o desplegar una configuración de nodos iniciales preestablecida, estableciendo así el punto de partida lógico para el estudiante.
 
-Para optimizar el uso del espacio y mantener el enfoque visual en el flujo de datos, el panel de información del reto se diseñó como una tarjeta flotante ubicada en la esquina superior derecha del lienzo. Este panel contiene el estado de la misión, el enunciado con las instrucciones redactadas en lenguaje natural y el botón de acción principal denominado ``Probar''.
+Para optimizar el uso del espacio y mantener el enfoque visual en el flujo de datos, el panel de información del reto se diseñó como una tarjeta flotante ubicada en la esquina superior derecha del lienzo. Este panel contiene el estado de la misión, el enunciado con las instrucciones redactadas en lenguaje natural y el botón de acción principal para probar la solución construida.
 
-El proceso de validación se diseñó para ser transparente y formativo. Al accionar el botón ``Probar'', el motor de ejecución orquesta una corrida interna utilizando los casos de prueba definidos en la configuración del nivel. El sistema evalúa el grafo construido por el usuario y contrasta su comportamiento con la salida esperada. Si el flujo lógico es incorrecto, el entorno expone el resultado erróneo obtenido; esta retroalimentación visual directa es fundamental, ya que permite al estudiante verificar la discrepancia, reflexionar sobre su lógica y aplicar técnicas de depuración (\textit{debugging}) autónoma basadas en el ensayo y error.
+El proceso de validación de desafíos se diseñó para ser transparente y formativo. Al accionar el botón “Probar”, el motor de ejecución orquesta una corrida interna utilizando los casos de prueba definidos en la configuración del nivel. El sistema evalúa el grafo construido por el usuario y contrasta su comportamiento con la salida esperada para cada uno de los casos. Si el flujo lógico es incorrecto, el entorno expone el resultado erróneo obtenido. Esta retroalimentación visual directa permite al estudiante verificar la discrepancia, reflexionar sobre su lógica y aplicar técnicas de depuración basadas en el ensayo y error.
 
-Por el contrario, si la validación es exitosa y el flujo produce el resultado correcto, el sistema activa un refuerzo positivo multimodal. Gráficamente, se aprueba la misión y se presenta la opción de avanzar al siguiente nivel, mientras que a nivel auditivo se reproduce un efecto de sonido de recompensa. Este diseño sonoro actúa como un mecanismo de \textit{feedback} confirmatorio que, en el contexto de la gamificación, incrementa la satisfacción del usuario y fomenta la motivación continua a lo largo de la ruta de aprendizaje.
+Por el contrario, si la validación es exitosa y el flujo produce el resultado correcto, el sistema activa un refuerzo positivo. Gráficamente, se aprueba la misión y se presenta la opción de avanzar al siguiente nivel, mientras que a nivel auditivo se reproduce un efecto de sonido de recompensa. Este diseño sonoro actúa como un mecanismo de \textit{feedback} que, en el contexto de la gamificación, incrementa la satisfacción del usuario y fomenta la motivación continua a lo largo de la ruta de aprendizaje.
 
 \begin{figure}[H]
     \centering
