@@ -32,6 +32,33 @@ Tras realizar las primeras pruebas de integración entre el editor y el motor, s
     \item \textbf{Generación de datos:} Se introdujo el nodo “Generar pulsos”, el cual permite emitir valores enteros secuenciales entre un inicio y un fin con un paso definido, fundamental para probar el comportamiento de flujos continuos en el motor, como pudiera ocurrir en un sistema de IoT, por ejemplo.
 \end{itemize}
 
+\usubsubsection{Serialización y persistencia local de programas}
+
+Para dotar al sistema de persistencia local, se implementó un módulo de serialización y deserialización de grafos basado en un formato de texto estructurado y versionado. Este esquema de datos almacena de forma organizada la versión del documento, el nombre del programa, la configuración exacta de los nodos con sus interconexiones, y los parámetros espaciales del lienzo. Durante el proceso de exportación, el sistema extrae el estado actual del entorno y ejecuta una rutina de limpieza para depurar propiedades transitorias o exclusivas de la sesión activa. Esto garantiza que el archivo resultante sea completamente portable. Finalmente, la información validada se empaqueta y se descarga como un archivo local utilizando las capacidades nativas del navegador web.
+
+Por otro lado, durante el proceso de importación, el sistema lee el archivo suministrado por el usuario y realiza un análisis de su estructura interna. En esta fase, se valida de forma estricta la compatibilidad del esquema para asegurar que la versión del documento coincida con la soportada por el motor. Si la validación es exitosa, la rutina de deserialización normaliza los componentes, resuelve posibles conexiones huérfanas y actualiza el estado global del editor. Esto permite reconstruir el flujo de datos visual y restaurar la perspectiva espacial del lienzo tal como fue guardada. En caso de detectar un archivo corrupto o incompatible, el proceso se interrumpe inmediatamente y se notifica al usuario.
+
+\usubsubsection{Implementación de la retroalimentación visual y manejo de errores}
+
+Tomando como base la máquina de estados finitos definida en la arquitectura del motor de ejecución, se implementó un mecanismo en la interfaz de usuario para reflejar el ciclo de vida de cada nodo en tiempo real. Un controlador intermedio intercepta los eventos de estado emitidos por el motor y traduce las transiciones lógicas en actualizaciones dinámicas de estilo sobre los componentes del lienzo.
+
+La materialización gráfica de este comportamiento se configuró mediante contornos coloreados y elementos superpuestos:
+\begin{itemize}
+\item \textbf{Procesamiento activo (\textit{Running}):} Durante la ejecución de su lógica interna, el nodo adquiere un contorno azul e incorpora un indicador de carga animado en su estructura.
+\item \textbf{Ejecución exitosa (\textit{Finished}):} Al concluir su operación y emitir los datos, el componente transiciona hacia un contorno verde de confirmación.
+\item \textbf{Excepciones (\textit{Error}):} Se integró la captura de fallos en tiempo de ejecución. Si un nodo intercepta una anomalía (como incompatibilidad de tipos o datos faltantes), su contorno se torna rojo y despliega un cuadro de texto emergente (\textit{tooltip}) que expone el mensaje exacto del fallo para facilitar el proceso de depuración visual.
+\end{itemize}
+
+Estos comportamientos del ciclo de vida de los nodos se evidencian en la figura \ref{fig:estados-ejecucion-nodos}, donde se observan de forma comparativa los estados principales durante la ejecución.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/estados-ejecucion.png}
+    \caption[Estados visuales durante la ejecución de nodos]{\normalfont Estados visuales durante la ejecución de nodos}
+    \label{fig:estados-ejecucion-nodos}
+\end{figure}
+
+
 \usubsubsection{Resultados del incremento}
 
 Como resultado de este incremento, se obtuvo una versión funcional del lenguaje capaz de ejecutar algoritmos matemáticos y lógicos dentro del navegador. Aunque la interfaz visual era preliminar, el motor demostró capacidad para manejar la concurrencia local y la gestión de memoria de los tokens de datos, validando la arquitectura base antes de proceder con la implementación de la comunicación distribuida. En la figura \ref{fig:editor-incr1} se muestra la interfaz del editor en esta etapa, evidenciando la paleta de nodos, el área de diseño del programa y el área de consola para la salida de datos.
