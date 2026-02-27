@@ -178,6 +178,11 @@
 % Valores típicos: raggedright, centering, justified
 \newcommand{\TableCaptionJustification}{raggedright}
 
+% Tamaño de letra para captions y contenido de tablas.
+% Usa normalsize para igualar el texto base del documento.
+\newcommand{\TableCaptionFontSize}{normalsize}
+\newcommand{\TableBodyFontSize}{\normalsize}
+
 % Figuras
 % Poner el título de la figura en la parte inferior (por defecto), con la palabra
 % "Figura" seguida del número en cursiva y el texto del caption también en
@@ -200,7 +205,7 @@
   labelsep=\TableCaptionLabelSep,
   name=Tabla,
   textfont={it},
-  font=small,
+  font=\TableCaptionFontSize,
   justification=\TableCaptionJustification,
   singlelinecheck=false
 }

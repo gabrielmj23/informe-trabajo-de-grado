@@ -115,13 +115,37 @@ Según \citeA{marinescu2013}, la concurrencia implica la ejecución simultánea 
 
 \citeA{mindstorms1980} defiende que la concurrencia es un elemento importante en la formación del pensamiento computacional, pues permite modelar situaciones reales que son inherentemente paralelas. En su momento, el enfoque basado en la concurrencia para el desarrollo de este pensamiento se encontraba limitado por las capacidades tecnológicas de la época. Sin embargo, \citeA{wing2006}, en un contexto más moderno, retoma esta valoración y pone el procesamiento paralelo como un pilar fundamental del pensamiento computacional.
 
+Cabe destacar que la programación concurrente abarca un conjunto de técnicas y modelos de programación, que permiten adaptarse a las capacidades de hardware y a las necesidades específicas de cada problema. Según \citeA[p.~10-11]{jorba2008}, los modelos de programación concurrente comúnmente aceptados son:
+
+\begin{itemize}
+    \item \textbf{Programación de memoria compartida (\emph{Multithread}):} se caracteriza por la existencia de múltiples hilos de ejecución dentro de una misma aplicación que comparten el mismo espacio de memoria. Este modelo permite que el cómputo sea simultáneo a un nivel lógico, específicamente cuando se utiliza una aproximación de multiprogramación, que utiliza un solo procesador. Un reto de este modelo de programación es la sincronización entre los hilos, debido a que pueden acceder a los mismos recursos compartidos, lo que puede llevar a condiciones de carrera.
+    \item \textbf{Programación paralela:} implica un procesamiento de cómputo que es simultáneo físicamente, lo que requiere de manera obligatoria la existencia de múltiples elementos de procesamiento que funcionen de manera independiente. Este modelo habilita la concurrencia a nivel físico, por lo que se utiliza para aprovechar la capacidad de cómputo de múltiples procesadores o núcleos.
+    \item \textbf{Programación distribuida:} se enfoca en aplicaciones cuyas partes se ejecutan en múltiples computadoras que no tienen por qué estar físicamente en un mismo espacio, y que suelen asumir un grado importante de heterogeneidad en cuanto a recursos, hardware y sistemas operativos. Estas computadoras están enlazadas por redes de comunicaciones y colaboran mediante el paso de mensajes y otros paradigmas de interacción.
+\end{itemize}
+
 \usubsection{Sistemas distribuidos}
 
 \citeA{vansteen2020} definen un sistema distribuido como un conjunto de elementos computacionales autónomos que aparecen antes los usuarios como un solo sistema coherente. Estos elementos computacionales pueden hacer referencia a componentes de hardware o de software, que suelen interconectarse a través de redes de comunicación.
 
-\citeA{mindstorms1980} hace un acercamiento a la aplicación de sistemas distribuidos en la formación del pensamiento computacional, utilizando modelos de múltiples agentes (tortugas, en su propuesta) que interactúan entre sí para demostrar conceptos de física para estudiantes de educación media (p. 130). De hecho, el mismo autor argumenta que la mente de los estudiantes puede modelarse como una metáfora de un sistema distribuido, dónde múltiples “agentes” trabajan en conjunto para resolver problemas, presentándose como un solo “sistema” (la mente del niño) (p. 167-169), por lo que puede argumentarse que el estudio de sistemas distribuidos puede ayudar a comprender mejor el pensamiento computacional y sus componentes desde edades tempranas.
+\citeA{mindstorms1980} hace un acercamiento a la aplicación de sistemas distribuidos en la formación del pensamiento computacional, utilizando modelos de múltiples agentes (tortugas, en su propuesta) que interactúan entre sí para demostrar conceptos de física para estudiantes de educación media (p. 130). De hecho, el mismo autor argumenta que la mente de los estudiantes puede modelarse como una metáfora de un sistema distribuido, dónde múltiples “agentes” trabajan en conjunto para resolver problemas, presentándose como un solo sistema (la mente del niño) (p. 167-169). Por lo tanto, puede argumentarse que el estudio de sistemas distribuidos puede ayudar a comprender mejor el pensamiento computacional y sus componentes desde edades tempranas.
 
 Para instrumentalizar estos conceptos en un entorno de aprendizaje, \citeA{hasselbring2021} destacan la pertinencia del paradigma de dataflow sobre el control de flujo tradicional en la integración de sistemas distribuidos. A diferencia de los modelos secuenciales que imponen una orquestación centralizada, el dataflow permite que la ejecución sea reactiva, desencadenándose implícitamente por la disponibilidad de los datos, lo que garantiza el desacoplamiento necesario entre los componentes. Esta abstracción técnica facilita que los estudiantes modelen la interacción entre dichos agentes autónomos centrándose en la transformación y ruta de los datos, fomentando un pensamiento lógico modular sin la carga cognitiva de gestionar la sincronización explícita de instrucciones.
+
+\usubsubsection{Message Passing Interface (MPI)}
+
+MPI es un estándar que define una interfaz de comunicación para la programación paralela basada en el paso de mensajes en sistemas distribuidos. MPI no es un lenguaje de programación, sino una especificación para una biblioteca de rutinas que pueden ser llamadas desde lenguajes tradicionales como C y Fortran. Su objetivo principal es demostrar que los desarrolladores no necesitan comprometer ni hacer sacrificios entre la eficiencia, la portabilidad y la funcionalidad para elaborar sistemas que aprovechan las diversas formas de concurrencia. A través de MPI, es posible crear programas portables que aprovechen el hardware especializado de diferentes proveedores de supercomputadoras y redes de estaciones de trabajo, manteniendo un alto rendimiento \cite{groppmpi2014}.
+
+MPI aborda estrictamente el modelo de paso de mensajes. En este modelo, los procesos que se ejecutan en paralelo poseen espacios de direcciones de memoria separados. La comunicación ocurre únicamente cuando una porción del espacio de direcciones de un proceso se copia en el espacio de direcciones de otro. Esta operación es esencialmente cooperativa, lo que significa que la transferencia de datos requiere que el primer proceso ejecute una operación de envío (\emph{send}) y el segundo proceso ejecute una operación de recepción (\emph{receive}) de forma coordinada.
+
+Además de las comunicaciones punto a punto entre dos procesos, MPI soporta operaciones colectivas que involucran a todos los procesos dentro de un comunicador. Se hacen de especial interés las operaciones de reorganización y movimiento de datos entre procesos. Las principales operaciones de este tipo son:
+
+\begin{itemize}
+    \item \textbf{Broadcast:} Un proceso envía un mismo dato a todos los demás procesos.
+    \item \textbf{Scatter:} Un proceso distribuye partes de un arreglo de datos a diferentes procesos.
+    \item \textbf{Gather:} Varios procesos envían partes de un arreglo de datos a un proceso central que las recopila.
+\end{itemize}
+
+Este subconjunto de operaciones colectivas provee un marco para la comunicación eficiente en sistemas distribuidos, que puede utilizarse como base para la construcción de los esquemas de comunicación necesarios para la implementación de algoritmos paralelos dentro del entorno de dataflow.
 
 \usubsection{Micro:bit}
 
