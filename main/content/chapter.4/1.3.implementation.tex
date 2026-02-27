@@ -64,6 +64,10 @@ Estos comportamientos del ciclo de vida de los nodos se evidencian en la figura 
 
 Como resultado de este incremento, se obtuvo una versión funcional del lenguaje capaz de ejecutar algoritmos matemáticos y lógicos dentro del navegador. Aunque la interfaz visual era preliminar, el motor demostró capacidad para manejar la concurrencia local y la gestión de memoria de los tokens de datos, validando la arquitectura base antes de proceder con la implementación de la comunicación distribuida. En la figura \ref{fig:editor-incr1} se muestra la interfaz del editor en esta etapa, evidenciando la paleta de nodos, el área de diseño del programa y el área de consola para la salida de datos.
 
+Al finalizar las labores de desarrollo correspondientes al primer incremento, se ejecutaron diversas pruebas de validación funcional. Se construyeron programas de prueba integrando los distintos nodos de procesamiento y control implementados hasta el momento. Los resultados de estas pruebas fueron satisfactorios, demostrando que el motor de ejecución procesaba correctamente los flujos de datos lineales y ramificados.
+
+No obstante, como parte de la evaluación pedagógica de la herramienta, se intentó modelar algoritmos clásicos que son fundamentales en el aprendizaje tradicional de la programación, tales como el cálculo del factorial de un número y la generación de la sucesión de Fibonacci. Durante este proceso, se evidenció rápidamente una limitación importante en esta primera versión del lenguaje: la ausencia de soporte para la recursividad. Este hallazgo determinó la necesidad de plantear una solución arquitectónica en los siguientes incrementos para soportar estructuras cíclicas recursivas, garantizando así que el lenguaje no solo sea funcional, sino que posea el nivel de expresividad requerido para la enseñanza integral del pensamiento computacional.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{../images/editor-incr1.png}
@@ -121,6 +125,12 @@ Para evitar bucles infinitos y garantizar la estabilidad del sistema, el control
 \usubsubsection{Resultados del incremento}
 
 Como resultado de esta iteración, se obtuvo un entorno capaz de ejecutar algoritmos distribuidos donde una parte del procesamiento ocurre en el navegador, otra en dispositivos micro:bit (controlando sensores y actuadores) y otra en PCs remotas, todo coordinado transparentemente por un servidor orquestador. Esta arquitectura validó la viabilidad de la propuesta para soportar sistemas distribuidos de manera accesible para niños y jóvenes, permitiendo la creación de proyectos que integren tanto software como hardware de forma fluida.
+
+No obstante, la evaluación crítica de estos resultados a través de la construcción de casos de prueba arrojó dos hallazgos significativos que evidenciaron oportunidades de mejora frente a los objetivos pedagógicos y funcionales del proyecto.
+
+Primero, aunque la infraestructura base soportaba la comunicación y ejecución distribuida, el lenguaje visual carecía de primitivas que facilitaran aun más la orquestación intuitiva de estas tareas sobre conjuntos de datos (listas). Se identificó la necesidad y la viabilidad de implementar herramientas más concretas, con un mayor nivel de abstracción, para el diseño de algoritmos distribuidos. Específicamente, se planteó, para siguientes incrementos, la adopción de constructos inspirados en las operaciones colectivas de MPI, tales como \textit{scatter} y \textit{gather}, para simplificar visualmente los patrones de división de carga y recolección de resultados.
+
+Por último, se observó que el esquema de integración de las tarjetas micro:bit estaba restringido, relegando a estos dispositivos a un rol pasivo como dispositivos de procesamiento sobre datos enviados desde el programa principal. Esta limitación reducía sustancialmente la utilidad práctica del lenguaje para modelar aplicaciones auténticas orientadas, por ejemplo, al Internet de las Cosas (IoT), donde es fundamental la lectura dinámica de sensores. Por ello, se planteó la necesidad de implementar, en futuros incrementos, un modelo de integración más flexible que permita a los micro:bits actuar como fuentes de datos activas, capaces de emitir eventos al programa principal en respuesta a cambios en sus sensores, habilitando así la creación de proyectos interactivos y reactivos que integren hardware y software de manera fluida.
 
 \usubsection{Tercer incremento}
 
