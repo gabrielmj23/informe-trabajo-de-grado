@@ -44,10 +44,10 @@ Tomando como base la máquina de estados finitos definida en la arquitectura del
 
 La materialización gráfica de este comportamiento se configuró mediante contornos coloreados y elementos superpuestos:
 \begin{itemize}
-\item \textbf{Esperando (\textit{Waiting}):} Al iniciar el flujo del programa, o mientras aguarda la llegada de todos los datos necesarios en sus puertos de entrada, el componente asume un estado visual caracterizado por un contorno de color gris.
-\item \textbf{Procesamiento activo (\textit{Running}):} Durante la ejecución de su lógica interna, el nodo adquiere un contorno azul e incorpora un indicador de carga animado en su estructura.
-\item \textbf{Ejecución exitosa (\textit{Finished}):} Al concluir su operación y emitir los datos, el componente transiciona hacia un contorno verde de confirmación.
-\item \textbf{Excepciones (\textit{Error}):} Se integró la captura de fallos en tiempo de ejecución. Si un nodo intercepta una anomalía (como incompatibilidad de tipos o datos faltantes), su contorno se torna rojo y despliega un cuadro de texto emergente (\textit{tooltip}) que expone el mensaje exacto del fallo para facilitar el proceso de depuración visual.
+    \item \textbf{Esperando (\textit{Waiting}):} Al iniciar el flujo del programa, o mientras aguarda la llegada de todos los datos necesarios en sus puertos de entrada, el componente asume un estado visual caracterizado por un contorno de color gris.
+    \item \textbf{Procesamiento activo (\textit{Running}):} Durante la ejecución de su lógica interna, el nodo adquiere un contorno azul e incorpora un indicador de carga animado en su estructura.
+    \item \textbf{Ejecución exitosa (\textit{Finished}):} Al concluir su operación y emitir los datos, el componente transiciona hacia un contorno verde de confirmación.
+    \item \textbf{Excepciones (\textit{Error}):} Se integró la captura de fallos en tiempo de ejecución. Si un nodo intercepta una anomalía (como incompatibilidad de tipos o datos faltantes), su contorno se torna rojo y despliega un cuadro de texto emergente (\textit{tooltip}) que expone el mensaje exacto del fallo para facilitar el proceso de depuración visual.
 \end{itemize}
 
 Estos comportamientos del ciclo de vida de los nodos se evidencian en la figura \ref{fig:estados-ejecucion-nodos}, donde se observan de forma comparativa los estados principales durante la ejecución.
@@ -112,7 +112,7 @@ Para soportar estas nuevas capacidades distribuidas, se incorporaron nuevos nodo
     \item \textbf{Lógica de control:} Se introdujo el nodo Condicional + Selector, el cual evalúa condiciones lógicas y dirige el flujo de datos hacia diferentes salidas, permitiendo bifurcaciones en la lógica distribuida. Este nodo representa una evolución sobre el planteamiento original de la lógica condicional en el lenguaje, que se basaba en el enrutamiento de datos a través de una condición (Switch). Este enfoque permite una mayor flexibilidad e independencia entre los datos usados en las condiciones, y los datos de salida para cada caso.
 \end{itemize}
 
-\usubsubsection{Soporte y gestión de la recursividad}
+\usubsubsection{Soporte para recursividad}
 
 Un avance fundamental de este incremento fue la implementación de la recursividad en el paradigma de flujos de datos. Visualmente, esto se resolvió mediante el nodo de abstracción de subflujos: el estudiante puede instanciar este nodo dentro de su propio lienzo interno, haciendo explícita la autorreferencia y asumiendo la responsabilidad de construir un caso base lógico.
 
@@ -175,7 +175,7 @@ Para sistematizar la creación de estos retos interactivos y garantizar que cada
         \textbf{Escenario (Canvas)} & Lienzo en blanco (construir desde cero) o lienzo roto (arreglar/completar nodos preexistentes). \\
         \textbf{Nodos Disponibles}  & Lista restrictiva de nodos que el usuario puede usar.                                           \\
         \textbf{Misión (Enunciado)} & La historia o problema a resolver en lenguaje natural.                                          \\
-        \textbf{Output Esperado}    & El resultado exacto que debe mostrar el nodo "Escribir" o la consola.                           \\
+        \textbf{Output Esperado}    & El resultado exacto que debe mostrar el nodo “Escribir” o la consola.                           \\
         \hline
     \end{tabularx}
     \endgroup
@@ -213,7 +213,7 @@ Para optimizar el uso del espacio y mantener el enfoque visual en el flujo de da
 
 El proceso de validación de desafíos se diseñó para ser transparente y formativo. Al accionar el botón “Probar”, el motor de ejecución orquesta una corrida interna utilizando los casos de prueba definidos en la configuración del nivel. El sistema evalúa el grafo construido por el usuario y contrasta su comportamiento con la salida esperada para cada uno de los casos. Si el flujo lógico es incorrecto, el entorno expone el resultado erróneo obtenido. Esta retroalimentación visual directa permite al estudiante verificar la discrepancia, reflexionar sobre su lógica y aplicar técnicas de depuración basadas en el ensayo y error.
 
-Por el contrario, si la validación es exitosa y el flujo produce el resultado correcto, el sistema activa un refuerzo positivo. Gráficamente, se aprueba la misión y se presenta la opción de avanzar al siguiente nivel, mientras que a nivel auditivo se reproduce un efecto de sonido de recompensa. Este diseño sonoro actúa como un mecanismo de \textit{feedback} que, en el contexto de la gamificación, incrementa la satisfacción del usuario y fomenta la motivación continua a lo largo de la ruta de aprendizaje.
+Por el contrario, si la validación es exitosa y el flujo produce el resultado correcto, el sistema activa un refuerzo positivo. Gráficamente, se aprueba la misión y se presenta la opción de avanzar al siguiente nivel, mientras que a nivel auditivo se reproduce un efecto de sonido de recompensa. Este diseño sonoro actúa como un mecanismo de retroalimentación que, en el contexto de la gamificación, incrementa la satisfacción del usuario y fomenta la motivación continua a lo largo de la ruta de aprendizaje.
 
 \begin{figure}[H]
     \centering
@@ -222,3 +222,13 @@ Por el contrario, si la validación es exitosa y el flujo produce el resultado c
     \label{fig:editor-desafio}
 \end{figure}
 
+\usubsubsection{Ampliación del modelo de distribución}
+
+Como parte de las mejoras introducidas en el tercer incremento, se realizó un refinamiento sobre el modelo de ejecución distribuida implementado en la iteración anterior. Para potenciar la capacidad de los estudiantes de abordar problemas basados en el procesamiento paralelo de datos, se incorporaron nuevos componentes al lenguaje visual tomando como inspiración las operaciones definidas en el estándar de Message Passing Interface (MPI). Adaptando este subconjunto de operaciones colectivas se diseñaron e implementaron los siguientes nodos:
+
+\begin{itemize}
+    \item \textbf{Distribuir (Scatter):} Este componente se fundamenta en la operación Scatter de MPI, en la cual un proceso distribuye partes de un arreglo de datos a diferentes procesos. En el contexto del lenguaje, este nodo actúa sobre una estructura de datos tipo lista. Al activarse, fragmenta la colección y enruta sus elementos de manera equitativa hacia los distintos dispositivos o nodos de procesamiento conectados.
+    \item \textbf{Reunir (Gather):} Su diseño se basa en la operación Gather de MPI, conceptualizada para que varios procesos envíen partes de un arreglo de datos a un proceso central que las recopila. En el entorno desarrollado, este nodo cumple una función de sincronización; espera a que los múltiples nodos distribuidos concluyan su procesamiento y recolecta los resultados individuales, empaquetándolos nuevamente en una única lista de salida para continuar con el flujo lógico del programa principal.
+\end{itemize}
+
+La inclusión de estos nodos de distribución y recolección abstrae la complejidad técnica del manejo de múltiples procesos y el paso explícito de mensajes. De esta manera, se permite a los jóvenes modelar e interactuar con conceptos avanzados de paralelismo de datos de forma visual, manteniendo la consistencia del paradigma de flujo de datos y enriqueciendo las capacidades del lenguaje para la programación distribuida.

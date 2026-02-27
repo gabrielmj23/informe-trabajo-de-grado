@@ -7,6 +7,7 @@
 \usepackage{tabularx}
 \usepackage{array}
 \usepackage{float}
+\usepackage{etoolbox}
 \usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black]{hyperref}
 \usepackage{apacite}
 \bibliographystyle{apacite}
@@ -180,8 +181,10 @@
 
 % Tamaño de letra para captions y contenido de tablas.
 % Usa normalsize para igualar el texto base del documento.
-\newcommand{\TableCaptionFontSize}{normalsize}
-\newcommand{\TableBodyFontSize}{\normalsize}
+\newcommand{\TableBodyFontSize}{\small}
+\AtBeginEnvironment{tabular}{\TableBodyFontSize}
+\AtBeginEnvironment{tabular*}{\TableBodyFontSize}
+\AtBeginEnvironment{tabularx}{\TableBodyFontSize}
 
 % Figuras
 % Poner el título de la figura en la parte inferior (por defecto), con la palabra
@@ -205,7 +208,7 @@
   labelsep=\TableCaptionLabelSep,
   name=Tabla,
   textfont={it},
-  font=\TableCaptionFontSize,
+  font=small,
   justification=\TableCaptionJustification,
   singlelinecheck=false
 }
