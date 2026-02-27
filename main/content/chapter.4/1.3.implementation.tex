@@ -59,6 +59,13 @@ Estos comportamientos del ciclo de vida de los nodos se evidencian en la figura 
     \label{fig:estados-ejecucion-nodos}
 \end{figure}
 
+\usubsubsection{Sistema de tipado y validación de conexiones}
+
+Para garantizar la coherencia de los datos y prevenir errores de ejecución, se implementó un mecanismo de validación de tipos en tiempo real. Cada puerto de los componentes posee una categoría de información específica (como numérico, texto, lógico) que determina su compatibilidad. El sistema evalúa estas reglas continuamente, bloqueando de forma activa cualquier intento de enlazar nodos con tipos de datos incompatibles y emitiendo mensajes descriptivos al usuario.
+
+A nivel de interfaz, este mecanismo rige la representación visual para reducir la carga cognitiva del estudiante. Cada tipo de dato cuenta con una forma geométrica única en los puntos de conexión. Además, el entorno proporciona retroalimentación predictiva: al arrastrar una nueva conexión, el sistema resalta automáticamente los puertos de destino válidos y despliega alertas visuales (\textit{tooltips}) si se intenta forzar un enlace incorrecto, guiando al alumno en la construcción adecuada de su algoritmo.
+
+
 
 \usubsubsection{Resultados del incremento}
 
@@ -114,6 +121,7 @@ Para soportar estas nuevas capacidades distribuidas, se incorporaron nuevos nodo
     \item \textbf{Interacción con usuario:} Se añadieron los nodos de Entrada (solicitud de datos por teclado) y Opción Aleatoria, para permitir la generación de datos desde el entorno local.
     \item \textbf{Control de Micro:bit:} Se implementaron nodos específicos para interacciones puntuales con las tarjetas micro:bit, tales como Leer botón, Escribir en matriz LED y Emitir Sonido, permitiendo la interacción directa con el hardware.
     \item \textbf{Lógica de control:} Se introdujo el nodo Condicional + Selector, el cual evalúa condiciones lógicas y dirige el flujo de datos hacia diferentes salidas, permitiendo bifurcaciones en la lógica distribuida. Este nodo representa una evolución sobre el planteamiento original de la lógica condicional en el lenguaje, que se basaba en el enrutamiento de datos a través de una condición (Switch). Este enfoque permite una mayor flexibilidad e independencia entre los datos usados en las condiciones, y los datos de salida para cada caso.
+    \item \textbf{Editor de fórmulas:} Con el objetivo de optimizar la construcción de expresiones complejas, se implementó un nodo especializado que permite al usuario redactar fórmulas matemáticas mediante una sintaxis textual simplificada, en lugar de una interconexión extensiva de nodos aritméticos básicos. Este componente actúa como un evaluador de expresiones en tiempo de ejecución, procesando múltiples variables de entrada provenientes de otros nodos y consolidando el cálculo en una única salida. Esta adición facilita la transición de los jóvenes hacia formas de pensamiento más abstractas y simbólicas.
 \end{itemize}
 
 \usubsubsection{Soporte para recursividad}
