@@ -115,6 +115,14 @@ Según \citeA{marinescu2013}, la concurrencia implica la ejecución simultánea 
 
 \citeA{mindstorms1980} defiende que la concurrencia es un elemento importante en la formación del pensamiento computacional, pues permite modelar situaciones reales que son inherentemente paralelas. En su momento, el enfoque basado en la concurrencia para el desarrollo de este pensamiento se encontraba limitado por las capacidades tecnológicas de la época. Sin embargo, \citeA{wing2006}, en un contexto más moderno, retoma esta valoración y pone el procesamiento paralelo como un pilar fundamental del pensamiento computacional.
 
+Cabe destacar que la programación concurrente abarca un conjunto de técnicas y modelos de programación, que permiten adaptarse a las capacidades de hardware y a las necesidades específicas de cada problema. Según \citeA[p.~10-11]{jorba2008}, los modelos de programación concurrente comúnmente aceptados son:
+
+\begin{itemize}
+    \item \textbf{Programación de memoria compartida (\emph{Multithread}):} se caracteriza por la existencia de múltiples hilos de ejecución dentro de una misma aplicación que comparten el mismo espacio de memoria. Este modelo permite que el cómputo sea simultáneo a un nivel lógico, específicamente cuando se utiliza una aproximación de multiprogramación, que utiliza un solo procesador. Un reto de este modelo de programación es la sincronización entre los hilos, debido a que pueden acceder a los mismos recursos compartidos, lo que puede llevar a condiciones de carrera.
+    \item \textbf{Programación paralela:} implica un procesamiento de cómputo que es simultáneo físicamente, lo que requiere de manera obligatoria la existencia de múltiples elementos de procesamiento que funcionen de manera independiente. Este modelo habilita la concurrencia a nivel físico, por lo que se utiliza para aprovechar la capacidad de cómputo de múltiples procesadores o núcleos.
+    \item \textbf{Programación distribuida:} se enfoca en aplicaciones cuyas partes se ejecutan en múltiples computadoras que no tienen por qué estar físicamente en un mismo espacio, y que suelen asumir un grado importante de heterogeneidad en cuanto a recursos, hardware y sistemas operativos. Estas computadoras están enlazadas por redes de comunicaciones y colaboran mediante el paso de mensajes y otros paradigmas de interacción.
+\end{itemize}
+
 \usubsection{Sistemas distribuidos}
 
 \citeA{vansteen2020} definen un sistema distribuido como un conjunto de elementos computacionales autónomos que aparecen antes los usuarios como un solo sistema coherente. Estos elementos computacionales pueden hacer referencia a componentes de hardware o de software, que suelen interconectarse a través de redes de comunicación.
