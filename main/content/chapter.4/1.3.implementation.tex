@@ -61,7 +61,7 @@ Estos comportamientos del ciclo de vida de los nodos se evidencian en la figura 
 
 \usubsubsection{Sistema de tipado y validación de conexiones}
 
-Para garantizar la coherencia de los datos y prevenir errores de ejecución, se implementó un mecanismo de validación de tipos en tiempo real. Cada puerto de los componentes posee una categoría de información específica (como numérico, texto, lógico) que determina su compatibilidad. El sistema evalúa estas reglas continuamente, bloqueando de forma activa cualquier intento de enlazar nodos con tipos de datos incompatibles y emitiendo mensajes descriptivos al usuario.
+Para garantizar la coherencia de los datos y prevenir errores de ejecución, se implementó un mecanismo de validación de tipos en tiempo real. Cada puerto de los componentes posee una categoría de información específica (como numérico, texto o lógico) que determina su compatibilidad. El sistema evalúa estas reglas continuamente, bloqueando de forma activa cualquier intento de enlazar nodos con tipos de datos incompatibles y emitiendo mensajes descriptivos al usuario.
 
 A nivel de interfaz, este mecanismo rige la representación visual para reducir la carga cognitiva del estudiante. Cada tipo de dato cuenta con una forma geométrica única en los puntos de conexión. Además, el entorno proporciona retroalimentación predictiva: al arrastrar una nueva conexión, el sistema resalta automáticamente los puertos de destino válidos y despliega alertas visuales (\textit{tooltips}) si se intenta forzar un enlace incorrecto, guiando al alumno en la construcción adecuada de su algoritmo.
 
