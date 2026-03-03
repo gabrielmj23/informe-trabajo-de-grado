@@ -13,10 +13,423 @@
 \clearpage
 
 \appendix
-\uextra{Apéndice}{Título del Apéndice A}
+\counterwithin{table}{chapter}
+\renewcommand{\thetable}{Ap-\thechapter\arabic{table}}
+\uextra{Apéndice}{Listado de Desafíos para el Módulo de Desafíos}
 
-\lipsum[15]
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 1: Hola Mundo}
+  \label{tab:desafio-exp-1}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                                                                                        \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 1: Hola Mundo                                                                                                                                                         \\
+    \textbf{Nivel en Roadmap}   & 1 (Intro)                                                                                                                                                                   \\
+    \textbf{Grupo Objetivo}     & Exploradores (8-11 años)                                                                                                                                                    \\
+    \textbf{Objetivo}           & Conectar una entrada a una salida.                                                                                                                                          \\
+    \textbf{Escenario (Canvas)} & Lienzo en Blanco                                                                                                                                                            \\
+    \textbf{Nodos Disponibles}  & Constante de texto, Escribir.                                                                                                                                               \\
+    \textbf{Misión (Enunciado)} & Vamos a crear una máquina que diga “Hola mundo”. Configura el nodo de Constante de texto con el mensaje y conectalo al nodo Escribir. Presiona Ejecutar para ver la salida. \\
+    \textbf{Output Esperado}    & “Hola mundo”                                                                                                                                                                \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
 
-\uextra{Apéndice}{Title of Appendix B}
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 2: Tu nombre de héroe}
+  \label{tab:desafio-exp-2}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                                                                   \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 2: Tu nombre de héroe                                                                                                                            \\
+    \textbf{Nivel en Roadmap}   & 2 (Texto)                                                                                                                                              \\
+    \textbf{Grupo Objetivo}     & Exploradores (8-11 años)                                                                                                                               \\
+    \textbf{Objetivo}           & Modificar un texto agregándole algo fijo.                                                                                                              \\
+    \textbf{Escenario (Canvas)} & Lienzo Semielaborado (Nodos Leer y Escribir listos).                                                                                                   \\
+    \textbf{Nodos Disponibles}  & Constante Texto (“Super ”), Concatenar.                                                                                                                \\
+    \textbf{Misión (Enunciado)} & Crea tu nombre de superhéroe. Usa el nodo Concatenar para unir la palabra fija `Super ' con tu nombre real. Si escribes `Ana', debe salir `Super Ana'. \\
+    \textbf{Output Esperado}    & “Super [Nombre]”                                                                                                                                       \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
 
-\lipsum[16]
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 3: Calculadora de compras}
+  \label{tab:desafio-exp-3}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                      \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 3: Calculadora de compras                                                           \\
+    \textbf{Nivel en Roadmap}   & 3 (Matemáticas Básicas)                                                                   \\
+    \textbf{Grupo Objetivo}     & Exploradores (8-11 años)                                                                  \\
+    \textbf{Objetivo}           & Sumar dos constantes.                                                                     \\
+    \textbf{Escenario (Canvas)} & Lienzo Semielaborado (Constante Numérica (5), Constante Numérica (3))                     \\
+    \textbf{Nodos Disponibles}  & Suma, Escribir.                                                                           \\
+    \textbf{Misión (Enunciado)} & Compraste dos dulces: uno cuesta 5 y otro cuesta 3. Calcular cuánto debes pagar en total. \\
+    \textbf{Output Esperado}    & 8                                                                                         \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 4: La Resta}
+  \label{tab:desafio-exp-4}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                              \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 4: La Resta                                                 \\
+    \textbf{Nivel en Roadmap}   & 4 (Matemáticas Básicas)                                           \\
+    \textbf{Grupo Objetivo}     & Exploradores (8-11 años)                                          \\
+    \textbf{Objetivo}           & Restar una cantidad a otra.                                       \\
+    \textbf{Escenario (Canvas)} & Lienzo Semielaborado (Nodos numéricos ya puestos).                \\
+    \textbf{Nodos Disponibles}  & Resta, Escribir.                                                  \\
+    \textbf{Misión (Enunciado)} & Tienes 80 monedas y gastas 13. Calcula cuántas monedas te quedan. \\
+    \textbf{Output Esperado}    & 67                                                                \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 5: Puntos Dobles}
+  \label{tab:desafio-exp-5}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                                  \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 5: Puntos Dobles                                                                                                \\
+    \textbf{Nivel en Roadmap}   & 5 (Matemáticas Básicas)                                                                                               \\
+    \textbf{Grupo Objetivo}     & Exploradores (8-11 años)                                                                                              \\
+    \textbf{Objetivo}           & Multiplicar una entrada variable.                                                                                     \\
+    \textbf{Escenario (Canvas)} & Lienzo en Blanco                                                                                                      \\
+    \textbf{Nodos Disponibles}  & Leer, Constante Numérica (2), Multiplicación, Escribir.                                                               \\
+    \textbf{Misión (Enunciado)} & Ganaste un bonus de 'Doble Puntos'. Configura la máquina para que cualquier número que ingreses se multiplique por 2. \\
+    \textbf{Output Esperado}    & [Input] * 2                                                                                                           \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 6: Control de altura}
+  \label{tab:desafio-exp-6}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                       \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 6: Control de altura                                                                                 \\
+    \textbf{Nivel en Roadmap}   & 6 (Lógica)                                                                                                 \\
+    \textbf{Grupo Objetivo}     & Exploradores (8-11 años)                                                                                   \\
+    \textbf{Objetivo}           & Validar una condición numérica (Mayor o Igual).                                                            \\
+    \textbf{Escenario (Canvas)} & Lienzo en Blanco                                                                                           \\
+    \textbf{Nodos Disponibles}  & Leer (Altura), Constante Numérica (120), Comparar, Escribir.                                               \\
+    \textbf{Misión (Enunciado)} & Para entrar al juego debes medir 120 cm o más. Configura el nodo Comparar para ver si cumples la estatura. \\
+    \textbf{Output Esperado}    & true o false                                                                                               \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 7: La puerta automática}
+  \label{tab:desafio-exp-7}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                                                                                                   \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 7: La puerta automática                                                                                                                                                          \\
+    \textbf{Nivel en Roadmap}   & 7 (Control de Flujo)                                                                                                                                                                   \\
+    \textbf{Grupo Objetivo}     & Exploradores (8-11 años)                                                                                                                                                               \\
+    \textbf{Objetivo}           & Enviar datos por rutas distintas según una condición.                                                                                                                                  \\
+    \textbf{Escenario (Canvas)} & Lienzo Roto (Faltan las salidas).                                                                                                                                                      \\
+    \textbf{Nodos Disponibles}  & Constante Lógica (Interruptor), Switch (Si/No), Constante Texto (“Abierto”), Constante Texto (“Cerrado”), Escribir.                                                                    \\
+    \textbf{Misión (Enunciado)} & Si el interruptor está encendido (Verdadero), la puerta debe decir 'Abierto'. Si está apagado (Falso), debe decir 'Cerrado'. Conecta los textos a las salidas SI y NO del nodo Switch. \\
+    \textbf{Output Esperado}    & “Abierto” o “Cerrado”                                                                                                                                                                  \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 8: Bonus Extra}
+  \label{tab:desafio-exp-8}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                                                                                                                                            \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 8: Bonus Extra                                                                                                                                                                                                            \\
+    \textbf{Nivel en Roadmap}   & 8 (Paralelismo)                                                                                                                                                                                                                 \\
+    \textbf{Grupo Objetivo}     & Exploradores (8-11 años)                                                                                                                                                                                                        \\
+    \textbf{Objetivo}           & Entender que un cable se puede dividir en dos para hacer dos cosas a la vez.                                                                                                                                                    \\
+    \textbf{Escenario (Canvas)} & Lienzo en Blanco                                                                                                                                                                                                                \\
+    \textbf{Nodos Disponibles}  & Constante Numérica (10), Multiplicación, Constante Numérica (2), Suma, Escribir.                                                                                                                                                \\
+    \textbf{Misión (Enunciado)} & Tienes 10 puntos base. Además, ganaste un bono que vale 'el doble de tus puntos' (10 x 2). Saca dos cables del 10: uno directo a la Suma, y otro que pase por la Multiplicación antes de llegar a la Suma. Así sumarás 10 + 20. \\
+    \textbf{Output Esperado}    & 30                                                                                                                                                                                                                              \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 9: Tabla de posiciones}
+  \label{tab:desafio-exp-9}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                                            \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 9: Tabla de posiciones                                                                                                    \\
+    \textbf{Nivel en Roadmap}   & 9 (Listas)                                                                                                                      \\
+    \textbf{Grupo Objetivo}     & Exploradores (8-11 años)                                                                                                        \\
+    \textbf{Objetivo}           & Organizar un grupo de números.                                                                                                  \\
+    \textbf{Escenario (Canvas)} & Lienzo Semielaborado (Lista desordenada ya conectada).                                                                          \\
+    \textbf{Nodos Disponibles}  & Ordenar, Escribir.                                                                                                              \\
+    \textbf{Misión (Enunciado)} & Las puntuaciones del juego están desordenadas: [50, 10, 30, 20, 100]. Pásalas por el nodo Ordenar para verlas de menor a mayor. \\
+    \textbf{Output Esperado}    & [10, 20, 30, 50, 100]                                                                                                           \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
+% --- Desafíos para Ingenieros (12-16 años) ---
+
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 1: Autenticación de Dos Factores}
+  \label{tab:desafio-ing-1}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                                                                                                \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 1: Autenticación de Dos Factores                                                                                                                                              \\
+    \textbf{Nivel en Roadmap}   & 1 (Seguridad)                                                                                                                                                                       \\
+    \textbf{Grupo Objetivo}     & Ingenieros (12-16 años)                                                                                                                                                             \\
+    \textbf{Objetivo}           & Validar dos condiciones simultáneas (True + True = True).                                                                                                                           \\
+    \textbf{Escenario (Canvas)} & Lienzo en Blanco                                                                                                                                                                    \\
+    \textbf{Nodos Disponibles}  & Leer (Usuario), Leer (Contraseña), Constante Texto (“admin”, “user”), Constante Lógica (True), Comparar, AND (Y), Escribir.                                                         \\
+    \textbf{Misión (Enunciado)} & Diseña un sistema de seguridad. La puerta solo se abre si: 1) La contraseña es igual a 'admin' Y 2) El usuario es igual a 'user'. Usa el nodo AND para conectar ambas validaciones. \\
+    \textbf{Output Esperado}    & true (Solo si ambas entradas son correctas).                                                                                                                                        \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 2: Detector de Pares e Impares}
+  \label{tab:desafio-ing-2}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                                                                                                   \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 2: Detector de Pares e Impares                                                                                                                                                   \\
+    \textbf{Nivel en Roadmap}   & 2 (Aritmética Modular)                                                                                                                                                                 \\
+    \textbf{Grupo Objetivo}     & Ingenieros (12-16 años)                                                                                                                                                                \\
+    \textbf{Objetivo}           & Usar el operador Módulo para lógica matemática.                                                                                                                                        \\
+    \textbf{Escenario (Canvas)} & Lienzo Semielaborado (Entrada numérica lista).                                                                                                                                         \\
+    \textbf{Nodos Disponibles}  & Leer (Número), Constante Numérica (2), Módulo, Comparar, Escribir.                                                                                                                     \\
+    \textbf{Misión (Enunciado)} & Necesitamos clasificar números. Si el residuo (Módulo) de dividir un número entre 2 es igual a 0, el número es PAR. Crea un sistema que devuelva 'True' si el número ingresado es par. \\
+    \textbf{Output Esperado}    & true (para números pares) o false (para impares).                                                                                                                                      \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 3: El Censurador de Chat}
+  \label{tab:desafio-ing-3}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                                                                                                                    \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 3: El Censurador de Chat                                                                                                                                                                          \\
+    \textbf{Nivel en Roadmap}   & 3 (Procesamiento de Texto)                                                                                                                                                                              \\
+    \textbf{Grupo Objetivo}     & Ingenieros (12-16 años)                                                                                                                                                                                 \\
+    \textbf{Objetivo}           & Manipular y limpiar cadenas de texto.                                                                                                                                                                   \\
+    \textbf{Escenario (Canvas)} & Lienzo en Blanco                                                                                                                                                                                        \\
+    \textbf{Nodos Disponibles}  & Leer (Mensaje), Constante Texto (“tonto”), Constante Texto (“*****”), Reemplazar, Escribir.                                                                                                             \\
+    \textbf{Misión (Enunciado)} & Estás programando un bot de moderación para un chat. Si alguien escribe la palabra prohibida 'tonto', el sistema debe reemplazarla automáticamente por '*****'. El resto del mensaje debe quedar igual. \\
+    \textbf{Output Esperado}    & Texto original con la palabra censurada.                                                                                                                                                                \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 4: Sistema de Calificaciones}
+  \label{tab:desafio-ing-4}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                                                                                                                                               \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 4: Sistema de Calificaciones                                                                                                                                                                                                 \\
+    \textbf{Nivel en Roadmap}   & 4 (Bifurcación Compleja)                                                                                                                                                                                                           \\
+    \textbf{Grupo Objetivo}     & Ingenieros (12-16 años)                                                                                                                                                                                                            \\
+    \textbf{Objetivo}           & Evaluar múltiples condiciones en un solo paso.                                                                                                                                                                                     \\
+    \textbf{Escenario (Canvas)} & Lienzo Roto (Faltan las conexiones de condiciones).                                                                                                                                                                                \\
+    \textbf{Nodos Disponibles}  & Leer (Nota), Condicional + Selector, Constantes Numéricas, Constantes Texto (A, B, C), Escribir.                                                                                                                                   \\
+    \textbf{Misión (Enunciado)} & Automatiza las notas. Configura el Condicional + Selector con estas reglas: Si Nota >= 18 sale 'A'. Si Nota >= 10 sale 'B'. Si es menor, sale 'C'. Conecta las condiciones numéricas a las entradas correspondientes del selector. \\
+    \textbf{Output Esperado}    & “A”, “B” o “C” según el input.                                                                                                                                                                                                     \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 5: Generador de Números}
+  \label{tab:desafio-ing-5}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                                                                      \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 5: Generador de Números                                                                                                                             \\
+    \textbf{Nivel en Roadmap}   & 5 (Generación de Datos)                                                                                                                                   \\
+    \textbf{Grupo Objetivo}     & Ingenieros (12-16 años)                                                                                                                                   \\
+    \textbf{Objetivo}           & Crear una lista de datos automáticamente.                                                                                                                 \\
+    \textbf{Escenario (Canvas)} & Lienzo en Blanco                                                                                                                                          \\
+    \textbf{Nodos Disponibles}  & Generar Secuencia (Range), Escribir.                                                                                                                      \\
+    \textbf{Misión (Enunciado)} & Necesitamos probar el rendimiento del sistema. Genera una lista automática de datos de prueba que empiece en 0, termine en 100 y avance de 5 en 5 (Step). \\
+    \textbf{Output Esperado}    & [0, 5, 10, ... 100]                                                                                                                                       \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 6: Aplicar Impuestos}
+  \label{tab:desafio-ing-6}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                                                                                    \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 6: Aplicar Impuestos                                                                                                                                              \\
+    \textbf{Nivel en Roadmap}   & 6 (Transformación - Map)                                                                                                                                                \\
+    \textbf{Grupo Objetivo}     & Ingenieros (12-16 años)                                                                                                                                                 \\
+    \textbf{Objetivo}           & Aplicar una operación a todos los elementos de una lista simultáneamente.                                                                                               \\
+    \textbf{Escenario (Canvas)} & Lienzo Semielaborado (Lista de precios sin impuestos ya cargada).                                                                                                       \\
+    \textbf{Nodos Disponibles}  & Mapear (Map), Multiplicación, Constante Numérica (1.16), Escribir.                                                                                                      \\
+    \textbf{Misión (Enunciado)} & Tienes una lista bruta de precios. Tu tarea es aplicar el IVA (16\%) a cada uno de los elementos de la lista. Usa el nodo Mapear para multiplicar cada precio por 1.16. \\
+    \textbf{Output Esperado}    & Una lista con los precios aumentados un 16\%.                                                                                                                           \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 7: Filtro de Aprobados}
+  \label{tab:desafio-ing-7}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                                                                                                     \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 7: Filtro de Aprobados                                                                                                                                                             \\
+    \textbf{Nivel en Roadmap}   & 7 (Filtrado - Filter)                                                                                                                                                                    \\
+    \textbf{Grupo Objetivo}     & Ingenieros (12-16 años)                                                                                                                                                                  \\
+    \textbf{Objetivo}           & Eliminar datos que no cumplen un criterio.                                                                                                                                               \\
+    \textbf{Escenario (Canvas)} & Lienzo en Blanco                                                                                                                                                                         \\
+    \textbf{Nodos Disponibles}  & Generar Secuencia (para notas del 1 al 20), Filtrar (Filter), Comparar, Escribir.                                                                                                        \\
+    \textbf{Misión (Enunciado)} & De la lista de todas las notas posibles (1-20), necesitamos extraer solo las aprobatorias. Usa Filtrar junto con una condición para dejar pasar solo los números mayores o iguales a 10. \\
+    \textbf{Output Esperado}    & [10, 11, 12, ... 20]                                                                                                                                                                     \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 8: Contador de Ingresos}
+  \label{tab:desafio-ing-8}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                                                                                     \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 8: Contador de Ingresos                                                                                                                                            \\
+    \textbf{Nivel en Roadmap}   & 8 (Agregación - Reduce)                                                                                                                                                  \\
+    \textbf{Grupo Objetivo}     & Ingenieros (12-16 años)                                                                                                                                                  \\
+    \textbf{Objetivo}           & Reducir una lista a un solo valor (Suma total).                                                                                                                          \\
+    \textbf{Escenario (Canvas)} & Lienzo Semielaborado (Lista de ventas diarias cargada: [100, 200, 50]).                                                                                                  \\
+    \textbf{Nodos Disponibles}  & Acumular (Reduce), Suma, Escribir.                                                                                                                                       \\
+    \textbf{Misión (Enunciado)} & El jefe necesita el total de ventas del día. Usa el nodo Acumular (Reduce) configurado con una Suma para combinar todos los valores de la lista en un solo número total. \\
+    \textbf{Output Esperado}    & 350                                                                                                                                                                      \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Desafío: Nivel 9: Base de Datos de Usuarios}
+  \label{tab:desafio-ing-9}
+  \begingroup
+  \renewcommand{\arraystretch}{\TableRowStretch}
+  \begin{tabularx}{\textwidth}{ l X }
+    \hline
+    \textbf{Campo}              & \textbf{Descripción}                                                                                                                                                                                            \\
+    \hline
+    \textbf{Título del Desafío} & Nivel 9: Base de Datos de Usuarios                                                                                                                                                                              \\
+    \textbf{Nivel en Roadmap}   & 9 (Estructuras Complejas - Zip)                                                                                                                                                                                 \\
+    \textbf{Grupo Objetivo}     & Ingenieros (12-16 años)                                                                                                                                                                                         \\
+    \textbf{Objetivo}           & Combinar dos flujos de datos independientes en una estructura única (Tuplas).                                                                                                                                   \\
+    \textbf{Escenario (Canvas)} & Lienzo Semielaborado (Lista de Nombres y Lista de IDs ya cargadas por separado).                                                                                                                                \\
+    \textbf{Nodos Disponibles}  & Emparejar (Zip), Escribir.                                                                                                                                                                                      \\
+    \textbf{Misión (Enunciado)} & Tenemos una lista de nombres [`Ana', `Bob', `Carlos'] y una de IDs [101, 102, 103]. El sistema requiere que estén unidos. Usa Emparejar para crear una lista de tuplas donde cada usuario tenga su ID asociado. \\
+    \textbf{Output Esperado}    & [(`Ana', 101), (`Bob', 102), (`Carlos', 103)]                                                                                                                                                                   \\
+    \hline
+  \end{tabularx}
+  \endgroup
+\end{table}
+
