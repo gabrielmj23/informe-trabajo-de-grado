@@ -103,11 +103,11 @@
 \chapter*{Capítulo \thechapter. {#1}}
 \addcontentsline{toc}{chapter}{Capítulo \thechapter. {#1}}
 }
-\newcommand{\uextra}[2]{
-\addtocounter{chapter}{1}
-\phantomsection
-\chapter*{{#1} \thechapter. {#2}}
-\addcontentsline{toc}{chapter}{{#1} \thechapter. {#2}}
+\newcommand{\uextra}[2]{%
+  \addtocounter{chapter}{1}%
+  \phantomsection
+  \chapter*{\textbf{#1 \thechapter. #2}}%
+  \addcontentsline{toc}{chapter}{\protect\textbf{#1 \thechapter. #2}}%
 }
 \newcommand{\usection}[1]{
   \phantomsection
@@ -227,6 +227,6 @@
 \renewcommand{\cftfigaftersnum}{}
 
 \renewcommand{\cfttabpresnum}{Tabla~}
-\setlength{\cfttabnumwidth}{\widthof{Tabla 0. }}
+\setlength{\cfttabnumwidth}{\widthof{Tabla Ap-Z99 }}
 % Evitar punto extra en la lista de tablas, el punto se gestiona con `caption`.
 \renewcommand{\cfttabaftersnum}{}
