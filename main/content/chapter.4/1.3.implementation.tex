@@ -252,3 +252,48 @@ Como parte de las mejoras introducidas en el tercer incremento, se realizó un r
 \end{itemize}
 
 La inclusión de estos nodos de distribución y recolección abstrae la complejidad técnica del manejo de múltiples procesos y el paso explícito de mensajes. De esta manera, se permite a los jóvenes modelar e interactuar con conceptos avanzados de paralelismo de datos de forma visual, manteniendo la consistencia del paradigma de flujo de datos y enriqueciendo las capacidades del lenguaje para la programación distribuida.
+
+\usubsection{Cuarto incremento}
+
+El objetivo principal de este cuarto incremento fue consolidar el ecosistema del lenguaje, transformándolo de una herramienta de programación aislada a una plataforma social y colaborativa, que brinda soporte a la base colaborativa de la formación del pensamiento computacional. Adicionalmente, se realizaron mejoras enfocadas en la usabilidad del editor visual y se amplió la integración con hardware externo para abrir paso a la exploración de conceptos de Internet de las Cosas (IoT).
+
+\usubsubsection{Plataforma social y literatura del lenguaje}
+
+Para cumplir con el requerimiento no funcional de fomentar un contexto social y el aprendizaje colaborativo, se desarrolló e integró una plataforma web con sistema de gestión de usuarios, proyectos y nodos personalizados. Esta arquitectura permite a los estudiantes registrarse, autenticarse y almacenar sus creaciones en la nube, superando las limitaciones del almacenamiento estrictamente local.
+
+La funcionalidad central de esta plataforma es la capacidad de compartir proyectos y nodos personalizados (subflujos) con la comunidad, permitiendo que otros usuarios los utilicen como base o inspiración para crear nuevos algoritmos (bajo el concepto de “Remix” utilizado por Scratch). Esta decisión de diseño se fundamenta teóricamente en las observaciones de \citeA[p.~65]{resnicketal2009}, quienes destacan la importancia fundamental de dotar a un lenguaje de programación de una “literatura” rica y accesible. A diferencia de enfoques anteriores (Resnick hacía referencia al lenguaje Logo desarrollado por Papert) que carecían de ecosistemas para compartir código fácilmente, la presente plataforma permite a los niños y jóvenes estudiar técnicas de programación explorando las creaciones de otros, modificándolas y construyendo sobre ellas. Este ciclo de compartir y remezclar (remixing) empodera a los usuarios y consolida el pensamiento computacional a través de la colaboración dentro y fuera del aula.
+
+\usubsubsection{Integración de sensores}
+
+Con el fin de expandir las capacidades de interacción con el mundo físico y evidenciar el potencial del lenguaje frente a tecnologías de vanguardia, se implementó el nodo Leer Temperatura para las tarjetas micro:bit. Este desarrollo requirió una actualización del protocolo de distribución implementado en el segundo incremento, permitiendo al micro:bit leer su sensor de temperatura integrado y emitir un valor de vuelta al cliente web a través de la conexión Serial o Bluetooth.
+
+La incorporación de este nodo no solo diversifica los proyectos prácticos que los estudiantes pueden realizar, sino que sirve como una prueba de concepto clara de cómo el paradigma de dataflow facilita la codificación de entornos de Internet de las Cosas (IoT) de manera intuitiva y reactiva.
+
+\usubsubsection{Nuevo nodo para la paralelización distribuida}
+
+Entre las mejoras evolutivas implementadas en este cuarto incremento, se mejoró la interacción del usuario con la arquitectura distribuida mediante la creación del nodo “Replicar flujo”. Este componente brinda soporte exclusivo para el diseño de programas en red, proporcionando una abstracción adicional para el envío de instrucciones a otros dispositivos (como computadoras remotas o tarjetas micro:bit).
+
+Previo a esta actualización, la paralelización de un mismo algoritmo exigía que el usuario copiara y pegara visualmente el flujo de datos repetidas veces para poder asignarlo de manera individual a cada dispositivo de destino. Esta acción repetitiva podía llegar a saturar el lienzo de trabajo, dificultando la comprensión del programa general. Con la introducción de este nuevo nodo, el flujo se programa una sola vez y simplemente se especifican en el bloque todos los dispositivos que van a ejecutarlo concurrentemente.
+
+A nivel de sistemas distribuidos, este comportamiento de red emula de forma directa la operación de comunicación colectiva de Broadcast (difusión) documentada en el estándar MPI, en la cual un proceso único envía el mismo dato a todos los demás procesos participantes. Al instrumentalizar esta operación avanzada a través de un simple nodo visual, se facilita la paralelización de algoritmos complejos y se reduce la fricción cognitiva.
+
+Desde una perspectiva pedagógica, la implementación de este nodo obedece a las bases teóricas del Diseño Universal para el Aprendizaje (DUA) planteado por \citeA{meyer2014}, el cual propone el uso de esquemas flexibles para garantizar oportunidades de aprendizaje equitativas. La adición del nodo brinda a los estudiantes distintas maneras de lograr una solución mediante diferentes niveles de abstracción. Esto permite que el usuario elija la forma de resolver y diagramar el problema que mejor se adapte a sus capacidades y etapa de desarrollo cognitivo.
+
+\usubsubsection{Actualización de la identidad gráfica y denominación de la plataforma}
+
+Como parte de la consolidación de la herramienta en este cuarto incremento, se llevó a cabo una reestructuración de su identidad gráfica y conceptual. La plataforma pasó a denominarse oficialmente “NodeLand”.
+
+Esta elección de nombre encuentra su justificación teórica profunda en el concepto de “MathLand” introducido por \citeA{mindstorms1980}, quien argumenta que, así como aprender el idioma francés es un proceso natural y sin esfuerzo para un niño que vive en Francia y lo asimila en su día a día, el aprendizaje de las matemáticas y la computación debería ser igualmente intuitivo. Para lograr esto, Papert propone el concepto de “MathLand”, un entorno donde la comunicación matemática y computacional deja de ser algo ajeno y difícil, convirtiéndose en un lenguaje vivo y natural que el estudiante incorpora en su cotidianidad.
+
+Siguiendo esta misma premisa pedagógica, “NodeLand” (Tierra de Nodos) se concibe como un entorno inmersivo donde los niños y jóvenes pueden asimilar el paradigma de flujos de datos, la concurrencia y la lógica de programación interactuando en su propio ecosistema natural y colaborativo. Además, para estrechar el vínculo entre la herramienta y su entorno académico de origen, el diseño del nuevo logotipo y su paleta de colores fueron elaborados haciendo una alusión directa a la “colmena” de la UCAB. En la figura \ref{fig:nodeland-logo} se muestra el nombre y logotipo final de la plataforma.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{../images/NodeLand.png}
+    \caption[Logotipo de NodeLand]{\normalfont Logotipo de NodeLand}
+    \label{fig:nodeland-logo}
+\end{figure}
+
+\usubsubsection{Resultados del incremento}
+
+Como resultado de esta iteración, el entorno de programación evolucionó hacia una solución integral y comunitaria. El sistema pasó de solo compilar y distribuir código de manera concurrente, a soportar un ecosistema donde el conocimiento puede ser transferido y evolucionado por sus propios usuarios. Además, la demostración funcional de lectura de sensores físicos dejó sentadas las bases técnicas para que en el futuro el lenguaje pueda escalar fácilmente hacia dominios más complejos de IoT y robótica educativa.
