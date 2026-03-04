@@ -98,13 +98,13 @@
 
 % Comandos para crear secciones no numeradas con entrada en el índice
 \newcommand{\uchapter}[1]{
-\addtocounter{chapter}{1}
+\refstepcounter{chapter}
 \phantomsection
 \chapter*{Capítulo \thechapter. {#1}}
 \addcontentsline{toc}{chapter}{Capítulo \thechapter. {#1}}
 }
 \newcommand{\uextra}[2]{%
-  \addtocounter{chapter}{1}%
+  \refstepcounter{chapter}%
   \phantomsection
   \chapter*{\textbf{#1 \thechapter. #2}}%
   \addcontentsline{toc}{chapter}{\protect\textbf{#1 \thechapter. #2}}%

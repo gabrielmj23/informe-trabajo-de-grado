@@ -67,8 +67,6 @@ Para garantizar la coherencia de los datos y prevenir errores de ejecución, se 
 
 A nivel de interfaz, este mecanismo rige la representación visual para reducir la carga cognitiva del estudiante. Cada tipo de dato cuenta con una forma geométrica única en los puntos de conexión. Además, el entorno proporciona retroalimentación predictiva: al arrastrar una nueva conexión, el sistema resalta automáticamente los puertos de destino válidos y despliega alertas visuales (\textit{tooltips}) si se intenta forzar un enlace incorrecto, guiando al alumno en la construcción adecuada de su algoritmo.
 
-
-
 \usubsubsection{Resultados del incremento}
 
 Como resultado de este incremento, se obtuvo una versión funcional del lenguaje capaz de ejecutar algoritmos matemáticos y lógicos dentro del navegador. Aunque la interfaz visual era preliminar, el motor demostró capacidad para manejar la concurrencia local y la gestión de memoria de los tokens de datos, validando la arquitectura base antes de proceder con la implementación de la comunicación distribuida. En la figura \ref{fig:editor-incr1} se muestra la interfaz del editor en esta etapa, evidenciando la paleta de nodos, el área de diseño del programa y el área de consola para la salida de datos.
@@ -96,7 +94,7 @@ Se estableció un canal de comunicación híbrido que soporta tanto USB Serial (
 
 Los subflujos creados en el editor visual se compilan a un formato binario personalizado denominado DFBC1 (\emph{Dataflow Byte Code 1.0}). Este formato incluye un encabezado con metadatos y una sección de instrucciones basada en una máquina de pila LIFO (\emph{Last-In, First-Out}). El motor en el micro:bit procesa comandos específicos (como ADD, CONCAT, RETURN) que consumen operandos de la pila, ejecutan la operación y devuelven el resultado.
 
-El proceso de comunicación se divide en fases de transmisión de metadatos (BEGIN), envío del bytecode fragmentado (CHUNK) y confirmación del programa (COMMIT). Una vez el programa reside totalmente en la memoria del micro:bit, el orquestador envía un comando de ejecución (RUN) con los argumentos necesarios, recibiendo posteriormente los resultados o eventos de vuelta en el navegador a través del canal de comunicación establecido (Serial o Bluetooth).
+El proceso de comunicación se divide en fases de transmisión de metadatos (BEGIN), envío del bytecode fragmentado (CHUNK) y confirmación del programa (COMMIT). Una vez el programa reside totalmente en la memoria del micro:bit, el orquestador envía un comando de ejecución (RUN) con los argumentos necesarios, recibiendo posteriormente los resultados o eventos de vuelta en el navegador a través del canal de comunicación establecido (Serial o Bluetooth). La especificación detallada de este protocolo se encuentra en el Apéndice~\ref{apx:microbit-protocol}.
 
 \usubsubsection{Implementación del servidor orquestador}
 
@@ -201,7 +199,7 @@ Para sistematizar la creación de estos retos interactivos y garantizar que cada
     \endgroup
 \end{table}
 
-Utilizando este formato estandarizado como guía, se diseñó un currículo inicial compuesto por 18 desafíos. Estos se distribuyeron equitativamente, destinando 9 retos para el grupo de niños y 9 para el grupo de jóvenes. Cada conjunto de desafíos fue estructurado para abarcar progresivamente los conceptos fundamentales del lenguaje, comenzando desde la simple interconexión de nodos de lectura y escritura, hasta llegar a la resolución de problemas lógicos y la manipulación concurrente de datos. Esta distribución garantiza una curva de aprendizaje secuencial, asegurando que cada nuevo reto se construya sobre los conocimientos consolidados en el nivel anterior.
+Utilizando este formato estandarizado como guía, se diseñó un currículo inicial compuesto por 18 desafíos. Estos se distribuyeron equitativamente, destinando 9 retos para el grupo de niños y 9 para el grupo de jóvenes. Cada conjunto de desafíos fue estructurado para abarcar progresivamente los conceptos fundamentales del lenguaje, comenzando desde la simple interconexión de nodos de lectura y escritura, hasta llegar a la resolución de problemas lógicos y la manipulación concurrente de datos. Esta distribución garantiza una curva de aprendizaje secuencial, asegurando que cada nuevo reto se construya sobre los conocimientos consolidados en el nivel anterior. El listado completo de desafíos se presenta en el Apéndice~\ref{apx:listado-desafios}.
 
 \usubsubsection{Diseño de la interfaz de usuario del módulo de desafíos}
 

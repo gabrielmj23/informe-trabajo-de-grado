@@ -1,0 +1,274 @@
+\uextra{Apéndice}{Especificación del Protocolo de Comunicación con micro:bit}
+\label{apx:microbit-protocol}
+
+Este documento define un protocolo unificado (Serial + Bluetooth UART) para enviar subflujos (programas compilados) desde NodeLand al micro:bit.
+
+El objetivo del protocolo es que el host pueda desplegar un subflujo, ejecutarlo con argumentos, y recibir resultado/logs/eventos, de forma robusta en enlaces con MTU pequeña (BLE) y posibles fragmentaciones.
+
+\subsection*{1) Transporte}
+
+\begin{itemize}
+    \item \textbf{Medio}: USB Serial (Web Serial) o BLE UART (microbit-web-bluetooth).
+    \item \textbf{Codificación}: UTF-8 / ASCII.
+    \item \textbf{Framing}: 1 mensaje equivale a 1 línea terminada en \texttt{\textbackslash{}n}.
+          \begin{itemize}
+              \item El receptor debe aceptar \texttt{\textbackslash{}r\textbackslash{}n} y recortar \texttt{\textbackslash{}r}.
+          \end{itemize}
+\end{itemize}
+
+Nota BLE:
+\begin{itemize}
+    \item En algunos entornos, el enlace BLE/UART puede truncar lecturas/escrituras cerca de 20 caracteres.
+    \item En Bluetooth, el host envía cada línea en chunks de 18 caracteres para evitar saturación del buffer.
+\end{itemize}
+
+\subsection*{2) Formato de frame (línea)}
+
+Todos los mensajes del protocolo empiezan por el prefijo \texttt{DFP1|}.
+
+\begin{verbatim}
+DFP1|<TYPE>|<SEQ>|<PAYLOAD>
+\end{verbatim}
+
+\begin{itemize}
+    \item \texttt{TYPE}: string en mayúsculas (sin \texttt{|}).
+    \item \texttt{SEQ}: entero decimal \texttt{0..65535} (para ACK / correlación).
+    \item \texttt{PAYLOAD}: lista de campos clave-valor (\texttt{k=v}) separados por \texttt{;}.
+          \begin{itemize}
+              \item \texttt{k}: \texttt{[A-Z0-9\_]+}
+              \item \texttt{v}: por defecto ASCII simple (sin \texttt{;}), y para binario usar \textbf{HEX} (base16).
+          \end{itemize}
+\end{itemize}
+
+Convenciones:
+\begin{itemize}
+    \item Binario: \texttt{HEX=<hex>} (bytes en hexadecimal, mayúsculas o minúsculas, longitud par).
+    \item Texto arbitrario: \texttt{TXT\_HEX=<hex\_utf8>}.
+    \item IDs: \texttt{ID=<token>} (token sin espacios; sugerido \texttt{[-.\_a-zA-Z0-9]+}).
+\end{itemize}
+
+Notas de parsing:
+\begin{itemize}
+    \item El payload no debe contener \texttt{|}.
+    \item El parser no hace escaping automático.
+    \item Si un valor requiere \texttt{;} o \texttt{=}, debe enviarse en HEX.
+\end{itemize}
+
+Ejemplo:
+\begin{verbatim}
+DFP1|PING|1|
+DFP1|HELLO_RES|2|DEV=MBIT-123;FW=0.1.0;
+CAPS=ALU,DISPLAY;MAX_PROG=2048;MAX_CHUNK=32
+\end{verbatim}
+
+\subsection*{3) ACK, reintentos y chunking}
+
+\subsubsection*{ACK}
+Para mensajes críticos (BEGIN/CHUNK/COMMIT, RUN, STOP) el receptor responde:
+
+\begin{itemize}
+    \item OK:\\
+          \texttt{DFP1|ACK|<SEQ>|OK=1}
+    \item Error:\\
+          \texttt{DFP1|ACK|<SEQ>|OK=0;ERR=<CODE>;MSG\_HEX=<hex\_utf8>}
+\end{itemize}
+
+Correlación de ACK aceptada por host:
+\begin{enumerate}
+    \item \texttt{ACK.seq == SEQ} del frame enviado.
+    \item \texttt{ACK.payload} incluye \texttt{ACK}, \texttt{SEQ} o \texttt{REF} con el \texttt{SEQ} enviado.
+    \item Si no hay campo de referencia, se acepta el siguiente \texttt{ACK} recibido.
+\end{enumerate}
+
+\texttt{CODE} recomendado: \texttt{BAD\_FORMAT}, \texttt{UNSUPPORTED}, \texttt{CRC\_FAIL}, \texttt{OUT\_OF\_MEMORY}, \texttt{UNKNOWN\_PROGRAM}, \texttt{BUSY}.
+
+\subsubsection*{Chunking (envío de bytecode)}
+Flujo recomendado:
+\begin{enumerate}
+    \item \texttt{B} (BEGIN, metadatos)
+    \item \texttt{C} (CHUNK, repetido)
+    \item \texttt{M} (COMMIT, verificación final)
+\end{enumerate}
+
+Sintaxis de cada tipo:
+\begin{itemize}
+    \item \texttt{B} (BEGIN): \texttt{DFP1|B|0|L=<len\_base36>;C=<chunk\_bytes>}
+    \item \texttt{C} (CHUNK): \texttt{DFP1|C|0|X=O<off\_base36>H<hex>}
+    \item \texttt{M} (COMMIT): \texttt{DFP1|M|0|R=<crc32\_base36>}
+    \item \texttt{A} (ARGS chunk): \texttt{DFP1|A|0|I=<run\_id>;X=<hex>}
+    \item \texttt{R} (RUN): \texttt{DFP1|R|<SEQ>|I=<run\_id>}
+\end{itemize}
+
+Notas:
+\begin{itemize}
+    \item En \texttt{C}, el firmware puede inferir \texttt{LEN} como el máximo \texttt{OFF+bytes} recibido.
+    \item \texttt{PROG} puede omitirse (se asume programa activo).
+    \item \texttt{SEQ=0} para \texttt{B/C/M/A}.
+\end{itemize}
+
+Parámetros de envío recomendados:
+\begin{itemize}
+    \item Deploy chunk: \texttt{1 byte} por frame (\texttt{C}).
+    \item Args chunk: \texttt{1 byte} por frame (\texttt{A}, es decir \texttt{X} de 2 chars hex).
+\end{itemize}
+
+Timeouts/reintentos sugeridos:
+\begin{itemize}
+    \item \texttt{B/C/A}: timeout 3000ms, retries 1
+    \item \texttt{M}: timeout 5000ms, retries 1
+    \item \texttt{R}: timeout 90000ms
+\end{itemize}
+
+\subsection*{4) Control de ejecución}
+
+\subsubsection*{RUN}
+\begin{enumerate}
+    \item Uno o más \texttt{A}:
+          \begin{verbatim}
+DFP1|A|0|I=<run_id>;X=<hex>
+\end{verbatim}
+    \item Luego \texttt{R} para ejecutar:
+          \begin{verbatim}
+DFP1|R|<SEQ>|I=<run_id>
+\end{verbatim}
+\end{enumerate}
+
+\begin{itemize}
+    \item \texttt{I} es el \texttt{run\_id}.
+    \item El firmware reconstruye \texttt{ARGS\_HEX} concatenando los \texttt{X} recibidos para ese \texttt{run\_id}.
+\end{itemize}
+
+\subsubsection*{STOP}
+
+Si el host quiere detener una ejecución en curso:
+\begin{verbatim}
+DFP1|STOP|21|I=<run_id>
+\end{verbatim}
+
+\subsubsection*{RESULT / LOG}
+\begin{itemize}
+    \item Resultado:
+          \begin{verbatim}
+DFP1|RESULT|0|I=<run_id>;VAL_HEX=<hex>
+\end{verbatim}
+    \item Logs (opcional):
+          \begin{verbatim}
+DFP1|LOG|0|RUN=<run_id>;LVL=INFO;TXT_HEX=<hex_utf8>
+\end{verbatim}
+\end{itemize}
+
+\texttt{SEQ} puede ser \texttt{0} en mensajes espontáneos desde micro:bit (no ACK).
+
+\subsection*{5) Handshake y capacidades}
+
+\begin{itemize}
+    \item Host $\rightarrow$ micro:bit:
+          \begin{verbatim}
+    DFP1|HELLO_REQ|1|
+    \end{verbatim}
+
+    \item micro:bit $\rightarrow$ host:
+          \begin{verbatim}
+    DFP1|HELLO_RES|1|DEV=<id>;FW=<semver>;
+    CAPS=<csv>;MAX_PROG=<bytes>;MAX_CHUNK=<bytes>
+    \end{verbatim}
+\end{itemize}
+
+\texttt{CAPS} es una lista de capacidades soportadas por el firmware, que indica qué comandos/operaciones están disponibles. Se utilizaron las siguientes capacidades para el prototipo inicial:
+\begin{itemize}
+    \item \texttt{ALU} (operaciones numéricas)
+    \item \texttt{STR} (strings; concat, replace, subtract, slice)
+    \item \texttt{DISPLAY} (matriz LED)
+    \item \texttt{SOUND}
+    \item \texttt{PINS}
+    \item \texttt{BUTTONS}
+    \item \texttt{SENSORS}
+    \item \texttt{LIST}
+    \item \texttt{LOGIC}
+\end{itemize}
+
+El host puede compilar/validar el subflujo según \texttt{CAPS}.
+
+\subsection*{6) Formato binario (bytecode) ``DFBC1''}
+
+\subsubsection*{6.1 Header}
+\begin{table}[H]
+    \centering
+    \caption{Estructura del Header DFBC1}
+    \label{tab:dfbc1-header}
+    \begingroup
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{ r r l }
+        \hline
+        \textbf{Offset} & \textbf{Tamaño}    & \textbf{Campo}               \\
+        \hline
+        0               & 4                  & Magic: ASCII \texttt{DFBC}   \\
+        4               & 1                  & Version: \texttt{1}          \\
+        5               & 1                  & Flags (reservado)            \\
+        6               & 1                  & \texttt{constCount} (0..255) \\
+        7               & 1                  & \texttt{argCount} (0..255)   \\
+        8               & 2                  & \texttt{instCount} (u16)     \\
+        10              & var                & Const pool                   \\
+        ..              & 4$\times$instCount & Instrucciones                \\
+        \hline
+    \end{tabular}
+    \endgroup
+\end{table}
+
+\subsubsection*{6.2 Const pool y valores}
+Cada entrada:
+\begin{itemize}
+    \item \texttt{tag} (u8):
+          \begin{itemize}
+              \item \texttt{0=number\_f32}
+              \item \texttt{1=string} (\texttt{u16 len} + bytes)
+              \item \texttt{2=bool}
+              \item \texttt{3=null}
+              \item \texttt{4=list} (\texttt{u8 len} + valores anidados)
+          \end{itemize}
+\end{itemize}
+
+Codificación de string: bytes simples (Latin-1).
+
+\subsubsection*{6.3 Instrucciones (formato fijo 4 bytes)}
+Cada instrucción: \texttt{[op:u8][a:u8][b:u8][c:u8]}.\\
+Stack machine (LIFO).
+
+Opcodes:
+\begin{itemize}
+    \item \texttt{0x01 PUSH\_CONST a=constIndex}
+    \item \texttt{0x02 LOAD\_ARG a=argIndex}
+    \item \texttt{0x10 ADD} / \texttt{0x11 SUB} / \texttt{0x12 MUL} / \texttt{0x13 DIV} / \texttt{0x14 MOD} / \texttt{0x15 POW}
+    \item \texttt{0x16 FLOOR} / \texttt{0x17 CEIL} / \texttt{0x18 ROUND}
+    \item \texttt{0x20 CONCAT}
+    \item \texttt{0x21 REPLACE\_TEXT} / \texttt{0x22 SUBTRACT\_TEXT} / \texttt{0x23 SLICE\_TEXT}
+    \item \texttt{0x30 DISPLAY\_TEXT} (pop string)
+    \item \texttt{0x31 DISPLAY\_NUMBER} (pop number)
+    \item \texttt{0x32 PLAY\_TONE} (pop ms, pop freq)
+    \item \texttt{0x34 READ\_TEMP}
+    \item \texttt{0x50 LIST\_COUNT} / \texttt{0x51 LIST\_SORT\_ASC} / \texttt{0x52 LIST\_SORT\_DESC}
+    \item \texttt{0x53 LIST\_ACCUMULATE} / \texttt{0x54 LIST\_ZIP} / \texttt{0x55 LIST\_UNZIP\_A} / \texttt{0x56 LIST\_UNZIP\_B}
+    \item \texttt{0x60 CMP\_EQ} / \texttt{0x61 CMP\_NEQ} / \texttt{0x62 CMP\_LT} / \texttt{0x63 CMP\_LTE} / \texttt{0x64 CMP\_GT} / \texttt{0x65 CMP\_GTE}
+    \item \texttt{0x70 LOGIC\_AND} / \texttt{0x71 LOGIC\_NAND} / \texttt{0x72 LOGIC\_OR} / \texttt{0x73 LOGIC\_NOR} / \texttt{0x74 LOGIC\_XOR} / \texttt{0x75 LOGIC\_NOT}
+    \item \texttt{0x40 RETURN} (pop value)
+\end{itemize}
+
+\subsection*{7) Argumentos y valores (VAL\_HEX / ARGS\_HEX)}
+Para \texttt{ARGS\_HEX} y \texttt{VAL\_HEX} se usa una codificación binaria simple:
+\begin{itemize}
+    \item \texttt{tag:u8} + payload
+          \begin{itemize}
+              \item \texttt{0=number\_f32} + 4 bytes
+              \item \texttt{1=string} + \texttt{u16 len} + bytes
+              \item \texttt{2=bool} + \texttt{u8}
+              \item \texttt{3=null}
+              \item \texttt{4=list} + \texttt{u8 len} + valores anidados
+          \end{itemize}
+\end{itemize}
+
+\texttt{ARGS\_HEX} contiene:
+\begin{itemize}
+    \item \texttt{argc:u8} seguido de \texttt{argc} valores.
+\end{itemize}
+
+\texttt{VAL\_HEX} contiene un solo valor.
