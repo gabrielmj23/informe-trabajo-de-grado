@@ -147,6 +147,34 @@ Además de las comunicaciones punto a punto entre dos procesos, MPI soporta oper
 
 Este subconjunto de operaciones colectivas provee un marco para la comunicación eficiente en sistemas distribuidos, que puede utilizarse como base para la construcción de los esquemas de comunicación necesarios para la implementación de algoritmos paralelos dentro del entorno de dataflow.
 
+\usubsubsection{Migración de código}
+
+Según \citeA[p.~152]{vansteen2020}, la migración de código en sistemas distribuidos consiste en la capacidad de transferir programas (o fragmentos de ellos) entre distintas máquinas para que sean ejecutados en el nodo destino. Tradicionalmente, esta técnica se utilizaba bajo el concepto de “migración de procesos” con el fin de mejorar el rendimiento del sistema, moviendo tareas de máquinas sobrecargadas a otras con menor carga. Sin embargo, en la actualidad, la migración de código persigue un objetivo más amplio, aprovechando la flexibilidad y la configuración dinámica de los sistemas distribuidos.
+
+Para comprender cómo se estructura la migración de código, es de ayuda resumir el marco teórico de \citeA{fuggetta1998}, el cual divide un proceso en tres segmentos:
+
+\begin{itemize}
+    \item \textbf{Segmento de código:} Contiene el conjunto de instrucciones que conforman el programa
+    \item \textbf{Segmento de recursos:} Contiene las referencias a los recursos externos necesarios (archivos, dispositivos, otros procesos).
+    \item \textbf{Segmento de ejecución:} Almacena el estado actual de la ejecución (datos privados, la pila y el contador del programa).
+\end{itemize}
+
+En función de qué segmentos se transfieren, \citeA[p.~157]{vansteen2020} definen que la migración de código se clasifica en dos grandes categorías:
+
+\begin{itemize}
+    \item \textbf{Movilidad débil (Weak mobility):} Se transfiere únicamente el segmento de código (junto con algunos datos de inicialización). La característica principal es que el programa transferido siempre comienza su ejecución desde cero (estado inicial) en la máquina destino.
+    \item \textbf{Movilidad fuerte (Strong mobility):} Además del código, se transfiere el segmento de ejecución. Esto permite que un proceso en ejecución sea detenido, movido a otra máquina, y reanudado exactamente en el mismo punto donde se detuvo.
+\end{itemize}
+
+Otra clasificación importante depende de quién toma la iniciativa de la migración:
+
+\begin{itemize}
+    \item \textbf{Iniciada por el remitente:} La máquina donde reside el código actualmente es la que inicia la transferencia para que este se ejecute en un nodo remoto (por ejemplo, enviar una consulta compleja a un servidor de base de datos).
+    \item \textbf{Iniciada por el receptor:} El nodo destino toma la iniciativa de solicitar y descargar el código para ejecutarlo localmente (como ocurre al descargar un script o un applet en un navegador web).
+\end{itemize}
+
+Finalmente, un reto crucial en la migración de código es la heterogeneidad de los sistemas. Dado que los sistemas distribuidos suelen estar compuestos por plataformas con diferentes arquitecturas de hardware y sistemas operativos, el código compilado para una máquina no siempre funcionará en otra. La solución estándar para este problema es la generación de código intermedio (bytecode) independiente de la máquina, el cual es ejecutado por una máquina virtual o intérprete en el nodo destino.
+
 \usubsection{Micro:bit}
 
 El Micro:bit constituye una computadora de placa única concebida para que los estudiantes, desde temprana edad, comprendan cómo el software y el hardware trabajan en conjunto. El dispositivo integra una matriz de luces LED, botones programables, sensores y diversos pines de entrada y salida que facilitan tanto la programación como la interacción física con el entorno \cite{microbitSupport2026}.
