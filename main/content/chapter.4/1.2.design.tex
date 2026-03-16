@@ -17,6 +17,16 @@ El motor se diseñó para iniciar con la traducción del grafo visual a un grafo
     \item \textbf{Resolución de objetivos de ejecución:} Para nodos que delegan tareas a hardware externo o computadoras remotas, se asignan identificadores de destino y se identifica la lógica de serialización necesaria para la comunicación.
 \end{enumerate}
 
+Una vez construido el grafo semántico, el motor de ejecución se encarga de gestionar el ciclo de vida de cada nodo, activando aquellos que cumplen con las condiciones de disparo y manejando la propagación de datos a través del sistema. Este modelo cíclico se describe en los siguientes pasos y se ilustra en la figura \ref{fig:ejecucion-programas}:
+
+\begin{enumerate}
+    \item \textbf{Identificación de nodos listos:} El motor evalúa las políticas de disparo de cada nodo para identificar cuáles cumplen con las condiciones de activación.
+    \item \textbf{Consumo de entradas:} Los nodos listos consumen sus datos de entrada, actualizando su estado interno y preparando su lógica de procesamiento.
+    \item \textbf{Procesamiento de la lógica de nodos:} El motor ejecuta la función asociada a los nodos, generando los datos de salida correspondientes.
+    \item \textbf{Propagación de salidas:} Los resultados generados se escriben en los puertos de salida del nodo. El motor se encarga de transferir estos valores a través de las aristas del grafo hacia los nodos destino.
+    \item \textbf{Reevaluación del grafo:} El ciclo se reinicia evaluando iterativamente la disponibilidad de datos en los nodos, hasta que la red alcanza un estado de reposo en el que no hay datos en tránsito, indicando la finalización de la ejecución.
+\end{enumerate}
+
 \usubsection{Diseño de la sintaxis visual y los nodos}
 
 El diseño de los nodos, definidos como las unidades mínimas de procesamiento, se realizó siguiendo los principios de la “Física de las Notaciones” para garantizar la efectividad cognitiva. Se estableció una gramática visual que utiliza la discriminabilidad perceptual y la codificación dual (texto + icono) para facilitar el reconocimiento rápido de las funciones por parte de los niños.

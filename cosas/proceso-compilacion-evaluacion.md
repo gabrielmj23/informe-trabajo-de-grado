@@ -58,13 +58,24 @@ El ciclo de evaluación funciona iterativamente:
 
 ```mermaid
 stateDiagram-v2
-    [*] --> Reposo : Inicialización del Motor
-    Reposo --> Identificacion : Datos externos / Eventos asíncronos
-    Identificacion --> Consumo : Patrón de disparo satisfecho ('Listos')
-    Consumo --> Procesamiento : Extracción de valores de entrada
-    Procesamiento --> Propagacion : Ejecución de algoritmo (Caja Negra)
-    Propagacion --> Identificacion : Escritura en puertos de salida
-    Identificacion --> Reposo : Ningún nodo listo (Grafo estabilizado)
+    state "Reposo" as RP
+    state "Identificación de nodos listos" as ID
+    state "Consumo de entradas" as CI
+    state "Procesamiento de la lógica de nodos" as PN
+    state "Propagación de salidas" as PS
+
+    [*] --> RP : Inicialización del Motor
+    
+    RP --> ID : Datos disponibles
+    
+    ID --> CI : Patrones de disparo satisfechos
+    ID --> RP : Ningún nodo listo
+    
+    CI --> PN : Extracción de valores
+    
+    PN --> PS : Ejecución concurrente
+    
+    PS --> ID : Escritura en puertos de salida
 ```
 
 1. **Identificación de Nodos Listos:** El motor evalúa las políticas de disparo de cada nodo. Un nodo se considera "listo para ejecución" solo si sus entradas requeridas han recibido datos frescos de sus predecesores. Algunos nodos requieren que todas sus entradas estén satisfechas (operaciones aritméticas sincronizadas), mientras que otros pueden actuar independientemente con al menos una entrada (operaciones lógicas parciales o selectores).
