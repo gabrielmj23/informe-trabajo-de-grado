@@ -105,6 +105,17 @@ Se trabaja con dos modelos principales: \emph{Push}, donde los nodos envían dat
 
 El modelo asíncrono implica que la ejecución de un nodo ocurre apenas tenga datos disponibles, sin esperar a que otros nodos terminen su procesamiento. En contraste, el modelo síncrono requiere que todos los nodos involucrados en una operación completen su procesamiento antes de que cualquier nodo pueda continuar con la siguiente etapa. El modelo asíncrono es más flexible y eficiente, pues un nodo puede pasar por varias activaciones mientras otro tiene una ejecución más lenta. También cabe la posibilidad de establecer modelos híbridos, con secciones síncronas y asíncronas.
 
+\usubsubsection{Patrones de disparo}
+
+Un patrón de disparo define las condiciones bajo las cuales un nodo se activa para procesar datos. Para cada nodo, se define una condición de disparo en cada uno de sus puertos. \citeA[p.~28]{carkci2014} indica que los patrones de disparo habituales en lenguajes de dataflow son:
+
+\begin{itemize}
+    \item \textbf{Exists:} Debe haber un token disponible en el puerto.
+    \item \textbf{Empty:} No debe haber ningún token disponible en el puerto.
+    \item \textbf{Don't care:} No importa si hay o no un token disponible en el puerto.
+    \item \textbf{Always:} El nodo se activa siempre. Este patrón es habitual para nodos fuente.
+\end{itemize}
+
 \usubsection{Teoría de la Física de las Notaciones}
 
 Históricamente, el diseño de notaciones visuales en ingeniería de software se ha basado en la intuición y la estética, careciendo de fundamentos científicos sólidos. Para abordar este vacío, \citeA{moody2009} propone la Física de las Notaciones, un marco teórico prescriptivo que desplaza el enfoque desde las propiedades lógicas o semánticas hacia las propiedades físicas o sintaxis visual. El concepto central de esta teoría es la Efectividad Cognitiva, definida como la velocidad, facilidad y precisión con la que una representación visual puede ser procesada por la mente humana. Según este enfoque, la efectividad no es intrínseca, sino que debe diseñarse deliberadamente manipulando las variables visuales, como forma, color, tamaño y posición, que actúan como los componentes fundamentales para construir el vocabulario visual del lenguaje.
@@ -162,8 +173,8 @@ Para comprender cómo se estructura la migración de código, es de ayuda resumi
 En función de qué segmentos se transfieren, \citeA[p.~157]{vansteen2020} definen que la migración de código se clasifica en dos grandes categorías:
 
 \begin{itemize}
-    \item \textbf{Movilidad débil (Weak mobility):} Se transfiere únicamente el segmento de código (junto con algunos datos de inicialización). La característica principal es que el programa transferido siempre comienza su ejecución desde cero (estado inicial) en la máquina destino.
-    \item \textbf{Movilidad fuerte (Strong mobility):} Además del código, se transfiere el segmento de ejecución. Esto permite que un proceso en ejecución sea detenido, movido a otra máquina, y reanudado exactamente en el mismo punto donde se detuvo.
+    \item \textbf{Movilidad débil:} Se transfiere únicamente el segmento de código (junto con algunos datos de inicialización). La característica principal es que el programa transferido siempre comienza su ejecución desde cero (estado inicial) en la máquina destino.
+    \item \textbf{Movilidad fuerte:} Además del código, se transfiere el segmento de ejecución. Esto permite que un proceso en ejecución sea detenido, movido a otra máquina, y reanudado exactamente en el mismo punto donde se detuvo.
 \end{itemize}
 
 Otra clasificación importante depende de quién toma la iniciativa de la migración:
@@ -185,7 +196,7 @@ Cabe resaltar que el micro:bit cuenta con dos versiones principales, la versión
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/microbit-v2-overview.png}
+    \includegraphics[width=0.7\textwidth]{../images/microbit-v2-overview.png}
     \caption[Especificaciones del Micro:bit V2]{\normalfont Especificaciones y características principales del Micro:bit versión 2\newline\figtakenfrom{Hardware: Details of the latest micro:bit hardware revision}{}{Micro:bit Developer Community}{s.f}}
     \label{fig:microbit-specs}
 \end{figure}

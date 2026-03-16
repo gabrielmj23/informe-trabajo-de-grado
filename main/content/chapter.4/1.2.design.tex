@@ -1,5 +1,5 @@
 \usection{Diseño del lenguaje y de su entorno}
- 
+
 Tras definir los requerimientos y analizar las bases teóricas del pensamiento computacional, se procedió al diseño arquitectónico y funcional del lenguaje. Este diseño se fundamenta en el paradigma de flujo de datos (dataflow), priorizando la visualización explícita del movimiento de la información y la ejecución concurrente, elementos críticos para la comprensión de sistemas modernos.
 
 \usubsection{Arquitectura del entorno de ejecución}
@@ -8,13 +8,13 @@ Para cumplir con el requisito de ejecución en entornos web y facilitar la inter
 
 El núcleo del motor de ejecución se diseñó bajo el principio de activación por disponibilidad de datos (data readiness). A diferencia de los modelos imperativos tradicionales que siguen un contador de programa secuencial, este motor examina continuamente el grafo de nodos para identificar cuáles poseen todos sus datos de entrada listos para ser procesados. Este enfoque permite explotar el paralelismo implícito, ya que múltiples nodos pueden activarse simultáneamente sin que el estudiante deba gestionar hilos de ejecución manualmente.
 
-El ciclo de vida del motor se estructuró en un bucle de eventos compuesto por cuatro unidades lógicas, inspirado en modelos de sistemas reactivos:
+El motor se diseñó para iniciar con la traducción del grafo visual a un grafo semántico interno, donde cada nodo se representa como un objeto con puertos de entradas y salida, y una función de procesamiento asociada. El proceso de traducción de programas se concretó en los siguientes pasos, ilustrados en la figura \ref{fig:traduccion-programas}:
 
 \begin{enumerate}
-    \item \textbf{Unidad de Habilitación (Enable Unit):} Verifica las reglas de disparo de cada nodo comparando los tokens (datos) entrantes con los requisitos del nodo.
-    \item \textbf{Cola de Tareas (Task Queue):} Almacena los nodos que han cumplido sus precondiciones y están listos para ejecutarse, desacoplando la detección de la ejecución.
-    \item \textbf{Unidad de Ejecución (Execute Unit):} Procesa la lógica interna del nodo (operaciones matemáticas, lógicas o de I/O).
-    \item \textbf{Unidad de Transmisión (Transmit Unit):} Enruta los resultados hacia los puertos de entrada de los nodos siguientes, reiniciando el ciclo.
+    \item \textbf{Parsing del grafo visual:} El entorno gráfico exporta una representación JSON del grafo de nodos, incluyendo sus conexiones y metadatos. Se optó por este formato por su versatilidad y compatibilidad con el entorno web. El motor parsea esta estructura para construir un modelo de objetos en memoria, eliminando datos innecesarios como las posiciones de los nodos.
+    \item \textbf{Mapeo de puertos y resolución de topología:} Se mapean los puertos visuales de los nodos a la estructura de datos interna, estableciendo las conexiones lógicas entre nodos basadas en el grafo. En este proceso se hace una verificación de la validez de los flujos, evitando dependencias cíclicas y haciendo una validación de tipos de datos.
+    \item \textbf{Resolución de subflujos:} Para nodos que encapsulan subflujos, se hace un parsing recursivo para integrar su lógica dentro del grafo principal, manteniendo la capacidad de reutilización y abstracción a nivel visual, pero simplificando la representación interna.
+    \item \textbf{Resolución de objetivos de ejecución:} Para nodos que delegan tareas a hardware externo o computadoras remotas, se asignan identificadores de destino y se identifica la lógica de serialización necesaria para la comunicación.
 \end{enumerate}
 
 \usubsection{Diseño de la sintaxis visual y los nodos}
