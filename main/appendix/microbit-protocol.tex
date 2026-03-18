@@ -1,9 +1,7 @@
 \uextra{Apéndice}{Especificación del Protocolo de Comunicación con micro:bit}
 \label{apx:microbit-protocol}
 
-Este documento define un protocolo unificado (Serial + Bluetooth UART) para enviar subflujos (programas compilados) desde NodeLand al micro:bit.
-
-El objetivo del protocolo es que el host pueda desplegar un subflujo, ejecutarlo con argumentos, y recibir resultado/logs/eventos, de forma robusta en enlaces con MTU pequeña (BLE) y posibles fragmentaciones.
+Este documento define un protocolo para enviar subflujos desde NodeLand al micro:bit. El objetivo del protocolo es que el host pueda desplegar un subflujo, ejecutarlo con argumentos, y recibir resultado/logs/eventos, de forma robusta en enlaces con MTU pequeña (BLE) y posibles fragmentaciones.
 
 \subsection*{1) Transporte}
 
@@ -11,14 +9,6 @@ El objetivo del protocolo es que el host pueda desplegar un subflujo, ejecutarlo
     \item \textbf{Medio}: USB Serial (Web Serial) o BLE UART (microbit-web-bluetooth).
     \item \textbf{Codificación}: UTF-8 / ASCII.
     \item \textbf{Framing}: 1 mensaje equivale a 1 línea terminada en \texttt{\textbackslash{}n}.
-          \begin{itemize}
-              \item El receptor debe aceptar \texttt{\textbackslash{}r\textbackslash{}n} y recortar \texttt{\textbackslash{}r}.
-          \end{itemize}
-\end{itemize}
-
-Nota BLE:
-\begin{itemize}
-    \item En algunos entornos, el enlace BLE/UART puede truncar lecturas/escrituras cerca de 20 caracteres.
     \item En Bluetooth, el host envía cada línea en chunks de 18 caracteres para evitar saturación del buffer.
 \end{itemize}
 
@@ -32,7 +22,7 @@ DFP1|<TYPE>|<SEQ>|<PAYLOAD>
 
 \begin{itemize}
     \item \texttt{TYPE}: string en mayúsculas (sin \texttt{|}).
-    \item \texttt{SEQ}: entero decimal \texttt{0..65535} (para ACK / correlación).
+    \item \texttt{SEQ}: entero decimal \texttt{0..65535} para ACK.
     \item \texttt{PAYLOAD}: lista de campos clave-valor (\texttt{k=v}) separados por \texttt{;}.
           \begin{itemize}
               \item \texttt{k}: \texttt{[A-Z0-9\_]+}
@@ -40,17 +30,9 @@ DFP1|<TYPE>|<SEQ>|<PAYLOAD>
           \end{itemize}
 \end{itemize}
 
-Convenciones:
-\begin{itemize}
-    \item Binario: \texttt{HEX=<hex>} (bytes en hexadecimal, mayúsculas o minúsculas, longitud par).
-    \item Texto arbitrario: \texttt{TXT\_HEX=<hex\_utf8>}.
-    \item IDs: \texttt{ID=<token>} (token sin espacios; sugerido \texttt{[-.\_a-zA-Z0-9]+}).
-\end{itemize}
-
 Notas de parsing:
 \begin{itemize}
     \item El payload no debe contener \texttt{|}.
-    \item El parser no hace escaping automático.
     \item Si un valor requiere \texttt{;} o \texttt{=}, debe enviarse en HEX.
 \end{itemize}
 
@@ -64,6 +46,7 @@ CAPS=ALU,DISPLAY;MAX_PROG=2048;MAX_CHUNK=32
 \subsection*{3) ACK, reintentos y chunking}
 
 \subsubsection*{ACK}
+
 Para mensajes críticos (BEGIN/CHUNK/COMMIT, RUN, STOP) el receptor responde:
 
 \begin{itemize}
@@ -73,17 +56,12 @@ Para mensajes críticos (BEGIN/CHUNK/COMMIT, RUN, STOP) el receptor responde:
           \texttt{DFP1|ACK|<SEQ>|OK=0;ERR=<CODE>;MSG\_HEX=<hex\_utf8>}
 \end{itemize}
 
-Correlación de ACK aceptada por host:
-\begin{enumerate}
-    \item \texttt{ACK.seq == SEQ} del frame enviado.
-    \item \texttt{ACK.payload} incluye \texttt{ACK}, \texttt{SEQ} o \texttt{REF} con el \texttt{SEQ} enviado.
-    \item Si no hay campo de referencia, se acepta el siguiente \texttt{ACK} recibido.
-\end{enumerate}
-
 \texttt{CODE} recomendado: \texttt{BAD\_FORMAT}, \texttt{UNSUPPORTED}, \texttt{CRC\_FAIL}, \texttt{OUT\_OF\_MEMORY}, \texttt{UNKNOWN\_PROGRAM}, \texttt{BUSY}.
 
 \subsubsection*{Chunking (envío de bytecode)}
-Flujo recomendado:
+
+El flujo para el envío de programas sigue los siguientes pasos:
+
 \begin{enumerate}
     \item \texttt{B} (BEGIN, metadatos)
     \item \texttt{C} (CHUNK, repetido)
@@ -99,23 +77,16 @@ Sintaxis de cada tipo:
     \item \texttt{R} (RUN): \texttt{DFP1|R|<SEQ>|I=<run\_id>}
 \end{itemize}
 
-Notas:
-\begin{itemize}
-    \item En \texttt{C}, el firmware puede inferir \texttt{LEN} como el máximo \texttt{OFF+bytes} recibido.
-    \item \texttt{PROG} puede omitirse (se asume programa activo).
-    \item \texttt{SEQ=0} para \texttt{B/C/M/A}.
-\end{itemize}
-
 Parámetros de envío recomendados:
 \begin{itemize}
     \item Deploy chunk: \texttt{1 byte} por frame (\texttt{C}).
     \item Args chunk: \texttt{1 byte} por frame (\texttt{A}, es decir \texttt{X} de 2 chars hex).
 \end{itemize}
 
-Timeouts/reintentos sugeridos:
+Timeouts/reintentos utilizados:
 \begin{itemize}
-    \item \texttt{B/C/A}: timeout 3000ms, retries 1
-    \item \texttt{M}: timeout 5000ms, retries 1
+    \item \texttt{B/C/A}: timeout 3000ms, 1 reintento
+    \item \texttt{M}: timeout 5000ms, 1 reintento
     \item \texttt{R}: timeout 90000ms
 \end{itemize}
 
@@ -133,10 +104,7 @@ DFP1|R|<SEQ>|I=<run_id>
 \end{verbatim}
 \end{enumerate}
 
-\begin{itemize}
-    \item \texttt{I} es el \texttt{run\_id}.
-    \item El firmware reconstruye \texttt{ARGS\_HEX} concatenando los \texttt{X} recibidos para ese \texttt{run\_id}.
-\end{itemize}
+Donde \texttt{I} es el \texttt{run\_id}. El firmware reconstruye \texttt{ARGS\_HEX} concatenando los \texttt{X} recibidos para ese \texttt{run\_id}.
 
 \subsubsection*{STOP}
 
@@ -145,17 +113,13 @@ Si el host quiere detener una ejecución en curso:
 DFP1|STOP|21|I=<run_id>
 \end{verbatim}
 
-\subsubsection*{RESULT / LOG}
-\begin{itemize}
-    \item Resultado:
-          \begin{verbatim}
+\subsubsection*{RESULT}
+
+Resultado:
+\begin{verbatim}
 DFP1|RESULT|0|I=<run_id>;VAL_HEX=<hex>
 \end{verbatim}
-    \item Logs (opcional):
-          \begin{verbatim}
-DFP1|LOG|0|RUN=<run_id>;LVL=INFO;TXT_HEX=<hex_utf8>
-\end{verbatim}
-\end{itemize}
+
 
 \texttt{SEQ} puede ser \texttt{0} en mensajes espontáneos desde micro:bit (no ACK).
 
@@ -189,50 +153,9 @@ DFP1|LOG|0|RUN=<run_id>;LVL=INFO;TXT_HEX=<hex_utf8>
 
 El host puede compilar/validar el subflujo según \texttt{CAPS}.
 
-\subsection*{6) Formato binario (bytecode) ``DFBC1''}
+\subsection*{6) Formato binario (bytecode)}
 
-\subsubsection*{6.1 Header}
-\begin{table}[H]
-    \centering
-    \caption{Estructura del Header DFBC1}
-    \label{tab:dfbc1-header}
-    \begingroup
-    \renewcommand{\arraystretch}{1.2}
-    \begin{tabular}{ r r l }
-        \hline
-        \textbf{Offset} & \textbf{Tamaño}    & \textbf{Campo}               \\
-        \hline
-        0               & 4                  & Magic: ASCII \texttt{DFBC}   \\
-        4               & 1                  & Version: \texttt{1}          \\
-        5               & 1                  & Flags (reservado)            \\
-        6               & 1                  & \texttt{constCount} (0..255) \\
-        7               & 1                  & \texttt{argCount} (0..255)   \\
-        8               & 2                  & \texttt{instCount} (u16)     \\
-        10              & var                & Const pool                   \\
-        ..              & 4$\times$instCount & Instrucciones                \\
-        \hline
-    \end{tabular}
-    \endgroup
-\end{table}
-
-\subsubsection*{6.2 Const pool y valores}
-Cada entrada:
-\begin{itemize}
-    \item \texttt{tag} (u8):
-          \begin{itemize}
-              \item \texttt{0=number\_f32}
-              \item \texttt{1=string} (\texttt{u16 len} + bytes)
-              \item \texttt{2=bool}
-              \item \texttt{3=null}
-              \item \texttt{4=list} (\texttt{u8 len} + valores anidados)
-          \end{itemize}
-\end{itemize}
-
-Codificación de string: bytes simples (Latin-1).
-
-\subsubsection*{6.3 Instrucciones (formato fijo 4 bytes)}
-Cada instrucción: \texttt{[op:u8][a:u8][b:u8][c:u8]}.\\
-Stack machine (LIFO).
+Cada instrucción: \texttt{[op:u8][a:u8][b:u8][c:u8]}.
 
 Opcodes:
 \begin{itemize}
