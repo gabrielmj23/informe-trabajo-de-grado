@@ -34,7 +34,7 @@ Tras realizar las primeras pruebas de integración entre el editor y el motor, s
     \item \textbf{Generación de datos:} Se introdujo el nodo “Generar pulsos”, el cual permite emitir valores enteros secuenciales entre un inicio y un fin con un paso definido, fundamental para probar el comportamiento de flujos continuos en el motor, como pudiera ocurrir en un sistema de IoT, por ejemplo.
 \end{itemize}
 
-\usubsubsection{Exportación e importación de programas.}
+\usubsubsection{Exportación e importación de programas}
 
 Para permitir el almacenamiento y la transferencia de los proyectos, se implementó un módulo de serialización y deserialización de grafos basado en un formato de texto estructurado y versionado. Este esquema de datos almacena de forma organizada la versión del documento, el nombre del programa, la configuración exacta de los nodos con sus interconexiones, y los parámetros espaciales del lienzo. Durante el proceso de exportación, el sistema extrae el estado actual del entorno y ejecuta una rutina de limpieza para depurar propiedades transitorias o exclusivas de la sesión activa. Esto garantiza que el archivo resultante sea completamente portable. Finalmente, la información validada se empaqueta y se descarga como un archivo local utilizando las capacidades nativas del navegador web.
 
@@ -88,9 +88,9 @@ El objetivo central de este segundo incremento fue expandir las capacidades del 
 
 \usubsubsection{Protocolo de distribución a micro:bit}
 
-Para habilitar la ejecución de lógica en el hardware educativo, se diseñó e implementó un protocolo apodado \emph{Micro:bit Dataflow Protocol 1.0} (DFP1). Este protocolo permite desplegar subflujos de lógica compilada directamente en el dispositivo, reduciendo la latencia y la dependencia de la conexión constante, delegando la ejecución del subflujo a la tarjeta.
+Para habilitar la ejecución de lógica en el hardware educativo, se diseñó e implementó un protocolo apodado \emph{Micro:bit Dataflow Protocol 1.0} (DFP1). Este protocolo permite desplegar subflujos compilados y ejecutarlos directamente en el dispositivo, reduciendo la latencia y la dependencia de la conexión constante, delegando la ejecución del subflujo a la tarjeta.
 
-Se estableció un canal de comunicación híbrido que soporta tanto USB Serial (Web Serial en navegadores) como BLE UART (Web Bluetooth en navegadores), que son los principales canales de comunicación remota con los que cuentan las tarjetas micro:bit V2. Dado que el enlace Bluetooth posee una unidad máxima de transferencia (MTU) limitada, a menudo truncando mensajes cercanos a los 20 caracteres, se implementó un mecanismo de fragmentación (\emph{chunking}). Los mensajes se estructuran como líneas de texto terminadas en salto de línea, manteniendo una longitud controlada para evitar pérdidas de datos.
+Se estableció un canal de comunicación que soporta tanto USB Serial (Web Serial en navegadores) como BLE UART (Web Bluetooth en navegadores), que son los principales canales de comunicación remota con los que cuentan las tarjetas micro:bit V2. Dado que el enlace Bluetooth posee una unidad máxima de transferencia (MTU) limitada, a menudo truncando mensajes cercanos a los 20 caracteres, se implementó un mecanismo de fragmentación (\emph{chunking}). Los mensajes se estructuran como líneas de texto terminadas en salto de línea, manteniendo una longitud controlada para evitar pérdidas de datos.
 
 Los subflujos creados en el editor visual se compilan a un formato binario personalizado denominado DFBC1 (\emph{Dataflow Byte Code 1.0}). Este formato incluye un encabezado con metadatos y una sección de instrucciones basada en una máquina de pila LIFO (\emph{Last-In, First-Out}). El motor en el micro:bit procesa comandos específicos (como ADD, CONCAT, RETURN) que consumen operandos de la pila, ejecutan la operación y devuelven el resultado.
 
@@ -112,6 +112,8 @@ En la figura \ref{fig:orchestrator-incr2} se muestra un esquema de la arquitectu
     \caption[Esquema de comunicación distribuida]{\normalfont Esquema de comunicación distribuida entre el orquestador y los dispositivos}
     \label{fig:orchestrator-incr2}
 \end{figure}
+
+Dados los distintos protocolos utilizados para las distintas formas de distribución (Serial, Bluetooth y WebSockets), fue de suma importancia validar la compatibilidad de los distintos navegadores con estas tecnologías. Se realizaron pruebas en los principales navegadores (Chrome, Firefox, Edge, Safari) para asegurar que las funcionalidades de comunicación con micro:bits y PCs remotas funcionaran correctamente. Se concluyó que todos los protocolos son soportados por los navegadores basados en Chromium (Chrome y Edge), mientras que Firefox y Safari no poseen soporte para Serial y Bluetooth. Se consideró suficiente el nivel de compatibilidad de las tecnologías, basándose en otras herramientas de programación visual para computación física, como MakeCode y MBlock, que también recomiendan navegadores basados en Chromium para la interacción con micro:bits y otras tarjetas. El resumen del análisis de compatibilidad se puede hallar en la tabla \ref{tab:browser-compatibility}.
 
 \usubsubsection{Ampliación del catálogo de nodos}
 
