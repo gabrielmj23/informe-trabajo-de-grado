@@ -1,4 +1,4 @@
-\usection{Diseño del lenguaje y de su entorno}
+\usection{Diseño del Lenguaje y de su Entorno}
 
 Tras definir los requerimientos y analizar las bases teóricas del pensamiento computacional, se procedió al diseño arquitectónico y funcional del lenguaje. Este diseño se fundamenta en el paradigma de flujo de datos (dataflow), priorizando la visualización explícita del movimiento de la información y la ejecución concurrente, elementos críticos para la comprensión de sistemas modernos.
 
@@ -27,6 +27,39 @@ Una vez construido el grafo semántico, el motor de ejecución se encarga de ges
     \item \textbf{Reevaluación del grafo:} El ciclo se reinicia evaluando iterativamente la disponibilidad de datos en los nodos, hasta que la red alcanza un estado de reposo en el que no hay datos en tránsito, indicando la finalización de la ejecución.
 \end{enumerate}
 
+\usubsection{Modelado del comportamiento de los nodos}
+
+Dado que el sistema es concurrente, el estado de cada nodo es independiente del resto. Para modelar este comportamiento, se diseñó una máquina de estados finitos que gobierna el ciclo de vida de cada componente visual durante la ejecución:
+
+\begin{itemize}
+    \item \textbf{Idle (Inactivo):} El nodo espera la llegada de datos.
+    \item \textbf{Waiting (Esperando/Acumulando):} El nodo ha recibido datos en algunos de sus puertos, pero no en todos. Los datos parciales se almacenan en la memoria local del nodo.
+    \item \textbf{Ready (Listo):} Todas las precondiciones de disparo se han cumplido. El nodo se traslada a la cola de ejecución.
+    \item \textbf{Running (Ejecutando):} La lógica interna del nodo está siendo procesada por el motor.
+    \item \textbf{Finished (Finalizado):} El nodo ha emitido su salida y limpia su memoria temporal para reiniciar el ciclo.
+\end{itemize}
+
+El flujo de cambios entre estados de cada nodo en el lenguaje se ilustra en el diagrama de estados de la figura \ref{fig:diagrama-estado-nodos}. Este modelo de estados permite que el entorno de desarrollo proporcione retroalimentación visual continua (iluminando nodos activos o en espera), lo cual es una característica crítica para la depuración pedagógica, permitiendo a los estudiantes visualizar el flujo de la información en tiempo real.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/diagrama-estado-nodos.png}
+    \caption{Diagrama de estados para el comportamiento de los nodos.}
+    \label{fig:diagrama-estado-nodos}
+\end{figure}
+
+\usubsection{Caracterización del lenguaje}
+
+Bajo conceptos de la teoría de lenguajes de programación Dataflow, se definieron las siguientes características formales para el lenguaje:
+
+\begin{itemize}
+    \item \textbf{Modelo de activación:} El lenguaje se basa en un modelo de activación asíncrono por disponibilidad de datos, donde los nodos se disparan automáticamente cuando sus entradas están listas, permitiendo la ejecución concurrente sin necesidad de gestión explícita de hilos o sincronización.
+    \item \textbf{Sistema de tipos:} El sistema de tipos es estático, y la validación de tipos se realiza en tiempo de edición para prevenir errores comunes. Se definieron tipos básicos (números, texto, booleanos) y tipos compuestos (listas).
+    \item \textbf{Modelo de flujo de datos:} Se trabaja bajo un modelo de \emph{Push}, donde los nodos emiten datos a sus destinos tan pronto como están disponibles. Esta aproximación simplifica la gestión de la ejecución y evita la necesidad de estructuras de control explícitas para manejar el flujo de datos.
+    \item \textbf{Gestión de datos:} Los datos se representan como objetos inmutables que fluyen a través del grafo. Cada nodo procesa sus entradas y genera nuevas instancias de datos sin modificar los originales, promoviendo un estilo de programación funcional que es más fácil de razonar para los estudiantes y evita efectos secundarios y errores de concurrencia (por ejemplo, condiciones de carrera).
+    \item \textbf{Consumo de tokens de datos:} Los tokens son consumidos al activarse el nodo y se limpian tras la ejecución, generando nuevos tokens de salida. Esto garantiza que el estado del programa se mantenga consistente y evita la acumulación de datos obsoletos en el sistema.
+\end{itemize}
+
 \usubsection{Diseño de la sintaxis visual y los nodos}
 
 El diseño de los nodos, definidos como las unidades mínimas de procesamiento, se realizó siguiendo los principios de la “Física de las Notaciones” para garantizar la efectividad cognitiva. Se estableció una gramática visual que utiliza la discriminabilidad perceptual y la codificación dual (texto + icono) para facilitar el reconocimiento rápido de las funciones por parte de los niños.
@@ -40,17 +73,3 @@ Se clasificó el catálogo de nodos en categorías alineadas con los componentes
     \item \textbf{Nodos de Abstracción:} Se introdujo el nodo Subflujo, el cual permite encapsular una secuencia compleja de nodos dentro de un único bloque reutilizable. Esto fomenta la capacidad de abstracción y la gestión de la complejidad en proyectos grandes.
     \item \textbf{Entradas y Eventos:} Se diseñaron con forma circular para evocar puntos de origen. Incluyen nodos como Timer (para introducir asincronía y eventos temporales) y Constante.
 \end{enumerate}
-
-\usubsection{Modelado del comportamiento de los nodos}
-
-Dado que el sistema es concurrente, el estado de cada nodo es independiente del resto. Para modelar este comportamiento, se diseñó una máquina de estados finitos que gobierna el ciclo de vida de cada componente visual durante la ejecución:
-
-\begin{itemize}
-    \item \textbf{Idle (Inactivo):} El nodo espera la llegada de datos.
-    \item \textbf{Waiting (Esperando/Acumulando):} El nodo ha recibido datos en algunos de sus puertos, pero no en todos. Los datos parciales se almacenan en la memoria local del nodo.
-    \item \textbf{Ready (Listo):} Todas las precondiciones de disparo se han cumplido. El nodo se traslada a la cola de ejecución.
-    \item \textbf{Running (Ejecutando):} La lógica interna del nodo está siendo procesada por el motor.
-    \item \textbf{Finished (Finalizado):} El nodo ha emitido su salida y limpia su memoria temporal para reiniciar el ciclo.
-\end{itemize}
-
-Este modelo de estados permite que el entorno de desarrollo proporcione retroalimentación visual continua (iluminando nodos activos o en espera), lo cual es una característica crítica para la depuración pedagógica, permitiendo a los estudiantes visualizar el flujo de la información en tiempo real.
