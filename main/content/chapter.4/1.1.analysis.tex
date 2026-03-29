@@ -2,7 +2,7 @@
 
 Esta fase inicial se centró en una indagación profunda para establecer las bases teóricas y técnicas del proyecto. Se llevó a cabo una revisión documental que abarcó desde los fundamentos del pensamiento computacional hasta las arquitecturas de software necesarias para soportar la ejecución de flujos de datos en entornos web y distribuidos, manteniendo un balance entre capacidad técnica y usabilidad.
 
-Se analizaron los marcos de trabajo existentes para la enseñanza de la computación, tomando como referencia principal la propuesta de \citeA{brennan2012} en el lenguaje de programación Scratch. Se identificaron los conceptos clave que el lenguaje debe ser capaz de modelar, tales como secuencias, bucles, eventos, condicionales, operadores y datos. Se puso especial énfasis en el concepto de paralelismo, pudiendo identificarlo como una carencia en las herramientas educativas tradicionales que suelen enfocarse en la ejecución secuencial estricta. Asimismo, se consideraron las definiciones de \citeA{zapataros2015} sobre la importancia de la abstracción, el reconocimiento de patrones y la creación de algoritmos como pilares para la resolución de problemas.
+Se analizaron los marcos de trabajo existentes para la enseñanza de la computación, tomando como referencia principal la propuesta de \citeA{brennan2012} en el lenguaje de programación Scratch. Se identificaron los conceptos clave que el lenguaje debe ser capaz de modelar, tales como secuencias, bucles, eventos, condicionales, operadores y datos. Se puso especial énfasis en el concepto de concurrencia, pudiendo identificarlo como una carencia en las herramientas educativas tradicionales que suelen enfocarse en la ejecución secuencial estricta. Asimismo, se consideraron las definiciones de \citeA{zapataros2015} sobre la importancia de la abstracción, el reconocimiento de patrones y la creación de algoritmos como pilares para la resolución de problemas.
 
 Por otro lado, para asegurar que la herramienta fuese adecuada para la población objetivo (niños y jóvenes de 8 a 16 años), se revisaron las teorías del desarrollo cognitivo de Jean Piaget. Se determinó que el diseño visual debe apoyar el paso de la etapa de Operaciones Concretas hasta las Operaciones Formales, permitiendo a los estudiantes manipular representaciones tangibles de datos para comprender conceptos abstractos. En la tabla \ref{tab:analisis-poblacion} se resumen las características cognitivas de esta población y cómo el diseño del lenguaje debe adaptarse a ellas.
 
@@ -12,16 +12,17 @@ Por otro lado, para asegurar que la herramienta fuese adecuada para la població
   \label{tab:analisis-poblacion}
   \begingroup
   \renewcommand{\arraystretch}{\TableRowStretch}
-  \begin{tabularx}{\textwidth}{ l X X }
+  \renewcommand{\TableBodyFontSize}{\footnotesize}
+  \begin{tabularx}{\textwidth}{ X X X }
     \hline
-    \textbf{Aspecto de Diseño}           & \textbf{Niños (8-11 años)}                                                                                  & \textbf{Jóvenes (12-16 años)}                                                                   \\
+    \textbf{Aspecto de Diseño}                          & \textbf{Niños (8-11 años)}                                                                                  & \textbf{Jóvenes (12-16 años)}                                                                   \\
     \hline
-    \textbf{Fase Cognitiva (Piaget)}     & Operaciones Concretas                                                                                       & Operaciones Formales                                                                            \\
-    \textbf{Características Cognitivas}  & Pensamiento lógico anclado en la experiencia real y lo observable. Dificultad con razonamientos abstractos. & Razonamiento lógico en todas las circunstancias. Capacidad de manejar lo simbólico y abstracto. \\
-    \textbf{Foco Principal (UI/UX)}      & Facilidad de entrada para principiantes, eliminando barreras de inicio (Piso Bajo).                         & Capacidad de gestionar complejidad y permitir una progresión avanzada (Techo Alto).             \\
-    \textbf{Abstracción y Visualización} & Uso de metáforas visuales claras y limitación de nodos disponibles para no abrumar.                         & Soporta para la modularidad y encapsulación de flujos.                                          \\
-    \textbf{Retroalimentación y Datos}   & Feedback inmediato, tipificación visual de datos para facilitar la comprensión.                             & Herramientas de depuración de alto nivel, trazabilidad e inspección de estado.                  \\
-    \textbf{Lógica y Control}            & Refuerzo visual de la causalidad y el flujo de datos.                                                       & Soporte para lógica condicional y estructuras de control avanzadas.                             \\
+    \textbf{Fase Cognitiva según Piaget}                & Operaciones Concretas                                                                                       & Operaciones Formales                                                                            \\
+    \textbf{Características Cognitivas}                 & Pensamiento lógico anclado en la experiencia real y lo observable. Dificultad con razonamientos abstractos. & Razonamiento lógico en todas las circunstancias. Capacidad de manejar lo simbólico y abstracto. \\
+    \textbf{Foco Principal en UI/UX}                    & Facilidad de entrada para principiantes, eliminando barreras de inicio (Piso Bajo).                         & Capacidad de gestionar complejidad y permitir una progresión avanzada (Techo Alto).             \\
+    \textbf{Manejo de Abstracción y Visualización}      & Uso de metáforas visuales claras y limitación de nodos disponibles para no abrumar.                         & Soporta para la modularidad y encapsulación de flujos.                                          \\
+    \textbf{Retroalimentación y Visualización de Datos} & Feedback inmediato, tipificación visual de datos para facilitar la comprensión.                             & Herramientas de depuración de alto nivel, trazabilidad e inspección de estado.                  \\
+    \textbf{Lógica y Control de Flujo}                  & Refuerzo visual de la causalidad y el flujo de datos.                                                       & Soporte para lógica condicional y estructuras de control avanzadas.                             \\
     \hline
   \end{tabularx}
   \endgroup
@@ -36,9 +37,9 @@ Basándose en la revisión anterior y en el análisis de lenguajes similares, se
 \usubsubsection{Requerimientos funcionales}
 
 \begin{itemize}
-  \item El lenguaje debe representar visualmente los tipos de datos (números, booleanos, cadenas) mediante el uso de estilos distintos en las conexiones y nodos.
-  \item El lenguaje debe ejecutar los nodos activando operaciones automáticamente cuando sus datos de entrada estén disponibles, soportando la ejecución paralela de ramas independientes bajo un modelo asíncrono.
-  \item El lenguaje debe incluir nodos de control (condicionales) y nodos de iteración que adapten lógica imperativa al flujo de datos.
+  \item El lenguaje debe representar visualmente los tipos de datos (números, booleanos, cadenas, listas) mediante el uso de estilos distintos en las conexiones y nodos.
+  \item El lenguaje debe ejecutar los nodos activando operaciones automáticamente cuando sus datos de entrada estén disponibles, soportando la ejecución concurrente de ramas independientes bajo un modelo asíncrono.
+  \item El lenguaje debe incluir nodos de control de flujo y nodos de iteración que adapten la lógica imperativa al flujo de datos.
   \item El lenguaje debe permitir a los usuarios agrupar conjuntos de nodos y encapsularlos en subflujos o nodos personalizados reutilizables.
   \item El entorno debe mostrar en tiempo real el movimiento y transformación de los datos a través de las conexiones.
   \item El entorno debe mostrar retroalimentación visual continua sobre el estado de cada nodo (activo, ejecutado, esperando datos, o en error).
@@ -56,7 +57,7 @@ Basándose en la revisión anterior y en el análisis de lenguajes similares, se
   \item El sistema debe estar diseñado con un enfoque en la experiencia de niños y jóvenes de 8 a 16 años.
   \item La interfaz gráfica debe diseñarse bajo principios de “piso bajo”, utilizando metáforas visuales claras y evitando terminología técnica compleja en los nombres de los nodos.
   \item El entorno debe revelar funcionalidades avanzadas de forma progresiva a medida que el estudiante avanza, evitando abrumar al usuario inicial.
-  \item La sintaxis visual del lenguaje debe minimizar la carga cognitiva, utilizando el diseño de los nodos y conexiones para comunicar la semántica del programa.
+  \item La sintaxis visual del lenguaje debe minimizar la carga cognitiva, utilizando el diseño de los nodos y conexiones para comunicar eficazmente la semántica del programa.
   \item La interfaz debe mantener una correspondencia entre la representación visual y la lógica de ejecución, asegurando que no existan estados ocultos al usuario.
   \item El diseño del software debe seguir patrones que permitan agregar nuevas categorías de nodos que permitan la interacción con contextos reales sin reescribir el motor central.
   \item Se debe fomentar su uso en un contexto social, permitiendo interacciones que apoyen el aprendizaje colaborativo.
