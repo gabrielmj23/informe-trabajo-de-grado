@@ -9,16 +9,17 @@
     \caption{Nodos de Entrada}
     \begin{tabularx}{\textwidth}{ l X X X c }
         \hline
-        \textbf{Nodo}    & \textbf{Entradas}      & \textbf{Proceso}                                                                    & \textbf{Salida}                                     & \textbf{Nivel de Abstracción} \\ \hline
-        Leer             & Ninguna                & Pausa la ejecución para esperar que el usuario ingrese un dato por teclado.         & El dato ingresado por el usuario (Número o texto).  & 1 \\
-        Número           & Ninguna (configurable) & Mantiene un valor numérico fijo                                                     & El número configurado                               & 1 \\
-        Texto            & Ninguna (configurable) & Mantiene un valor de texto fijo                                                     & El texto configurado                                & 1 \\
-        Valor lógico     & Ninguna (configurable) & Mantiene un valor booleano fijo (Verdadero o Falso)                                 & El valor lógico configurado                         & 1 \\
-        Lista fija       & Ninguna (configurable) & Mantiene una lista de elementos fija, definida por el usuario.                      & La lista configurada.                               & 3 \\
-        Valor Aleatorio  & Ninguna (configurable) & Genera un número al azar dentro del rango establecido                               & Número aleatorio generado                           & 2 \\
-        Opción Aleatoria & Ninguna (configurable) & Genera un valor aleatorio entre un conjunto de opciones predefinidas por el usuario & Opción seleccionada aleatoriamente (Número o Texto) & 2 \\
-        Generar pulsos   & Inicio, Fin, Paso      & Genera una secuencia de números y emite cada valor como pulso individual            & Pulsos con cada valor de la secuencia               & 1 \\
-        Temporizador     & Valor (cualquier tipo) & Espera la cantidad de segundos indicada por el usuario y luego se activa            & Valor de entrada                                    & 2 \\
+        \textbf{Nodo}    & \textbf{Entradas}                 & \textbf{Proceso}                                                                     & \textbf{Salida}                                     & \textbf{Nivel de Abstracción} \\ \hline
+        Leer             & Ninguna                           & Pausa la ejecución para esperar que el usuario ingrese un dato por teclado.          & El dato ingresado por el usuario (Número o texto).  & 1                             \\
+        Número           & Ninguna (configurable)            & Mantiene un valor numérico fijo                                                      & El número configurado                               & 1                             \\
+        Texto            & Ninguna (configurable)            & Mantiene un valor de texto fijo                                                      & El texto configurado                                & 1                             \\
+        Valor lógico     & Ninguna (configurable)            & Mantiene un valor booleano fijo (Verdadero o Falso)                                  & El valor lógico configurado                         & 1                             \\
+        Lista fija       & Ninguna (configurable)            & Mantiene una lista de elementos fija, definida por el usuario.                       & La lista configurada.                               & 3                             \\
+        Valor Aleatorio  & Ninguna (configurable)            & Genera un número al azar dentro del rango establecido                                & Número aleatorio generado                           & 2                             \\
+        Opción Aleatoria & Ninguna (configurable)            & Genera un valor aleatorio entre un conjunto de opciones predefinidas por el usuario  & Opción seleccionada aleatoriamente (Número o Texto) & 2                             \\
+        Temporizador     & Valor (cualquier tipo)            & Espera la cantidad de segundos indicada por el usuario y luego se activa             & Valor de entrada                                    & 2                             \\
+        Leer pulsos      & Frecuencia y Cantidad de lecturas & Lee un número específico de pulsos a una frecuencia determinada y emite cada lectura & Lecturas                                            & 1                             \\
+        Generar pulsos   & Inicio, Fin, Paso                 & Genera una secuencia de números y emite cada valor como pulso individual             & Pulsos con cada valor de la secuencia               & 1                             \\
         \hline
     \end{tabularx}
 \end{table}
@@ -29,7 +30,7 @@
     \begin{tabularx}{\textwidth}{ l X X X c }
         \hline
         \textbf{Nodo} & \textbf{Entradas}         & \textbf{Proceso}                                        & \textbf{Salida}     & \textbf{Nivel de Abstracción} \\ \hline
-        Escribir      & Datos (cantidad dinámica) & Muestra los valores recibidos en la consola del usuario & Sin salida de datos & 1 \\ \hline
+        Escribir      & Datos (cantidad dinámica) & Muestra los valores recibidos en la consola del usuario & Sin salida de datos & 1                             \\ \hline
     \end{tabularx}
 \end{table}
 
@@ -39,19 +40,19 @@
     \begin{tabularx}{\textwidth}{ l X X X c }
         \hline
         \textbf{Nodo}        & \textbf{Entradas}                                             & \textbf{Proceso}                                                                    & \textbf{Salida} & \textbf{Nivel de Abstracción} \\ \hline
-        Suma                 & Número A, Número B                                            & Calcula la suma de A más B.                                                         & Número          & 1-2 \\
-        Resta                & Número A, Número B                                            & Resta el valor de B al valor de A.                                                  & Número          & 1-2 \\
-        Multiplicación       & Número A, Número B                                            & Multiplica el valor de A por el valor de B.                                         & Número          & 1-2 \\
-        División             & Dividendo, Divisor                                            & Divide el Dividendo entre el Divisor.                                               & Número          & 1-2 \\
-        Resto                & Dividendo, Divisor                                            & Calcula el resto entre el Dividendo y el Divisor.                                   & Número          & 1-2 \\
-        Potencia             & Base, Exponente                                               & Eleva la Base a la potencia del Exponente.                                          & Número          & 2 \\
-        Raíz                 & Radicando, Índice                                             & Calcula la raíz n-ésima del radicando según el índice indicado.                     & Número          & 2 \\
-        Logaritmo            & Valor, Base                                                   & Calcula el logaritmo del valor en la base seleccionada.                             & Número          & 2 \\
-        Piso                 & Número                                                        & Redondea el número hacia abajo al entero más cercano.                               & Número          & 2 \\
-        Techo                & Número                                                        & Redondea el número hacia arriba al entero más cercano.                              & Número          & 2 \\
-        Redondear            & Número                                                        & Redondea el número al entero más cercano.                                           & Número          & 2 \\
-        Editor de fórmulas   & Cantidad definida por la expresión introducida por el usuario & Se realiza la expresión definida por el usuario.                                    & Número          & 3 \\
-        Operación Matemática & Número A, Número B                                            & Se realiza la operación matemática seleccionada por el usuario en la configuración. & Número          & 2 \\
+        Suma                 & Número A, Número B                                            & Calcula la suma de A más B.                                                         & Número          & 1-2                           \\
+        Resta                & Número A, Número B                                            & Resta el valor de B al valor de A.                                                  & Número          & 1-2                           \\
+        Multiplicación       & Número A, Número B                                            & Multiplica el valor de A por el valor de B.                                         & Número          & 1-2                           \\
+        División             & Dividendo, Divisor                                            & Divide el Dividendo entre el Divisor.                                               & Número          & 1-2                           \\
+        Resto                & Dividendo, Divisor                                            & Calcula el resto entre el Dividendo y el Divisor.                                   & Número          & 1-2                           \\
+        Potencia             & Base, Exponente                                               & Eleva la Base a la potencia del Exponente.                                          & Número          & 2                             \\
+        Raíz                 & Radicando, Índice                                             & Calcula la raíz n-ésima del radicando según el índice indicado.                     & Número          & 2                             \\
+        Logaritmo            & Valor, Base                                                   & Calcula el logaritmo del valor en la base seleccionada.                             & Número          & 2                             \\
+        Piso                 & Número                                                        & Redondea el número hacia abajo al entero más cercano.                               & Número          & 2                             \\
+        Techo                & Número                                                        & Redondea el número hacia arriba al entero más cercano.                              & Número          & 2                             \\
+        Redondear            & Número                                                        & Redondea el número al entero más cercano.                                           & Número          & 2                             \\
+        Editor de fórmulas   & Cantidad definida por la expresión introducida por el usuario & Se realiza la expresión definida por el usuario.                                    & Número          & 3                             \\
+        Operación Matemática & Número A, Número B                                            & Se realiza la operación matemática seleccionada por el usuario en la configuración. & Número          & 2                             \\
         \hline
     \end{tabularx}
 \end{table}
@@ -62,10 +63,10 @@
     \begin{tabularx}{\textwidth}{ l X X X c }
         \hline
         \textbf{Nodo} & \textbf{Entradas}                                      & \textbf{Proceso}                                                               & \textbf{Salida} & \textbf{Nivel de Abstracción} \\ \hline
-        Concatenar    & Texto A, Texto B                                       & Une el Texto B al final del Texto A.                                           & Texto           & 1 \\
-        Reemplazar    & Texto original, Texto a reemplazar, Texto de reemplazo & Reemplaza las ocurrencias de un subtexto por el texto de reemplazo.            & Texto           & 1 \\
-        Sustraer      & Texto original, Texto a eliminar                       & Elimina de un texto el subtexto especificado.                                  & Texto           & 1 \\
-        Recortar      & Texto original, Inicio, Fin                            & Extrae del texto original el texto entre la posición Inicio y la posición Fin. & Texto           & 1 \\
+        Concatenar    & Texto A, Texto B                                       & Une el Texto B al final del Texto A.                                           & Texto           & 1                             \\
+        Reemplazar    & Texto original, Texto a reemplazar, Texto de reemplazo & Reemplaza las ocurrencias de un subtexto por el texto de reemplazo.            & Texto           & 1                             \\
+        Sustraer      & Texto original, Texto a eliminar                       & Elimina de un texto el subtexto especificado.                                  & Texto           & 1                             \\
+        Recortar      & Texto original, Inicio, Fin                            & Extrae del texto original el texto entre la posición Inicio y la posición Fin. & Texto           & 1                             \\
         \hline
     \end{tabularx}
 \end{table}
@@ -75,11 +76,11 @@
     \caption{Nodos de Listas: Construcción y Combinación}
     \begin{tabularx}{\textwidth}{ l l X X c }
         \hline
-        \textbf{Nodo}        & \textbf{Entradas} & \textbf{Proceso}                                                                        & \textbf{Salida}       & \textbf{Nivel de Abstracción} \\ \hline
-        Generar lista        & Inicio, Fin, Paso & Genera una lista de números desde Inicio hasta Fin con el Paso indicado                 & Lista numérica        & 1 \\
-        Unir listas          & Lista A, Lista B  & Empaqueta los elementos de las dos listas en una lista de tuplas                        & Lista empaquetada     & 2 \\
-        Separar listas       & Lista de tuplas   & Transforma una lista de tuplas en dos listas separadas                                  & Lista A, Lista B      & 2 \\
-        Separar              & Número o Texto    & Convierte un número o texto en una lista de sus elementos                               & Lista                 & 2 \\
+        \textbf{Nodo}  & \textbf{Entradas} & \textbf{Proceso}                                                        & \textbf{Salida}   & \textbf{Nivel de Abstracción} \\ \hline
+        Generar lista  & Inicio, Fin, Paso & Genera una lista de números desde Inicio hasta Fin con el Paso indicado & Lista numérica    & 1                             \\
+        Unir listas    & Lista A, Lista B  & Empaqueta los elementos de las dos listas en una lista de tuplas        & Lista empaquetada & 2                             \\
+        Separar listas & Lista de tuplas   & Transforma una lista de tuplas en dos listas separadas                  & Lista A, Lista B  & 2                             \\
+        Separar        & Número o Texto    & Convierte un número o texto en una lista de sus elementos               & Lista             & 2                             \\
         \hline
     \end{tabularx}
 \end{table}
@@ -90,12 +91,12 @@
     \begin{tabularx}{\textwidth}{ l l X X c }
         \hline
         \textbf{Nodo}      & \textbf{Entradas} & \textbf{Proceso}                                                                        & \textbf{Salida}    & \textbf{Nivel de Abstracción} \\ \hline
-        Mapear             & Lista             & Aplica una función a cada elemento de la lista y devuelve la lista transformada         & Lista transformada & 2 \\
-        Filtrar            & Lista             & Conserva los elementos de la lista para los que una condición configurada sea verdadera & Lista filtrada     & 2 \\
-        Ordenar            & Lista             & Ordena una lista según la configuración                                                 & Lista              & 3 \\
-        Voltear            & Lista             & Invierte el orden de los elementos de la lista                                          & Lista              & 2 \\
-        Posiciones pares     & Lista             & Devuelve los elementos ubicados en posiciones pares                                     & Lista                 & 3 \\
-        Posiciones impares   & Lista             & Devuelve los elementos ubicados en posiciones impares                                   & Lista                 & 3 \\
+        Mapear             & Lista             & Aplica una función a cada elemento de la lista y devuelve la lista transformada         & Lista transformada & 2                             \\
+        Filtrar            & Lista             & Conserva los elementos de la lista para los que una condición configurada sea verdadera & Lista filtrada     & 2                             \\
+        Ordenar            & Lista             & Ordena una lista según la configuración                                                 & Lista              & 3                             \\
+        Voltear            & Lista             & Invierte el orden de los elementos de la lista                                          & Lista              & 2                             \\
+        Posiciones pares   & Lista             & Devuelve los elementos ubicados en posiciones pares                                     & Lista              & 3                             \\
+        Posiciones impares & Lista             & Devuelve los elementos ubicados en posiciones impares                                   & Lista              & 3                             \\
         \hline
     \end{tabularx}
 \end{table}
@@ -105,15 +106,15 @@
     \caption{Nodos de Listas: Consulta y Búsqueda}
     \begin{tabularx}{\textwidth}{ l l X X c }
         \hline
-        \textbf{Nodo}        & \textbf{Entradas} & \textbf{Proceso}                                                                  & \textbf{Salida}       & \textbf{Nivel de Abstracción} \\ \hline
-        Contar               & Lista             & Calcula cuántos elementos tiene una lista guardada                                & Cantidad de elementos & 3 \\
-        Primer elemento      & Lista             & Obtiene el primer elemento de la lista de entrada                                 & Elemento              & 1 \\
-        Último elemento      & Lista             & Obtiene el último elemento de la lista de entrada                                 & Elemento              & 1 \\
-        Elemento en posición & Lista, Posición   & Obtiene el elemento ubicado en la posición indicada de la lista (empezando en 1)  & Elemento              & 2 \\
-        Buscar elemento      & Lista, Elemento   & Devuelve la primera posición donde aparece el elemento, o 0 si no aparece         & Posición              & 2 \\
-        Lista vacía          & Lista             & Evalúa si la lista no contiene elementos                                          & Booleano              & 1 \\
-        Mínimo               & Lista             & Obtiene el menor valor de la lista                                                & Elemento              & 2 \\
-        Máximo               & Lista             & Obtiene el mayor valor de la lista                                                & Elemento              & 2 \\
+        \textbf{Nodo}        & \textbf{Entradas} & \textbf{Proceso}                                                                 & \textbf{Salida}       & \textbf{Nivel de Abstracción} \\ \hline
+        Contar               & Lista             & Calcula cuántos elementos tiene una lista guardada                               & Cantidad de elementos & 3                             \\
+        Primer elemento      & Lista             & Obtiene el primer elemento de la lista de entrada                                & Elemento              & 1                             \\
+        Último elemento      & Lista             & Obtiene el último elemento de la lista de entrada                                & Elemento              & 1                             \\
+        Elemento en posición & Lista, Posición   & Obtiene el elemento ubicado en la posición indicada de la lista (empezando en 1) & Elemento              & 2                             \\
+        Buscar elemento      & Lista, Elemento   & Devuelve la primera posición donde aparece el elemento, o 0 si no aparece        & Posición              & 2                             \\
+        Lista vacía          & Lista             & Evalúa si la lista no contiene elementos                                         & Booleano              & 1                             \\
+        Mínimo               & Lista             & Obtiene el menor valor de la lista                                               & Elemento              & 2                             \\
+        Máximo               & Lista             & Obtiene el mayor valor de la lista                                               & Elemento              & 2                             \\
         \hline
     \end{tabularx}
 \end{table}
@@ -124,10 +125,10 @@
     \begin{tabularx}{\textwidth}{ l l X X c }
         \hline
         \textbf{Nodo}     & \textbf{Entradas} & \textbf{Proceso}                                           & \textbf{Salida} & \textbf{Nivel de Abstracción} \\ \hline
-        Añadir al inicio  & Lista, Elemento   & Inserta el elemento al inicio de la lista                  & Lista           & 1 \\
-        Añadir al final   & Lista, Elemento   & Inserta el elemento al final de la lista                   & Lista           & 1 \\
-        Quitar el primero & Lista             & Devuelve la lista de entrada eliminando su primer elemento & Lista           & 1 \\
-        Quitar el último  & Lista             & Devuelve la lista de entrada eliminando su último elemento & Lista           & 1 \\
+        Añadir al inicio  & Lista, Elemento   & Inserta el elemento al inicio de la lista                  & Lista           & 1                             \\
+        Añadir al final   & Lista, Elemento   & Inserta el elemento al final de la lista                   & Lista           & 1                             \\
+        Quitar el primero & Lista             & Devuelve la lista de entrada eliminando su primer elemento & Lista           & 1                             \\
+        Quitar el último  & Lista             & Devuelve la lista de entrada eliminando su último elemento & Lista           & 1                             \\
         \hline
     \end{tabularx}
 \end{table}
@@ -137,10 +138,10 @@
     \caption{Nodos de Listas: Agregación y Análisis}
     \begin{tabularx}{\textwidth}{ l l X X c }
         \hline
-        \textbf{Nodo}   & \textbf{Entradas} & \textbf{Proceso}                                         & \textbf{Salida}      & \textbf{Nivel de Abstracción} \\ \hline
-        Acumular        & Lista             & Suma todos los elementos de la lista                     & Total acumulado      & 2 \\
-        Productorio     & Lista             & Multiplica todos los elementos de la lista               & Producto total       & 3 \\
-        Frecuencia      & Lista             & Cuenta ocurrencias y devuelve pares (Elemento, Cantidad) & Lista de frecuencias & 3 \\
+        \textbf{Nodo} & \textbf{Entradas} & \textbf{Proceso}                                         & \textbf{Salida}      & \textbf{Nivel de Abstracción} \\ \hline
+        Acumular      & Lista             & Suma todos los elementos de la lista                     & Total acumulado      & 2                             \\
+        Productorio   & Lista             & Multiplica todos los elementos de la lista               & Producto total       & 3                             \\
+        Frecuencia    & Lista             & Cuenta ocurrencias y devuelve pares (Elemento, Cantidad) & Lista de frecuencias & 3                             \\
         \hline
     \end{tabularx}
 \end{table}
@@ -151,20 +152,20 @@
     \begin{tabularx}{\textwidth}{ l X X X c }
         \hline
         \textbf{Nodo}    & \textbf{Entradas}      & \textbf{Proceso}                                                                   & \textbf{Salida} & \textbf{Nivel de Abstracción} \\ \hline
-        Comparar         & Valor A, Valor B       & Evalúa si A es mayor, menor, igual o diferente a B (según configuración).          & Booleano        & 2 \\
-        Igual            & Valor A, Valor B       & Evalúa si A es igual a B.                                                          & Booleano        & 1-2 \\
-        Distinto         & Valor A, Valor B       & Evalúa si A es distinto de B.                                                      & Booleano        & 1-2 \\
-        Menor            & Valor A, Valor B       & Evalúa si A es menor que B.                                                        & Booleano        & 1-2 \\
-        Menor o igual    & Valor A, Valor B       & Evalúa si A es menor o igual que B.                                                & Booleano        & 1-2 \\
-        Mayor            & Valor A, Valor B       & Evalúa si A es mayor que B.                                                        & Booleano        & 1-2 \\
-        Mayor o igual    & Valor A, Valor B       & Evalúa si A es mayor o igual que B.                                                & Booleano        & 1-2 \\
-        Operación lógica & Booleano A, Booleano B & Aplica la compuerta seleccionada en configuración (AND, NAND, OR, NOR, XOR o NOT). & Booleano        & 2 \\
-        AND              & Booleano A, Booleano B & Verifica si ambas entradas son Verdaderas.                                         & Booleano        & 1-2 \\
-        NAND             & Booleano A, Booleano B & Negación de las salidas del nodo AND.                                              & Booleano        & 1-2 \\
-        OR               & Booleano A, Booleano B & Verifica si al menos una entrada es Verdadera.                                     & Booleano        & 1-2 \\
-        NOR              & Booleano A, Booleano B & Negación de las salidas del nodo OR.                                               & Booleano        & 1-2 \\
-        XOR              & Booleano A, Booleano B & Verifica si solo una entrada es Verdadera.                                         & Booleano        & 1-2 \\
-        NOT              & Booleano A             & Invierte el valor lógico de la entrada.                                            & Booleano        & 1-2 \\
+        Comparar         & Valor A, Valor B       & Evalúa si A es mayor, menor, igual o diferente a B (según configuración).          & Booleano        & 2                             \\
+        Igual            & Valor A, Valor B       & Evalúa si A es igual a B.                                                          & Booleano        & 1-2                           \\
+        Distinto         & Valor A, Valor B       & Evalúa si A es distinto de B.                                                      & Booleano        & 1-2                           \\
+        Menor            & Valor A, Valor B       & Evalúa si A es menor que B.                                                        & Booleano        & 1-2                           \\
+        Menor o igual    & Valor A, Valor B       & Evalúa si A es menor o igual que B.                                                & Booleano        & 1-2                           \\
+        Mayor            & Valor A, Valor B       & Evalúa si A es mayor que B.                                                        & Booleano        & 1-2                           \\
+        Mayor o igual    & Valor A, Valor B       & Evalúa si A es mayor o igual que B.                                                & Booleano        & 1-2                           \\
+        Operación lógica & Booleano A, Booleano B & Aplica la compuerta seleccionada en configuración (AND, NAND, OR, NOR, XOR o NOT). & Booleano        & 2                             \\
+        AND              & Booleano A, Booleano B & Verifica si ambas entradas son Verdaderas.                                         & Booleano        & 1-2                           \\
+        NAND             & Booleano A, Booleano B & Negación de las salidas del nodo AND.                                              & Booleano        & 1-2                           \\
+        OR               & Booleano A, Booleano B & Verifica si al menos una entrada es Verdadera.                                     & Booleano        & 1-2                           \\
+        NOR              & Booleano A, Booleano B & Negación de las salidas del nodo OR.                                               & Booleano        & 1-2                           \\
+        XOR              & Booleano A, Booleano B & Verifica si solo una entrada es Verdadera.                                         & Booleano        & 1-2                           \\
+        NOT              & Booleano A             & Invierte el valor lógico de la entrada.                                            & Booleano        & 1-2                           \\
         \hline
     \end{tabularx}
 \end{table}
@@ -175,11 +176,11 @@
     \begin{tabularx}{\textwidth}{ l X X X c }
         \hline
         \textbf{Nodo}          & \textbf{Entradas}                                                                            & \textbf{Proceso}                                                                                                                                                                 & \textbf{Salida}                        & \textbf{Nivel de Abstracción} \\ \hline
-        Desvío                 & Dato (Cualquiera), Condición (Booleano)                                                      & Si la condición es verdadera envía el dato por la salida superior; si es falsa, por la inferior.                                                                                 & Salida Sí (Dato), Salida No (Dato)     & 1 \\
-        Relevo                 & Dato de activación, Dato a emitir                                                            & Usa una entrada para activar y emite siempre el valor conectado al puerto de relevo.                                                                                             & Dato relevado                          & 1 \\
-        Selector               & Condición, Valor Verdadero, Valor Falso                                                      & Según la condición, emite el valor de la rama Verdadera o Falsa.                                                                                                                 & Valor seleccionado                     & 1 \\
-        Switch                 & Dato (Cualquiera), Condición (Booleano)                                                      & Actúa como un desvío de tren: si la Condición es Verdadera, envía el Dato por la salida "Sí"; si es Falsa, por la salida "No".                                                   & Salida Sí (Dato), Salida No (Dato)     & 2 \\
-        Condicional + Selector & Al condicional: Valores usados para las condiciones. \newline Al selector: Posibles salidas. & Evalúa las condiciones usando los valores de entrada del nodo condicional. Empareja cada condición con una salida del selector. Si una condición es verdadera, emite esa salida. & Número, texto o booleano seleccionado. & 3 \\
+        Desvío                 & Dato (Cualquiera), Condición (Booleano)                                                      & Si la condición es verdadera envía el dato por la salida superior; si es falsa, por la inferior.                                                                                 & Salida Sí (Dato), Salida No (Dato)     & 1                             \\
+        Relevo                 & Dato de activación, Dato a emitir                                                            & Usa una entrada para activar y emite siempre el valor conectado al puerto de relevo.                                                                                             & Dato relevado                          & 1                             \\
+        Selector               & Condición, Valor Verdadero, Valor Falso                                                      & Según la condición, emite el valor de la rama Verdadera o Falsa.                                                                                                                 & Valor seleccionado                     & 1                             \\
+        Switch                 & Dato (Cualquiera), Condición (Booleano)                                                      & Actúa como un desvío de tren: si la Condición es Verdadera, envía el Dato por la salida "Sí"; si es Falsa, por la salida "No".                                                   & Salida Sí (Dato), Salida No (Dato)     & 2                             \\
+        Condicional + Selector & Al condicional: Valores usados para las condiciones. \newline Al selector: Posibles salidas. & Evalúa las condiciones usando los valores de entrada del nodo condicional. Empareja cada condición con una salida del selector. Si una condición es verdadera, emite esa salida. & Número, texto o booleano seleccionado. & 3                             \\
         \hline
     \end{tabularx}
 \end{table}
@@ -190,9 +191,10 @@
     \begin{tabularx}{\textwidth}{ l X X X c }
         \hline
         \textbf{Nodo}  & \textbf{Entradas}                     & \textbf{Proceso}                                                                                   & \textbf{Salida}                 & \textbf{Nivel de Abstracción} \\ \hline
-        Replicar flujo & Flujo, Entradas para cada dispositivo & Define un flujo reutilizable y su configuración para ejecutarlo en varios dispositivos o destinos. & Resultados de todos los flujos  & 3 \\
-        Distribuir     & Lista                                 & Distribuye los elementos de una lista entre múltiples salidas.                                     & Múltiples salidas con elementos & 2 \\
-        Reunir         & Múltiples entradas                    & Recolecta valores de varias entradas y los agrupa en una lista.                                    & Lista con valores reunidos      & 2 \\
+        Barrera        & Múltiples entradas                    & Espera a que todas las entradas hayan recibido un valor antes de emitir sus valores                & Valores de las entradas         & 2                             \\
+        Replicar flujo & Flujo, Entradas para cada dispositivo & Define un flujo reutilizable y su configuración para ejecutarlo en varios dispositivos o destinos. & Resultados de todos los flujos  & 3                             \\
+        Distribuir     & Lista                                 & Distribuye los elementos de una lista entre múltiples salidas.                                     & Múltiples salidas con elementos & 2                             \\
+        Reunir         & Múltiples entradas                    & Recolecta valores de varias entradas y los agrupa en una lista.                                    & Lista con valores reunidos      & 2                             \\
         \hline
     \end{tabularx}
 \end{table}
@@ -202,13 +204,16 @@
     \caption{Nodos de Micro:bit}
     \begin{tabularx}{\textwidth}{ l X X X c }
         \hline
-        \textbf{Nodo}   & \textbf{Entradas}    & \textbf{Proceso}                                                              & \textbf{Salida}     & \textbf{Nivel de Abstracción} \\ \hline
-        Leer botón      & Ninguna              & Espera por una pulsación de botón en la micro:bit y envía el valor detectado. & Texto (A, B o AB)   & 3 \\
-        Temperatura     & Ninguna              & Lee la temperatura actual del dispositivo micro:bit.                          & Número (°C)         & 3 \\
-        Leer pin        & Ninguna              & Lee el valor de un pin digital o analógico de la micro:bit.                   & Número              & 3 \\
-        Escribir        & Dato (Cualquiera)    & Convierte la entrada a texto y lo escribe en las LED.                         & Sin salida de datos & 3 \\
-        Emitir sonido   & Frecuencia, duración & Activa un sonido en micro:bit con la frecuencia y duración configuradas.      & Sin salida de datos & 3 \\
-        Escribir en pin & Número (valor)       & Escribe un valor en un pin de salida de la micro:bit.                         & Sin salida de datos & 3 \\ \hline
+        \textbf{Nodo}        & \textbf{Entradas}                 & \textbf{Proceso}                                                                                       & \textbf{Salida}     & \textbf{Nivel de Abstracción} \\ \hline
+        Leer botón           & Ninguna                           & Espera por una pulsación de botón en la micro:bit y envía el valor detectado.                          & Texto (A, B o AB)   & 3                             \\
+        Temperatura          & Ninguna                           & Lee la temperatura actual del dispositivo micro:bit.                                                   & Número (°C)         & 3                             \\
+        Leer pin             & Ninguna                           & Lee el valor de un pin digital o analógico de la micro:bit.                                            & Número              & 3                             \\
+        Leer botón (pulsos)  & Frecuencia y Cantidad de lecturas & Lee un número específico de pulsaciones a una frecuencia determinada y emite cada lectura              & Lecturas            & 3                             \\
+        Temperatura (pulsos) & Frecuencia y Cantidad de lecturas & Hace un número específico de lecturas de temperatura a una frecuencia determinada y emite cada lectura & Lecturas            & 3                             \\
+        Leer pin (pulsos)    & Frecuencia y Cantidad de lecturas & Hace un número específico de lecturas de un pin a una frecuencia determinada y emite cada lectura      & Lecturas            & 3                             \\
+        Escribir             & Dato (Cualquiera)                 & Convierte la entrada a texto y lo escribe en las LED.                                                  & Sin salida de datos & 3                             \\
+        Emitir sonido        & Frecuencia, duración              & Activa un sonido en micro:bit con la frecuencia y duración configuradas.                               & Sin salida de datos & 3                             \\
+        Escribir en pin      & Número (valor)                    & Escribe un valor en un pin de salida de la micro:bit.                                                  & Sin salida de datos & 3                             \\ \hline
     \end{tabularx}
 \end{table}
 
@@ -218,7 +223,7 @@
     \begin{tabularx}{\textwidth}{ l X X X c }
         \hline
         \textbf{Nodo} & \textbf{Entradas}       & \textbf{Proceso}                                     & \textbf{Salida} & \textbf{Nivel de Abstracción} \\ \hline
-        Subflujo      & Entradas personalizadas & Ejecuta un grupo de nodos encapsulados dentro de él. & Salida definida & 2 \\ \hline
+        Subflujo      & Entradas personalizadas & Ejecuta un grupo de nodos encapsulados dentro de él. & Salida definida & 2                             \\ \hline
     \end{tabularx}
 \end{table}
 
