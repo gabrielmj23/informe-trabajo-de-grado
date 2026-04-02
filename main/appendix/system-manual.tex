@@ -1,0 +1,91 @@
+\uextra{Apéndice}{Manual de Sistema de NodeLand}
+\label{apx:system-manual}
+
+\section*{Arquitectura del Lenguaje}
+
+El sistema se organiza en capas:
+
+\begin{enumerate}
+    \item \textbf{Editor visual (React Flow)}: representa nodos y conexiones (edges) a través de la interfaz gráfica.
+    \item \textbf{Capa de validación visual:} comprueba compatibilidad de tipos y reglas estructurales mientras el usuario edita.
+    \item \textbf{Capa de traducción: }traduce nodos y conexiones de la representación UI a una forma ejecutable basada en clases como NodeDefinition y Arc.
+    \item \textbf{Motor de ejecución dataflow:} ejecuta nodos por disponibilidad de tokens, manejando concurrencia y orden de ejecución.
+    \item \textbf{Backends de ejecución opcionales:} ejecución local, controller remoto por WebSocket o micro:bit vía Bluetooth/Serial.
+\end{enumerate}
+
+\section*{Modelo Formal de Programas}
+
+\subsection*{Entidades}
+
+\begin{itemize}
+    \item \textbf{NodeDefinition:} define activación, patrones de disparo, puertos y metadatos de un tipo de nodo.
+    \item \textbf{Node:} instancia en tiempo de ejecución de un NodeDefinition con un id único.
+    \item \textbf{PortAddress:} par (nodeId, portId) que identifica un puerto específico de un nodo.
+    \item \textbf{DataToken:} valor junto con su PortAddress actual, representando un dato en tránsito.
+    \item \textbf{Arc:} conexión dirigida de un PortAddress origen a uno destino, representando el flujo de datos entre nodos.
+\end{itemize}
+
+\subsection*{Patrones de disparo (FirePatterns)}
+
+\begin{itemize}
+    \item \textbf{EXISTS:} requiere token en ese puerto para habilitar ejecución.
+    \item \textbf{EMPTY:} requiere ausencia de token en ese puerto.
+    \item \textbf{DONT\_CARE:} no bloquea ejecución, no consume token, se ignora la presencia de valor en este puerto.
+    \item \textbf{ALWAYS:} no bloquea ejecución, no consume token.
+\end{itemize}
+
+\section*{Proceso de Traducción}
+
+\subsection*{Filtrado de nodos de UI}
+
+Se excluyen nodos exclusivos de la interfaz, específicamente los nodos de comentario.
+
+\subsection*{Inferencia de estructura}
+
+Se infiere cantidad de puertos para nodos con puertos dinámicos (write, scatter, gather, barrier, selector, conditional, sequence).
+
+\subsection*{Compilación de nodos}
+
+Se utilizan “compiladores” específicos por categoría de nodo, que traducen la representación visual a una forma ejecutable con NodeDefinition. Se mapean los puertos de la UI a los puertos definidos en el NodeDefinition, y los arcos visuales se transforman en instancias de Arc con sourcePort y targetPort.
+
+\subsection*{Validación de conexiones}
+
+Se ejecuta una rutina de Depth-First Search (DFS) sobre el grafo para detectar ciclos, ya que el motor de ejecución actual no soporta grafos cíclicos directos. Si se detecta un ciclo, se lanza un error específico (CycleDetectedCompileError) que incluye los nodos involucrados y sus nombres para facilitar la corrección.
+
+\section*{Sistema de Tipos y Validación de Conexiones}
+
+En el sistema de tipos, cada puerto tiene una máscara de bits que representa los tipos de datos que acepta (number, text, boolean, list, any). La compatibilidad entre un puerto de origen y uno de destino se determina mediante una operación bit a bit: si la intersección de sus máscaras no es cero, la conexión es válida. Esta validación se aplica tanto en tiempo de edición para proporcionar retroalimentación inmediata al usuario, como en tiempo de carga para asegurar la integridad del programa antes de su ejecución.
+
+Adicionalmente, se implementan reglas estructurales para garantizar la coherencia del programa. Por ejemplo, no se permite que un nodo se conecte a sí mismo, y ciertas conexiones entre nodos específicos (como conditional y conditionalSelector) están bloqueadas.
+
+Es importante destacar que, para los nodos de subflujo, no se maneja una definición de tipos en su plantilla, sino que las entradas y salidas se asumen como tipo 'any' para permitir flexibilidad en su uso. Sin embargo, esto implica que la validación de tipos para conexiones que involucran subflujos se realiza de manera más permisiva, confiando en que el usuario mantenga la coherencia en el uso de los datos dentro del subflujo, y posiblemente causando comportamientos inesperados si se utilizan entradas no compatibles.
+
+\section*{Ejecución Distribuida}
+
+\subsection*{Ejecución en otras PC mediante WebSocket}
+
+El Runner (PC con el programa cargado) envia exec\_request con requestId, controllerId, op, args y subflow opcional. Controller (PC remota) responde exec\_result ok/error. Se manejan tiempos de espera máximos de 15 segundos, con un reintento adicional automático.
+
+\subsection*{Ejecución en micro:bit}
+
+Los compiladores de los nodos soportados (procesamiento, listas, lógica y subflujos) pueden crear el subgrafo remoto a micro:bit. Este pasa por la función sendSubflowToMicrobit, que lo envía al micro:bit usando el protocolo definido. El sistema soporta tanto transporte Serial como Bluetooth, y permite especificar un slot de micro:bit para gestionar múltiples dispositivos.
+
+\section*{Serialización}
+
+El programa se serializa en formato JSON, con una estructura versionada que incluye los campos: version, programName, nodes, edges y viewport. El campo version es importante para mantener compatibilidad hacia adelante a medida que el sistema evoluciona. Los campos de nodes y edges conservan sus valores provenientes de React Flow, lo que facilita la reconstrucción del programa al cargarlo nuevamente.
+
+\section*{Observabilidad}
+
+El motor de ejecución expone callbacks de observacion que permiten monitorear eventos durante la ejecución del programa, tales como:
+
+\begin{itemize}
+    \item \textbf{onRunStart:} se dispara al iniciar la ejecución de un programa.
+    \item \textbf{onRunEnd:} se dispara al finalizar la ejecución de un programa.
+    \item \textbf{onNodeStatus:} se dispara cada vez que un nodo cambia de estado (inactivo, activo, error).
+    \item \textbf{onLog:} se dispara cuando un nodo emite un mensaje de log.
+    \item \textbf{onPrompt:} se dispara cuando un nodo requiere una entrada del usuario.
+    \item \textbf{onEdgeValue:} se dispara cada vez que un token de datos fluye a través de un arco (edge).
+    \item \textbf{onNodeExecution:} se dispara cada vez que un nodo comienza su ejecución.
+\end{itemize}
+
+Estos callbacks son utilizados actualmente para alimentar la consola local, la consola de cada PC remota, y la visualización de valores en los arcos visuales.
