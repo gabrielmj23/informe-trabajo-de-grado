@@ -1,6 +1,18 @@
 \usection{Diseño del Lenguaje y de su Entorno}
 
-Tras definir los requerimientos y analizar las bases teóricas del pensamiento computacional, se procedió al diseño arquitectónico y funcional del lenguaje. Este diseño se fundamenta en el paradigma de flujo de datos (dataflow), priorizando la visualización explícita del movimiento de la información y la ejecución concurrente, elementos críticos para la comprensión de sistemas modernos.
+Tras definir los requerimientos y analizar las bases teóricas del pensamiento computacional, se procedió al diseño arquitectónico y funcional del lenguaje. Este diseño se fundamenta en el paradigma de flujo de datos (dataflow), priorizando la visualización explícita del flujo de los datos entre los nodos y la ejecución concurrente, elementos críticos para la comprensión de sistemas modernos.
+
+\usubsection{Caracterización del lenguaje}
+
+Bajo conceptos de la teoría de lenguajes de programación Dataflow, se definieron las siguientes características formales para el lenguaje:
+
+\begin{itemize}
+    \item \textbf{Modelo de activación:} El lenguaje se basa en un modelo de activación asíncrono por disponibilidad de datos, donde los nodos se disparan automáticamente cuando sus entradas están listas, permitiendo la ejecución concurrente sin necesidad de gestión explícita de hilos o sincronización.
+    \item \textbf{Sistema de tipos:} El sistema de tipos es estático, y la validación de tipos se realiza en tiempo de edición para prevenir errores comunes. Se definieron tipos básicos (números, texto, booleanos) y tipos compuestos (listas).
+    \item \textbf{Modelo de flujo de datos:} Se trabaja bajo un modelo de \emph{Push}, donde los nodos emiten datos a sus destinos tan pronto como están disponibles. Esta aproximación simplifica la gestión de la ejecución y evita la necesidad de estructuras de control explícitas para manejar el flujo de datos.
+    \item \textbf{Gestión de datos:} Los datos se representan como objetos inmutables que fluyen a través del grafo. Cada nodo procesa sus entradas y genera nuevas instancias de datos sin modificar los originales, promoviendo un estilo de programación funcional que es más fácil de razonar para los estudiantes y evita efectos secundarios y errores de concurrencia (por ejemplo, condiciones de carrera).
+    \item \textbf{Consumo de tokens de datos:} Los tokens son consumidos al activarse el nodo y se limpian tras la ejecución, generando nuevos tokens de salida. Esto garantiza que el estado del programa se mantenga consistente y evita la acumulación de datos obsoletos en el sistema.
+\end{itemize}
 
 \usubsection{Arquitectura del entorno de ejecución}
 
@@ -8,7 +20,7 @@ Para facilitar la interactividad necesaria en el ámbito educativo, se optó por
 
 El motor de ejecución se diseñó bajo el principio de activación por disponibilidad de datos. A diferencia de los modelos imperativos tradicionales que siguen un contador de programa secuencial, este motor examina continuamente el grafo de nodos para identificar cuáles poseen todos sus datos de entrada listos para ser procesados. Este enfoque permite explotar el paralelismo implícito, ya que múltiples nodos pueden activarse simultáneamente sin que el estudiante deba gestionar hilos de ejecución manualmente, eliminando la carga cognitiva existente en muchos lenguajes de programación tradicionales.
 
-El motor se diseñó para iniciar con la traducción del grafo visual a un grafo semántico interno, donde cada nodo se representa como un objeto con puertos de entradas y salida, y una función de procesamiento asociada. El proceso de traducción de programas se concretó en los siguientes pasos, ilustrados en la figura \ref{fig:traduccion-programas}:
+El motor se diseñó para iniciar con la traducción del grafo visual a un grafo semántico interno, donde cada nodo se representa como un objeto con puertos de entradas y salida, y una función de procesamiento asociada. El proceso de traducción de programas se concretó en los siguientes pasos, ilustrados en la figura~\ref{fig:traduccion-programas}:
 
 \begin{enumerate}
     \item \textbf{Parsing del grafo visual:} El entorno gráfico exporta una representación JSON del grafo de nodos, incluyendo sus conexiones y metadatos. Se optó por este formato por su versatilidad y compatibilidad con el entorno web. El motor parsea esta estructura para construir un modelo de objetos en memoria, eliminando datos innecesarios como las posiciones de los nodos.
@@ -17,7 +29,14 @@ El motor se diseñó para iniciar con la traducción del grafo visual a un grafo
     \item \textbf{Resolución de objetivos de ejecución:} Para nodos que delegan tareas a hardware externo o computadoras remotas, se asignan identificadores de destino y se identifica la lógica de serialización necesaria para la comunicación.
 \end{enumerate}
 
-Una vez construido el grafo semántico, el motor de ejecución se encarga de gestionar el ciclo de vida de cada nodo, activando aquellos que cumplen con las condiciones de disparo y manejando la propagación de datos a través del sistema. Este modelo cíclico se describe en los siguientes pasos y se ilustra en la figura \ref{fig:ejecucion-programas}:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{../images/traduccion-programas.png}
+    \caption[Proceso de traducción de programas]{\normalfont Proceso de traducción de programas}
+    \label{fig:traduccion-programas}
+\end{figure}
+
+Una vez construido el grafo semántico, el motor de ejecución gestiona el ciclo de vida de cada nodo, activando aquellos que cumplen con las condiciones de disparo y manejando la propagación de datos a través del sistema. Este modelo cíclico se describe en los siguientes pasos y se ilustra en la figura~\ref{fig:ejecucion-programas}:
 
 \begin{enumerate}
     \item \textbf{Identificación de nodos listos:} El motor evalúa las políticas de disparo de cada nodo para identificar cuáles cumplen con las condiciones de activación, según los tokens de datos disponibles en sus puertos de entrada.
@@ -26,6 +45,13 @@ Una vez construido el grafo semántico, el motor de ejecución se encarga de ges
     \item \textbf{Propagación de salidas:} Los resultados generados se escriben en los puertos de salida del nodo. El motor se encarga de transferir estos valores a través de las aristas del grafo hacia los nodos destino.
     \item \textbf{Reevaluación del grafo:} El ciclo se reinicia evaluando iterativamente la disponibilidad de datos en los nodos, hasta que la red alcanza un estado de reposo en el que no hay datos en tránsito, indicando la finalización de la ejecución.
 \end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{../images/ejecucion-programas.png}
+    \caption[Proceso de ejecución de programas]{\normalfont Proceso de ejecución de programas}
+    \label{fig:ejecucion-programas}
+\end{figure}
 
 \usubsection{Modelado del comportamiento de los nodos}
 
@@ -48,18 +74,6 @@ El flujo de cambios entre estados de cada nodo en el lenguaje se ilustra en el d
     \label{fig:diagrama-estado-nodos}
 \end{figure}
 
-\usubsection{Caracterización del lenguaje}
-
-Bajo conceptos de la teoría de lenguajes de programación Dataflow, se definieron las siguientes características formales para el lenguaje:
-
-\begin{itemize}
-    \item \textbf{Modelo de activación:} El lenguaje se basa en un modelo de activación asíncrono por disponibilidad de datos, donde los nodos se disparan automáticamente cuando sus entradas están listas, permitiendo la ejecución concurrente sin necesidad de gestión explícita de hilos o sincronización.
-    \item \textbf{Sistema de tipos:} El sistema de tipos es estático, y la validación de tipos se realiza en tiempo de edición para prevenir errores comunes. Se definieron tipos básicos (números, texto, booleanos) y tipos compuestos (listas).
-    \item \textbf{Modelo de flujo de datos:} Se trabaja bajo un modelo de \emph{Push}, donde los nodos emiten datos a sus destinos tan pronto como están disponibles. Esta aproximación simplifica la gestión de la ejecución y evita la necesidad de estructuras de control explícitas para manejar el flujo de datos.
-    \item \textbf{Gestión de datos:} Los datos se representan como objetos inmutables que fluyen a través del grafo. Cada nodo procesa sus entradas y genera nuevas instancias de datos sin modificar los originales, promoviendo un estilo de programación funcional que es más fácil de razonar para los estudiantes y evita efectos secundarios y errores de concurrencia (por ejemplo, condiciones de carrera).
-    \item \textbf{Consumo de tokens de datos:} Los tokens son consumidos al activarse el nodo y se limpian tras la ejecución, generando nuevos tokens de salida. Esto garantiza que el estado del programa se mantenga consistente y evita la acumulación de datos obsoletos en el sistema.
-\end{itemize}
-
 \usubsection{Diseño de la sintaxis visual y los nodos}
 
 El diseño de los nodos, definidos como las unidades mínimas de procesamiento, se realizó siguiendo los principios de la “Física de las Notaciones” para garantizar la efectividad cognitiva. Se estableció una gramática visual que utiliza la discriminabilidad perceptual y la codificación dual (texto e ícono) para facilitar el reconocimiento rápido de las funciones por parte de los usuarios.
@@ -67,9 +81,10 @@ El diseño de los nodos, definidos como las unidades mínimas de procesamiento, 
 Se clasificó el catálogo de nodos en categorías alineadas con los componentes del Pensamiento Computacional:
 
 \begin{enumerate}
-    \item \textbf{Nodos de Procesamiento:} Incluyen operaciones aritméticas (Suma, Resta, Multiplicación) y de manejo de texto (Concatenar).
-    \item \textbf{Nodos de Control y Lógica:} Para garantizar la completitud de Turing, se diseñaron nodos de operadores booleanos (AND, OR, NOT) y, fundamentalmente, el nodo Switch. Este último permite la bifurcación del flujo de datos basándose en condiciones lógicas, introduciendo la toma de decisiones sin recurrir a la sintaxis textual compleja.
-    \item \textbf{Nodos de Iteración y Listas:} Para evitar la complejidad visual de los bucles imperativos, se adoptó un enfoque de procesamiento de listas, propio del paradigma de programación funcional. Se incluyeron nodos como Generar Lista, Zip (unir listas) y Acumular (reducción de datos), permitiendo operaciones sobre conjuntos de datos de manera intuitiva.
-    \item \textbf{Nodos de Abstracción:} Se introdujo el nodo Subflujo, el cual permite encapsular una secuencia compleja de nodos dentro de un único bloque reutilizable. Esto fomenta la capacidad de abstracción y la gestión de la complejidad en proyectos grandes.
-    \item \textbf{Entradas y Eventos:} Se diseñaron con forma circular para evocar puntos de origen. Incluyen nodos como el Temporizador (para introducir asincronía y eventos temporales) y Constante.
+    \item \textbf{Nodos de procesamiento:} Incluyen operaciones aritméticas (Suma, Resta, Multiplicación) y de manejo de texto (Concatenar).
+    \item \textbf{Nodos de control y lógica:} Para garantizar la completitud de Turing, se diseñaron nodos de operadores booleanos (AND, OR, NOT) y, fundamentalmente, el nodo Switch. Este último permite la bifurcación del flujo de datos basándose en condiciones lógicas, introduciendo la toma de decisiones sin recurrir a la sintaxis textual compleja.
+    \item \textbf{Nodos de generación y listas:} Para brindar soporte a tareas de iteración, se adoptó un enfoque de procesamiento de listas, propio del paradigma de programación funcional. Se incluyeron nodos como Generar Lista, Zip (unir listas) y Acumular (reducción de datos), permitiendo operaciones sobre conjuntos de datos de manera intuitiva.
+    \item \textbf{Nodos de abstracción funcional:} Se introdujo el nodo Subflujo, el cual permite encapsular una secuencia compleja de nodos dentro de un único bloque reutilizable. Esto fomenta la capacidad de abstracción y la gestión de la complejidad en proyectos grandes.
+    \item \textbf{Entradas y eventos:} Se diseñaron con forma circular para evocar puntos de origen. Incluyen nodos como el Temporizador (para introducir asincronía y eventos temporales) y Constante.
+    \item \textbf{Nodos sumideros:} Representados por el nodo de Escritura, permite mostrar resultados en pantalla, cerrando el ciclo de interacción con el entorno.
 \end{enumerate}

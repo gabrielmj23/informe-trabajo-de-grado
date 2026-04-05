@@ -1,0 +1,7 @@
+flowchart TD
+    A((Grafo<br>Visual)) --> B[Extracción y Parseo]
+    B --> C[Mapeo de Puertos y Topología]
+    C --> D{Validación<br>Estática<br>de Tipos}
+    D -- Válido --> E[Resolución de Subflujos y Objetivos de Ejecución]
+    D -- Inválido --> F((Rechazo del<br>Programa))
+    E --> G((Grafo<br>Semántico))

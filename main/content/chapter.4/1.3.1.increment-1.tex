@@ -1,77 +1,68 @@
 \usubsection{Primer incremento}
 
-El objetivo de este primer incremento fue establecer las bases funcionales del sistema, centrándose en dos componentes esenciales: el editor visual para la construcción de programas y el motor de ejecución para el procesamiento de grafos de dataflow. Se delimitó el alcance del incremento a la ejecución local en el navegador, postergando para iteraciones posteriores las capacidades de distribución hacia hardware externo y computadoras remotas. Asimismo, se priorizó la implementación de las funcionalidades mínimas necesarias para permitir la creación, conexión y ejecución de nodos dentro de un entorno web interactivo.
+El objetivo de este primer incremento fue establecer las bases funcionales del sistema, centrándose en dos componentes esenciales: el editor visual para la construcción de programas y el motor de ejecución para el procesamiento de grafos. A partir de los requerimientos definidos en la fase de análisis, se identificaron como necesidades prioritarias la capacidad de crear, conectar y ejecutar nodos dentro de un entorno web interactivo, un sistema de tipado que previniera conexiones inválidas, mecanismos de retroalimentación visual para informar al usuario sobre el estado de cada nodo durante la ejecución y un módulo de serialización que permitiera almacenar los programas construidos.
 
-A partir de los requerimientos definidos en la fase de análisis, se modeló una primera arquitectura del sistema compuesta por dos subsistemas principales: el editor visual y el intérprete del grafo. Para el editor se definió un entorno de trabajo basado en la metáfora de arrastrar y soltar, con un lienzo central, una paleta lateral de nodos y un sistema de conexiones entre puertos visuales en los nodos. Para el motor de ejecución se planteó un modelo de activación por disponibilidad de datos, gestionado mediante un bucle de eventos que permitiera evaluar continuamente qué nodos estaban listos para ejecutarse. Adicionalmente, se diseñó un catálogo inicial de nodos orientado a cubrir operaciones básicas de procesamiento numérico, lógico y textual, así como un esquema de serialización de grafos para soportar la exportación e importación de programas.
-
-\usubsubsection{Desarrollo del editor visual}
-
-Se procedió a la implementación de la interfaz de usuario que permite la programación visual. En la implementación, fueron de gran utilidad las primitivas de la librería React Flow, que ofrece un componente de canvas, un componente base de nodo, y funciones para la gestión de conexiones. Las principales tareas realizadas fueron:
+Se delimitó el alcance del incremento a la ejecución local en el navegador, postergando para iteraciones posteriores las capacidades de distribución hacia hardware externo y computadoras remotas. Se priorizó la implementación de las funcionalidades mínimas necesarias para permitir la programación visual básica, organizando el trabajo en las siguientes líneas de desarrollo:
 
 \begin{itemize}
-    \item \textbf{Lienzo de trabajo:} Se desarrolló un entorno de “arrastrar y soltar” (\emph{drag and drop}) que permite a los usuarios seleccionar nodos desde un panel lateral y depositarlos en un área de trabajo infinita.
-    \item \textbf{Gestión de conexiones:} Se implementó la lógica para trazar arcos o cables entre los puertos de salida de un nodo y los puertos de entrada de otro, estableciendo así el grafo de flujo de datos.
-    \item \textbf{Representación visual de nodos:} Se utilizaron íconos temporales para los nodos, priorizando la correcta identificación de los tipos de puertos (entradas y salidas) sobre el diseño gráfico definitivo del lenguaje.
+    \item Construcción del editor visual con su lienzo de trabajo y paleta de nodos.
+    \item Motor de ejecución basado en activación por disponibilidad de datos.
+    \item Catálogo inicial de nodos orientado a operaciones básicas.
+    \item Módulo de exportación e importación de programas.
+    \item Retroalimentación visual del estado de los nodos.
+    \item Sistema de validación de tipos en las conexiones.
 \end{itemize}
 
-\usubsubsection{Desarrollo del motor de ejecución}
+Se modeló una arquitectura compuesta por dos subsistemas principales: el editor visual y el intérprete del grafo. Para el editor se definió un entorno basado en la metáfora de arrastrar y soltar, con un lienzo central, una paleta lateral de nodos y un sistema de conexiones entre puertos visuales. Para el motor de ejecución se planteó un modelo de activación por disponibilidad de datos, gestionado mediante un bucle de eventos que evalúa continuamente qué nodos están listos para
+ejecutarse. Este diseño contempló la posibilidad de ejecución concurrente a nivel lógico entre ramas independientes del grafo.
 
-En paralelo, se construyó el motor de ejecución bajo un enfoque interpretado, lo cual permitió ejecutar programas de forma inmediata en el navegador y facilitó las tareas de depuración. El motor se implementó siguiendo el principio de activación por disponibilidad de datos, mediante un bucle de eventos capaz de identificar nodos listos para ejecutarse, procesar su lógica y propagar sus salidas hacia los nodos subsiguientes. Este diseño permitió validar desde el inicio la posibilidad de ejecución concurrente a nivel lógico entre ramas independientes del grafo.
+Adicionalmente, se diseñó un catálogo inicial de nodos que cubría operaciones de procesamiento numérico, lógico y textual. Se definió un esquema de serialización basado en un formato JSON estructurado y versionado, capaz de almacenar la versión del documento, el nombre del programa, la configuración de los nodos con sus interconexiones (de forma separada: un arreglo de nodos y un arreglo de conexiones) y los parámetros espaciales del lienzo.
 
-\usubsubsection{Refinamiento del catálogo de nodos}
+Para la retroalimentación visual se diseñó una máquina de estados que representara el ciclo de vida de cada nodo mediante cuatro estados: \textit{en espera} (contorno gris), \textit{activo} (contorno azul con indicador de carga), \textit{ejecución exitosa} (contorno verde) y \textit{error} (contorno rojo con mensaje descriptivo del fallo).
 
-Tras realizar las primeras pruebas funcionales del editor y el motor, se identificaron oportunidades de mejora en la especificación original de los nodos, lo que llevó a realizar ajustes respecto al diseño inicial:
+Finalmente, se especificó un mecanismo de validación de tipos donde cada puerto posee un tipo de dato asociado que determina su compatibilidad, representado visualmente mediante formas geométricas únicas en los puntos de conexión.
+
+Se procedió a la implementación de la interfaz de usuario. En este proceso fueron de gran utilidad las primitivas de la librería React Flow, que ofrece un componente de lienzo, un componente base de nodo y funciones para la gestión de conexiones. Las principales tareas realizadas fueron:
 
 \begin{itemize}
-    \item \textbf{Especialización de constantes:} Se eliminó el nodo genérico de “Constante” a favor de una tipificación más estricta para reducir errores al momento de programar. Se implementaron nodos específicos: Número, Valor lógico y Texto.
-    \item \textbf{Expansión de operadores matemáticos:} Para aumentar la capacidad expresiva del lenguaje en el ámbito aritmético, se agregaron los nodos de Resto (residuo de la división), Piso (redondeo hacia abajo), Techo (redondeo hacia arriba) y Redondear.
-    \item \textbf{Generación de datos:} Se introdujo el nodo “Generar pulsos”, el cual permite emitir valores enteros secuenciales entre un inicio y un fin con un paso definido, fundamental para probar el comportamiento de flujos continuos en el motor, como pudiera ocurrir en un sistema de IoT, por ejemplo.
+    \item \textbf{Lienzo de trabajo:} Se desarrolló un entorno que permite seleccionar nodos desde un panel lateral y depositarlos en un área de trabajo.
+    \item \textbf{Gestión de conexiones:} Se implementó la lógica para trazar arcos entre los puertos de salida de un nodo y los puertos de entrada de otro, estableciendo así el grafo de flujo de datos.
+    \item \textbf{Representación visual de nodos:} Se utilizaron íconos temporales, priorizando la correcta identificación de los tipos de puertos sobre el diseño visual definitivo del lenguaje.
 \end{itemize}
 
-\usubsubsection{Exportación e importación de programas}
+En paralelo, se construyó el motor de ejecución bajo un enfoque interpretado, lo cual permitió ejecutar programas de forma inmediata en el navegador y facilitó las tareas de depuración. El motor implementa el bucle de eventos descrito en el modelado: identifica nodos listos para ejecutarse, procesa su lógica y propaga sus salidas hacia los nodos subsiguientes.
 
-Para permitir el almacenamiento y la transferencia de los proyectos, se implementó un módulo de serialización y deserialización de grafos basado en un formato JSON estructurado y versionado. Este esquema de datos almacena de forma organizada la versión del documento, el nombre del programa, la configuración exacta de los nodos con sus interconexiones (de forma separada: un arreglo de nodos y un arreglo de conexiones), y los parámetros espaciales del lienzo. Durante el proceso de exportación, el sistema extrae el estado actual del entorno y ejecuta una rutina de limpieza para depurar propiedades transitorias o exclusivas de la sesión activa. Esto garantiza que el archivo resultante sea completamente portable. Finalmente, la información validada se descarga como un archivo local utilizando las capacidades nativas del navegador.
+Tras las primeras pruebas funcionales del editor y el motor, se identificaron oportunidades de mejora en la especificación original de los nodos, lo que llevó a ajustes en el catálogo:
 
-Por otro lado, durante el proceso de importación, el sistema lee el archivo suministrado por el usuario y realiza un análisis de su estructura interna. En esta fase, se valida de forma estricta la compatibilidad del esquema para asegurar que la versión del documento coincida con la soportada por el motor. Si la validación es exitosa, la rutina de deserialización normaliza los componentes, resuelve posibles conexiones huérfanas y actualiza el estado global del editor. Esto permite reconstruir el flujo de datos visual y restaurar la perspectiva espacial del lienzo tal como fue guardada. En caso de detectar un archivo corrupto o incompatible, el proceso se interrumpe inmediatamente y se notifica al usuario.
-
-\usubsubsection{Implementación de la retroalimentación visual y manejo de errores}
-
-Tomando como base la máquina de estados definida en la arquitectura del motor de ejecución, se implementó un mecanismo en la interfaz de usuario para reflejar el ciclo de vida de cada nodo en tiempo real. Un controlador intermedio intercepta los eventos de estado emitidos por el motor y traduce las transiciones lógicas en actualizaciones dinámicas de estilo sobre los componentes del lienzo.
-
-La materialización gráfica de este comportamiento se configuró mediante contornos coloreados y elementos superpuestos:
 \begin{itemize}
-    \item \textbf{En espera:} Al iniciar el flujo del programa, o mientras aguarda la llegada de todos los datos necesarios en sus puertos de entrada, el componente asume un contorno de color gris.
-    \item \textbf{Activo:} Durante la ejecución de su lógica interna, el nodo adquiere un contorno azul e incorpora un indicador de carga animado.
-    \item \textbf{Ejecución exitosa:} Al concluir su operación y emitir los datos, el componente toma un contorno verde de confirmación.
-    \item \textbf{Error:} Se integró la captura de fallos en tiempo de ejecución. Si un nodo intercepta una excepción (como operaciones inválidas), su contorno se torna rojo y despliega un cuadro de texto emergente que expone un mensaje amigable del fallo para facilitar el proceso de depuración visual.
+    \item \textbf{Especialización de constantes:} Se descartó el nodo genérico de ``Constante'' a favor de nodos específicos de Número, Valor lógico y Texto, reduciendo así los errores al momento de programar.
+    \item \textbf{Expansión de operadores matemáticos:} Se agregaron los nodos de Resto, Piso, Techo y Redondear para aumentar la capacidad expresiva en el ámbito aritmético.
+    \item \textbf{Generación de datos:} Se introdujo el nodo ``Generar pulsos'', capaz de emitir valores enteros secuenciales entre un inicio y un fin con un paso definido, fundamental para probar el comportamiento de flujos continuos como los presentes en sistemas de IoT.
 \end{itemize}
 
-Estos comportamientos del ciclo de vida de los nodos se evidencian en la figura \ref{fig:estados-ejecucion-nodos}, donde se observan de forma comparativa los estados principales durante la ejecución.
+Seguidamente, se implementó el módulo de serialización y deserialización de grafos. Durante la exportación, el sistema extrae el estado actual del lienzo y ejecuta una rutina de limpieza para eliminar propiedades exclusivas de la sesión activa, asegurando que el archivo resultante sea completamente portable; finalmente, se descarga el archivo JSON utilizando las capacidades nativas del navegador. Durante la importación, el sistema lee el archivo suministrado por el usuario y valida de forma estricta que la versión del documento coincida con la soportada por el motor. Si la validación
+es exitosa, la rutina de deserialización genera los componentes visuales, resuelve posibles conexiones huérfanas y restaura la perspectiva del lienzo tal como fue guardada. En caso de detectar un archivo corrupto o incompatible, el proceso se interrumpe y se notifica al usuario.
+
+La máquina de estados del ciclo de vida de los nodos se materializó mediante un controlador intermedio que intercepta los eventos emitidos por el motor y traduce las transiciones lógicas en actualizaciones visuales sobre los componentes del lienzo. Estos comportamientos se evidencian en la figura~\ref{fig:estados-ejecucion-nodos}, donde se observan de forma comparativa los estados principales durante la ejecución.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{../images/estados-ejecucion.png}
+    \includegraphics[width=0.5\textwidth]{../images/estados-ejecucion.png}
     \caption[Estados visuales durante la ejecución de nodos]{\normalfont Estados visuales durante la ejecución de nodos}
     \label{fig:estados-ejecucion-nodos}
 \end{figure}
 
-\usubsubsection{Sistema de tipado y validación de conexiones}
+Finalmente, se implementó el sistema de validación de tipos en tiempo de edición. El sistema bloquea de forma activa cualquier intento de enlazar puertos con tipos incompatibles y emite mensajes descriptivos al usuario. Además, el entorno proporciona retroalimentación predictiva: al arrastrar una nueva conexión, se resaltan automáticamente los puertos de destino válidos, guiando al alumno en la construcción adecuada de su algoritmo.
 
-Para garantizar la coherencia de los datos y prevenir errores de ejecución, se implementó un mecanismo de validación de tipos en tiempo de edición. Cada puerto de los componentes posee un tipo de dato asociado que determina su compatibilidad. El sistema evalúa estas reglas continuamente, bloqueando de forma activa cualquier intento de enlazar nodos con tipos incompatibles y emitiendo mensajes descriptivos al usuario.
+Al concluir la implementación, se ejecutaron pruebas funcionales sobre programas de prueba construidos con los nodos desarrollados. Estas pruebas verificaron el correcto funcionamiento del editor, la representación visual diferenciada de tipos mediante estilos únicos y la capacidad del motor asíncrono para activar nodos automáticamente según la disponibilidad de sus entradas, procesando ramas independientes del grafo de forma lógicamente paralela.
 
-A nivel de interfaz, este mecanismo rige la representación visual para reducir la carga cognitiva del estudiante. Cada tipo de dato cuenta con una forma geométrica única en los puntos de conexión. Además, el entorno proporciona retroalimentación predictiva: al arrastrar una nueva conexión, el sistema resalta automáticamente los puertos de destino válidos y despliega alertas visuales si se intenta forzar un enlace incorrecto, guiando al alumno en la construcción adecuada de su algoritmo.
+No obstante, como parte de la evaluación pedagógica temprana, se intentó modelar algoritmos clásicos como el factorial y la sucesión de Fibonacci, evidenciando una limitación importante: la ausencia de soporte para recursividad. Este hallazgo restringió la expresividad del lenguaje para representar estructuras algorítmicas fundamentales, definiendo una línea clara de trabajo para el siguiente incremento.
 
-\usubsubsection{Validación y resultados del incremento}
-
-Al concluir la implementación de este primer incremento, se ejecutaron pruebas funcionales sobre programas de prueba construidos con los nodos desarrollados, lo que permitió validar que el núcleo técnico responde a los criterios de diseño propuestos. Estas pruebas verificaron el correcto funcionamiento del editor y la representación visual de los tipos de datos mediante formas geométricas y estilos únicos, una característica esencial para facilitar la construcción de algoritmos coherentes desde la primera interacción del usuario. Asimismo, el desarrollo del motor de ejecución bajo un modelo asíncrono confirmó la capacidad del sistema para activar nodos de manera automática según la disponibilidad de sus entradas, permitiendo que distintas ramas del grafo se procesen lógicamente en paralelo sin bloquear el hilo principal del navegador.
-
-Como resultado de este incremento, se obtuvo una versión funcional del lenguaje capaz de ejecutar algoritmos matemáticos y lógicos dentro de una arquitectura basada en el navegador que no requiere instalaciones adicionales. El entorno integra una retroalimentación visual continua que informa al usuario sobre el estado de cada nodo (espera, ejecución, éxito o error) mediante una codificación de colores. Además, se consolidaron los mecanismos de exportación e importación de proyectos a través de un módulo de serialización JSON. En la figura \ref{fig:editor-incr1} se aprecia la interfaz en esta etapa, evidenciando la paleta de nodos, el área de diseño y la consola de salida.
-
-Esta versión permitió validar la arquitectura base del sistema. No obstante, como parte de la evaluación pedagógica temprana, se intentó modelar algoritmos clásicos como el factorial y la sucesión de Fibonacci, observando una limitación importante: la ausencia de soporte para la recursividad. Este hallazgo restringió la expresividad del lenguaje para representar ciertas estructuras fundamentales, lo que definió una línea clara de trabajo para el siguiente incremento.
+Como resultado de este incremento se obtuvo una versión funcional del lenguaje capaz de ejecutar algoritmos matemáticos y lógicos dentro del navegador, sin requerir instalaciones adicionales, con retroalimentación visual continua y mecanismos de persistencia mediante serialización JSON. En la figura~\ref{fig:editor-incr1} se aprecia la interfaz en esta etapa, evidenciando la paleta de nodos, el área de diseño y la consola de salida.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{../images/editor-incr1.png}
+    \includegraphics[width=0.85\textwidth]{../images/editor-incr1.png}
     \caption[Interfaz del editor en el primer incremento]{\normalfont Interfaz del editor en el primer incremento}
     \label{fig:editor-incr1}
 \end{figure}
