@@ -140,6 +140,8 @@ Cabe destacar que la programación concurrente abarca un conjunto de técnicas y
 
 \citeA{mindstorms1980} hace un acercamiento a la aplicación de sistemas distribuidos en la formación del pensamiento computacional, utilizando modelos de múltiples agentes (tortugas, en su propuesta) que interactúan entre sí para demostrar conceptos de física para estudiantes de educación media (p. 130). De hecho, el mismo autor argumenta que la mente de los estudiantes puede modelarse como una metáfora de un sistema distribuido, dónde múltiples “agentes” trabajan en conjunto para resolver problemas, presentándose como un solo sistema (la mente del niño) (p. 167-169). Por lo tanto, puede argumentarse que el estudio de sistemas distribuidos puede ayudar a comprender mejor el pensamiento computacional y sus componentes desde edades tempranas.
 
+Un acercamiento relacionado es el de \citeA{aho2011}, quien destaca que el pensamiento computacional se vuelve especialmente relevante y desafiante cuando los sistemas computacionales dejan de ser máquinas aisladas para convertirse en sistemas distribuidos altamente concurrentes. En la era de Internet y la computación en la nube, los modelos secuenciales clásicos, como la máquina de Turing, resultan insuficientes para describir fenómenos propios de estos entornos, tales como el bloqueo mutuo o las condiciones de carrera. Para abordar estas realidades, se han desarrollado modelos de computación concurrente, entre los que se destacan el modelo de actores, las redes de Petri y los cálculos de procesos. En este contexto, el pensamiento computacional no solo implica seleccionar un modelo adecuado, sino, en muchos casos, inventar nuevos formalismos cuando los existentes no son suficientes para capturar la complejidad del sistema bajo estudio.
+
 Para instrumentalizar estos conceptos en un entorno de aprendizaje, \citeA{hasselbring2021} destacan la pertinencia del paradigma de dataflow sobre el control de flujo tradicional en la integración de sistemas distribuidos. A diferencia de los modelos secuenciales que imponen una orquestación centralizada, el dataflow permite que la ejecución sea reactiva, desencadenándose implícitamente por la disponibilidad de los datos, lo que garantiza el desacoplamiento necesario entre los componentes. Esta abstracción técnica facilita que los estudiantes modelen la interacción entre dichos agentes autónomos centrándose en la transformación y ruta de los datos, fomentando un pensamiento lógico modular sin la carga cognitiva de gestionar la sincronización explícita de instrucciones.
 
 \usubsubsection{Message Passing Interface (MPI)}
@@ -194,7 +196,7 @@ La integración del Micro:bit en el entorno educativo representa un cambio de pa
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{../images/microbit-v2-overview.png}
+    \includegraphics[width=0.65\textwidth]{../images/microbit-v2-overview.png}
     \caption[Especificaciones del Micro:bit V2]{\normalfont Especificaciones y características principales del Micro:bit versión 2\newline\figtakenfrom{Hardware: Details of the latest micro:bit hardware revision}{}{Micro:bit Developer Community}{s.f}}
     \label{fig:microbit-specs}
 \end{figure}
