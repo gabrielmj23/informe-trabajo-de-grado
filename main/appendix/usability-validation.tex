@@ -1,6 +1,8 @@
 \uextra{Apéndice}{Resultados de la Validación de Usabilidad}
 \label{apx:pruebas-usabilidad}
 
+A continuación se presentan los resultados detallados de las pruebas de usabilidad realizadas con el grupo objetivo. Se incluye la caracterización de los participantes, la matriz de cumplimiento de las tareas asignadas, las observaciones de usabilidad identificadas durante las sesiones y una selección de testimonios emitidos por los participantes.
+
 \begin{table}[H]
     \caption{Caracterización de los participantes}
     \label{tab:caracterizacion-participantes}
@@ -10,7 +12,7 @@
         \hline
         P01         & 13 años       & Femenino        & Scratch, MakeCode                           \\
         P02         & 16 años       & Masculino       & Scratch, Python                             \\
-        P03         & 13 años       & Masculino       & Scratch                                     \\
+        P03         & 13 años       & Masculino       & Scratch, MakeCode                           \\
         P04         & 10 años       & Masculino       & Ninguna                                     \\
         P05         & 10 años       & Masculino       & Scratch                                     \\
         \hline
@@ -18,28 +20,84 @@
 \end{table}
 
 \begin{table}[H]
-    \caption{Resumen de resultados de las pruebas de usabilidad}
+    \caption{Matriz de cumplimiento de las tareas de usabilidad}
     \label{tab:resultados-usabilidad}
     \begingroup
     \renewcommand{\TableBodyFontSize}{\footnotesize}
     \setlength{\tabcolsep}{5pt}
     \begin{tabularx}{\textwidth}{l X X X X X X X}
         \hline
-        \textbf{ID} & \textbf{Operaciones matemáticas} & \textbf{Manejo de textos} & \textbf{Operaciones lógicas} & \textbf{Control de flujo} & \textbf{Uso de listas} & \textbf{Uso de micro:bit} & \textbf{Desafíos de su nivel} \\
+        \textbf{ID} & \textbf{T1: Operaciones matemáticas} & \textbf{T2: Manejo de textos} & \textbf{T3: Operaciones lógicas} & \textbf{T4: Control de flujo} & \textbf{T5: Uso de listas} & \textbf{T6: Uso de micro:bit} & \textbf{T7: Desafíos de su nivel} \\
         \hline
-        P01         & Sin ayuda                        & Sin ayuda                 & Con ayuda                    & Con ayuda                 & Sin ayuda              & Sin ayuda                 & Con ayuda                     \\
-        P02         & Sin ayuda                        & Sin ayuda                 & Sin ayuda                    & Sin ayuda                 & Con ayuda              & Sin ayuda                 & Sin ayuda                     \\
-        P03         & Sin ayuda                        & Con ayuda                 & Sin ayuda                    & Con ayuda                 & Con ayuda              & Sin ayuda                 & Con ayuda                     \\
-        P04         & Con ayuda                        & Con ayuda                 & Con ayuda                    & Con ayuda                 & Con ayuda              & Con ayuda                 & Con ayuda                     \\
-        P05         & Sin ayuda                        & Con ayuda                 & Sin ayuda                    & Con ayuda                 & Con ayuda              & Con ayuda                 & Con ayuda                     \\
+        P01         & Sin ayuda                            & Sin ayuda                     & Con ayuda                        & Con ayuda                     & Sin ayuda                  & Sin ayuda                     & Con ayuda                         \\
+        P02         & Sin ayuda                            & Sin ayuda                     & Sin ayuda                        & Sin ayuda                     & Con ayuda                  & Sin ayuda                     & Sin ayuda                         \\
+        P03         & Sin ayuda                            & Con ayuda                     & Sin ayuda                        & Con ayuda                     & Con ayuda                  & Sin ayuda                     & Con ayuda                         \\
+        P04         & Con ayuda                            & Con ayuda                     & Con ayuda                        & Con ayuda                     & Con ayuda                  & Con ayuda                     & Con ayuda                         \\
+        P05         & Sin ayuda                            & Con ayuda                     & Sin ayuda                        & Con ayuda                     & Con ayuda                  & Con ayuda                     & Con ayuda                         \\
+        \hline
+    \end{tabularx}
+    \endgroup
+\end{table}
+
+\begin{table}[H]
+    \caption{Observaciones positivas de usabilidad}
+    \label{tab:observaciones-positivas}
+    \begingroup
+    \renewcommand{\TableBodyFontSize}{\footnotesize}
+    \begin{tabularx}{\textwidth}{ l X }
+        \hline
+        \textbf{Aspecto}          & \textbf{Observación}                                                                                                                                                                                                           \\
+        \hline
+        Curva de aprendizaje      & Todos los participantes lograron comprender la mecánica básica de arrastrar nodos y conectar puertos en los primeros minutos de la sesión, sin necesidad de una explicación extensa previa.                                    \\
+        Retroalimentación visual  & Los participantes valoraron positivamente la visualización del flujo de datos a través de las conexiones, ya que les permitió identificar rápidamente el recorrido de la información y sus cambios a lo largo del programa.    \\
+        Gestión de errores        & Los mensajes de error con indicación visual del nodo problemático facilitaron que los participantes identificaran y corrigieran sus equivocaciones de forma autónoma en la mayoría de los casos.                               \\
+        Interacción con micro:bit & La tarea con micro:bit generó un alto nivel de motivación y entusiasmo en los participantes con conocimientos previos, especialmente al observar el resultado de su programa reflejado en la placa.                            \\
+        Separación en niveles     & Los participantes más jóvenes (P04 y P05) no se mostraron abrumados por la cantidad de nodos disponibles, lo que sugiere que la restricción por niveles de abstracción cumple su propósito de reducir la carga cognitiva.      \\
+        Uso de ayudas del sistema & Los participantes hicieron uso frecuente de los mensajes de ayuda y las descripciones emergentes de los nodos, lo que indica que estos recursos son efectivos para apoyar el aprendizaje y la navegación autónoma del entorno. \\
+        \hline
+    \end{tabularx}
+    \endgroup
+\end{table}
+
+\begin{table}[H]
+    \caption{Oportunidades de mejora identificadas}
+    \label{tab:observaciones-negativas}
+    \begingroup
+    \renewcommand{\TableBodyFontSize}{\footnotesize}
+    \begin{tabularx}{\textwidth}{ l X }
+        \hline
+        \textbf{Aspecto}              & \textbf{Observación}                                                                                                                                                                                                                                                      \\
+        \hline
+        Terminología de nodos         & Algunos nombres de nodos como ``Concatenar'' o ``Desvío'' no fueron comprendidos de forma inmediata por la mayoría de participantes, quienes requirieron que el facilitador les explicara su significado.                                                                 \\
+        Navegación en flujos extensos & Al aumentar la cantidad de nodos en el lienzo durante el desarrollo de las tareas, los participantes expresaron, de forma general, dificultad para mantener una visión completa del programa, sugiriendo la necesidad de mecanismos adicionales de organización espacial. \\
+        Control de flujo              & Los nodos de control de flujo requirieron, en su mayoría, explicaciones adicionales para los participantes de menor edad, quienes inicialmente no asociaron la entrada booleana del nodo con la selección del camino de ejecución.                                        \\
+        \hline
+    \end{tabularx}
+    \endgroup
+\end{table}
+
+\begin{table}[H]
+    \caption{Testimonios seleccionados de los participantes}
+    \label{tab:testimonios-participantes}
+    \begingroup
+    \renewcommand{\TableBodyFontSize}{\footnotesize}
+    \begin{tabularx}{\textwidth}{ l X }
+        \hline
+        \textbf{Participante} & \textbf{Testimonio}                                                                                     \\
+        \hline
+        P01         & ``Tiene mucha variedad en los nodos, permite realizar varias operaciones en comparación con Scratch.''  \\
+        P01         & ``No siempre se entienden los tipos de datos en las entradas.''                                         \\
+        P02         & ``Me gusta que se vean los datos, es más fácil entender lo que hace el programa.''                      \\
+        P02         & ``Sería bueno poder hacer algo para limpiar más las conexiones, cuando el programa tiene muchos nodos'' \\
+        P04         & ``Entiendo que los valores entran por la izquierda y los resultados salen por la derecha''              \\
         \hline
     \end{tabularx}
     \endgroup
 \end{table}
 
 \begin{figure}[H]
-    \label{fig:pruebas-usabilidad-p1}
     \centering
     \includegraphics[width=0.7\textwidth]{images/validation/validation-1.png}
     \caption[Pruebas de usabilidad con estudiante P01]{Pruebas de usabilidad con estudiante P01}
+    \label{fig:pruebas-usabilidad-p1}
 \end{figure}
