@@ -96,6 +96,15 @@
 \titleformat{\paragraph}
 {\normalfont\fontsize{12}{15}\itshape\narrower}{\theparagraph}{1em}{}
 
+\newlistentry{apx}{toc}{0}
+\renewcommand{\cftapxfont}{\normalfont}
+\renewcommand{\cftapxpagefont}{\normalfont}
+\setlength{\cftapxindent}{0pt}
+\setlength{\cftapxnumwidth}{0pt}
+\setlength{\cftbeforeapxskip}{5pt}
+% Activar puntos guía (igual que secciones)
+\renewcommand{\cftapxdotsep}{\cftdotsep}
+
 % Comandos para crear secciones no numeradas con entrada en el índice
 \newcommand{\uchapter}[1]{
 \refstepcounter{chapter}
@@ -107,7 +116,7 @@
   \refstepcounter{chapter}%
   \phantomsection
   \chapter*{\textbf{#1 \thechapter. #2}}%
-  \addcontentsline{toc}{chapter}{\protect\textbf{#1 \thechapter. #2}}%
+  \addcontentsline{toc}{apx}{#1 \thechapter. #2}%
 }
 \newcommand{\usection}[1]{
   \phantomsection
@@ -219,17 +228,59 @@
 \renewcommand{\theequation}{\arabic{equation}}
 \counterwithout{equation}{chapter}
 
-\usepackage{calc}
-\renewcommand{\cftfigpresnum}{Figura~}
-\setlength{\cftfignumwidth}{\widthof{Figura 0. }}
-% Queda solo un punto: el que añade `caption` con `labelsep=period`.
-% Evitamos añadir otro punto en la lista de figuras.
-\renewcommand{\cftfigaftersnum}{}
-
 \renewcommand{\cfttabpresnum}{Tabla~}
-\setlength{\cfttabnumwidth}{\widthof{Tabla Ap-Z99 }}
-
+\renewcommand{\cfttabaftersnum}{.}
 \renewcommand{\cftfigpresnum}{Figura~}
-\setlength{\cftfignumwidth}{\widthof{Figura Ap-A0 }}
-% Evitar punto extra en la lista de tablas, el punto se gestiona con `caption`.
-\renewcommand{\cfttabaftersnum}{}
+\renewcommand{\cftfigaftersnum}{.}
+\setlength{\cfttabindent}{0pt}
+\setlength{\cftfigindent}{0pt}
+
+\makeatletter
+\renewcommand{\l@table}[2]{%
+  \addpenalty{-\@highpenalty}%
+  \vskip \cftbeforetabskip
+  \begingroup
+    % Paso 1: medir la etiqueta sin renderizar
+    \def\numberline##1{%
+      \global\setbox\z@\hbox{\cfttabfont\cfttabpresnum##1\cfttabaftersnum\space}%
+    }%
+    \setbox\@tempboxa\hbox{#1}%
+    % Paso 2: renderizar con leftskip correcto ANTES de leavevmode
+    \parindent \z@
+    \leftskip \wd\z@
+    \rightskip \@pnumwidth
+    \parfillskip -\@pnumwidth
+    \interlinepenalty\@M
+    \leavevmode
+    \hskip -\leftskip
+    \def\numberline##1{\box\z@}%
+    \cfttabfont #1%
+    \leaders\hbox{$\m@th\mkern\cftdotsep mu\hbox{\cftdot}\mkern\cftdotsep mu$}%
+    \hfill\nobreak
+    \hb@xt@\@pnumwidth{\hfil\cfttabpagefont #2}\par
+  \endgroup
+}
+
+\renewcommand{\l@figure}[2]{%
+  \addpenalty{-\@highpenalty}%
+  \vskip \cftbeforefigskip
+  \begingroup
+    \def\numberline##1{%
+      \global\setbox\z@\hbox{\cftfigfont\cftfigpresnum##1\cftfigaftersnum\space}%
+    }%
+    \setbox\@tempboxa\hbox{#1}%
+    \parindent \z@
+    \leftskip \wd\z@
+    \rightskip \@pnumwidth
+    \parfillskip -\@pnumwidth
+    \interlinepenalty\@M
+    \leavevmode
+    \hskip -\leftskip
+    \def\numberline##1{\box\z@}%
+    \cftfigfont #1%
+    \leaders\hbox{$\m@th\mkern\cftdotsep mu\hbox{\cftdot}\mkern\cftdotsep mu$}%
+    \hfill\nobreak
+    \hb@xt@\@pnumwidth{\hfil\cftfigpagefont #2}\par
+  \endgroup
+}
+\makeatother
