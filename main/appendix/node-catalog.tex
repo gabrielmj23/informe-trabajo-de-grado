@@ -151,21 +151,22 @@
     \caption{Nodos de Lógica}
     \begin{tabularx}{\textwidth}{ l X X X c }
         \hline
-        \textbf{Nodo}    & \textbf{Entradas}      & \textbf{Proceso}                                                                   & \textbf{Salida} & \textbf{Nivel de Abstracción} \\ \hline
-        Comparar         & Valor A, Valor B       & Evalúa si A es mayor, menor, igual o diferente a B (según configuración).          & Booleano        & 2                             \\
-        Igual            & Valor A, Valor B       & Evalúa si A es igual a B.                                                          & Booleano        & 1-2                           \\
-        Distinto         & Valor A, Valor B       & Evalúa si A es distinto de B.                                                      & Booleano        & 1-2                           \\
-        Menor            & Valor A, Valor B       & Evalúa si A es menor que B.                                                        & Booleano        & 1-2                           \\
-        Menor o igual    & Valor A, Valor B       & Evalúa si A es menor o igual que B.                                                & Booleano        & 1-2                           \\
-        Mayor            & Valor A, Valor B       & Evalúa si A es mayor que B.                                                        & Booleano        & 1-2                           \\
-        Mayor o igual    & Valor A, Valor B       & Evalúa si A es mayor o igual que B.                                                & Booleano        & 1-2                           \\
-        Operación lógica & Booleano A, Booleano B & Aplica la compuerta seleccionada en configuración (AND, NAND, OR, NOR, XOR o NOT). & Booleano        & 2                             \\
-        AND              & Booleano A, Booleano B & Verifica si ambas entradas son Verdaderas.                                         & Booleano        & 1-2                           \\
-        NAND             & Booleano A, Booleano B & Negación de las salidas del nodo AND.                                              & Booleano        & 1-2                           \\
-        OR               & Booleano A, Booleano B & Verifica si al menos una entrada es Verdadera.                                     & Booleano        & 1-2                           \\
-        NOR              & Booleano A, Booleano B & Negación de las salidas del nodo OR.                                               & Booleano        & 1-2                           \\
-        XOR              & Booleano A, Booleano B & Verifica si solo una entrada es Verdadera.                                         & Booleano        & 1-2                           \\
-        NOT              & Booleano A             & Invierte el valor lógico de la entrada.                                            & Booleano        & 1-2                           \\
+        \textbf{Nodo}    & \textbf{Entradas}                                             & \textbf{Proceso}                                                                   & \textbf{Salida} & \textbf{Nivel de Abstracción} \\ \hline
+        Comparar         & Valor A, Valor B                                              & Evalúa si A es mayor, menor, igual o diferente a B (según configuración).          & Booleano        & 2                             \\
+        Igual            & Valor A, Valor B                                              & Evalúa si A es igual a B.                                                          & Booleano        & 1-2                           \\
+        Distinto         & Valor A, Valor B                                              & Evalúa si A es distinto de B.                                                      & Booleano        & 1-2                           \\
+        Menor            & Valor A, Valor B                                              & Evalúa si A es menor que B.                                                        & Booleano        & 1-2                           \\
+        Menor o igual    & Valor A, Valor B                                              & Evalúa si A es menor o igual que B.                                                & Booleano        & 1-2                           \\
+        Mayor            & Valor A, Valor B                                              & Evalúa si A es mayor que B.                                                        & Booleano        & 1-2                           \\
+        Mayor o igual    & Valor A, Valor B                                              & Evalúa si A es mayor o igual que B.                                                & Booleano        & 1-2                           \\
+        Operación lógica & Booleano A, Booleano B                                        & Aplica la compuerta seleccionada en configuración (AND, NAND, OR, NOR, XOR o NOT). & Booleano        & 2                             \\
+        AND              & Booleano A, Booleano B                                        & Verifica si ambas entradas son Verdaderas.                                         & Booleano        & 1-2                           \\
+        NAND             & Booleano A, Booleano B                                        & Negación de las salidas del nodo AND.                                              & Booleano        & 1-2                           \\
+        OR               & Booleano A, Booleano B                                        & Verifica si al menos una entrada es Verdadera.                                     & Booleano        & 1-2                           \\
+        NOR              & Booleano A, Booleano B                                        & Negación de las salidas del nodo OR.                                               & Booleano        & 1-2                           \\
+        XOR              & Booleano A, Booleano B                                        & Verifica si solo una entrada es Verdadera.                                         & Booleano        & 1-2                           \\
+        NOT              & Booleano A                                                    & Invierte el valor lógico de la entrada.                                            & Booleano        & 1-2                           \\
+        Fórmula lógica   & Cantidad definida por la expresión introducida por el usuario & Se realiza la expresión lógica definida por el usuario.                            & Booleano        & 3                             \\
         \hline
     \end{tabularx}
 \end{table}
