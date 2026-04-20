@@ -47,7 +47,7 @@ La máquina de estados del ciclo de vida de los nodos se materializó mediante u
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{../images/estados-ejecucion.png}
+    \includegraphics[width=0.6\textwidth]{../images/estados-ejecucion.png}
     \caption[Estados visuales durante la ejecución de nodos]{\normalfont Estados visuales durante la ejecución de nodos}
     \label{fig:estados-ejecucion-nodos}
 \end{figure}
@@ -56,7 +56,7 @@ Finalmente, se implementó el sistema de validación de tipos en tiempo de edici
 
 Al concluir la implementación, se ejecutaron pruebas funcionales sobre programas de prueba construidos con los nodos desarrollados. Estas pruebas verificaron el correcto funcionamiento del editor, la representación visual diferenciada de tipos mediante estilos únicos y la capacidad del motor asíncrono para activar nodos automáticamente según la disponibilidad de sus entradas, procesando ramas independientes del grafo de forma lógicamente paralela.
 
-No obstante, como parte de la evaluación pedagógica temprana, se intentó modelar algoritmos clásicos como el factorial y la sucesión de Fibonacci, evidenciando una limitación importante: la ausencia de soporte para recursividad. Este hallazgo restringió la expresividad del lenguaje para representar estructuras algorítmicas fundamentales, definiendo una línea clara de trabajo para el siguiente incremento.
+No obstante, como parte de la validación temprana, se intentó modelar algoritmos clásicos como el factorial y la sucesión de Fibonacci, evidenciando una limitación importante: la ausencia de soporte para recursividad. Este hallazgo restringió la expresividad del lenguaje para representar estructuras algorítmicas fundamentales, definiendo una línea clara de trabajo para el siguiente incremento.
 
 Como resultado de este incremento se obtuvo una versión funcional del lenguaje capaz de ejecutar algoritmos matemáticos y lógicos dentro del navegador, sin requerir instalaciones adicionales, con retroalimentación visual continua y mecanismos de persistencia mediante serialización JSON. En la figura~\ref{fig:editor-incr1} se aprecia la interfaz en esta etapa, evidenciando la paleta de nodos, el área de diseño y la consola de salida.
 

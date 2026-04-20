@@ -6,7 +6,7 @@ El trabajo se organizó en tres líneas:
 \begin{itemize}
     \item Refinamiento visual del editor para mejorar la experiencia de usuario.
      \item Diseño e implementación de un módulo de desafíos gamificados con su currículo asociado, orientado a guiar el aprendizaje de los conceptos fundamentales del lenguaje.
-     \item Construcción de nodos inspirados en las operaciones colectivas de MPI: Distribuir, Reunir, Replicar flujo y Barrera, para enriquecer las capacidades de distribución del lenguaje.
+     \item Construcción de nodos inspirados en las operaciones colectivas de MPI: Distribuir, Reunir, Dispersar flujo y Barrera, para enriquecer las capacidades de distribución del lenguaje.
 \end{itemize}
 
 El diseño del módulo de desafíos se fundamentó en principios de gamificación y psicología cognitiva. De acuerdo con \citeA{sandhu2013}, la gamificación consiste en utilizar el pensamiento y las dinámicas de los juegos para involucrar a las audiencias en la resolución de problemas. En el contexto del diseño de interfaces para niños, la inclusión de elementos gamificados resulta fundamental para fomentar la comprensión de conceptos abstractos. Bajo esta premisa, el módulo se estructuró para proporcionar una ruta de aprendizaje interactiva e incremental.
@@ -23,6 +23,7 @@ Para sistematizar la creación de estos retos y garantizar que cada uno cumplier
     \label{tab:formato-desafios}
     \begingroup
     \renewcommand{\arraystretch}{\TableRowStretch}
+    \renewcommand{\TableBodyFontSize}{\footnotesize}
     \begin{tabularx}{\textwidth}{ l X }
         \hline
         \textbf{Campo} & \textbf{Descripción} \\
@@ -42,7 +43,7 @@ Para sistematizar la creación de estos retos y garantizar que cada uno cumplier
 
 Utilizando este formato como guía, se diseñó un currículo inicial de 18~desafíos distribuidos equitativamente: 9~retos para cada grupo etario. Cada conjunto fue estructurado para abarcar progresivamente los conceptos del lenguaje, desde la simple interconexión de nodos de lectura y escritura hasta la resolución de problemas lógicos y la manipulación concurrente de datos. Esta distribución facilita un aprendizaje secuencial en el que cada nuevo reto se construye sobre los conocimientos consolidados en el nivel anterior. El listado completo de desafíos se presenta en el Apéndice~\ref{apx:listado-desafios}.
 
-Para ampliar el modelo de distribución, se modelaron nuevos componentes tomando como referencia las operaciones colectivas del estándar MPI. Se diseñaron cuatro nodos: \textbf{Distribuir}, basado en \textit{Scatter}, para fragmentar una lista y enrutar sus elementos hacia los dispositivos conectados; \textbf{Reunir}, basado en \textit{Gather}, para recolectar los resultados de múltiples nodos distribuidos y empaquetarlos en una lista de salida; \textbf{Replicar flujo}, basado en \textit{Broadcast}, para enviar un mismo subflujo a múltiples dispositivos sin duplicar visualmente la lógica en el lienzo; y \textbf{Barrera}, para sincronizar la ejecución de flujos concurrentes, emitiendo los resultados solo cuando todos los flujos de entrada hayan concluido. El comportamiento detallado de cada nodo se describe más adelante, junto con su implementación.
+Para ampliar el modelo de distribución, se modelaron nuevos componentes tomando como referencia las operaciones colectivas del estándar MPI. Se diseñaron cuatro nodos: \textbf{Distribuir}, basado en \textit{Scatter}, para fragmentar una lista y enrutar sus elementos hacia los dispositivos conectados; \textbf{Reunir}, basado en \textit{Gather}, para recolectar los resultados de múltiples nodos distribuidos y empaquetarlos en una lista de salida; \textbf{Dispersar flujo}, basado en \textit{Broadcast}, para enviar un mismo subflujo a múltiples dispositivos sin duplicar visualmente la lógica en el lienzo; y \textbf{Barrera}, para sincronizar la ejecución de flujos concurrentes, emitiendo los resultados solo cuando todos los flujos de entrada hayan concluido. El comportamiento detallado de cada nodo se describe más adelante, junto con su implementación.
 
 La implementación comenzó con el refinamiento de la interfaz del editor. Se incorporó una cabecera persistente con identidad visual, se reorganizaron los controles globales del sistema y se rediseñaron los botones de ejecución con colores semánticos. Se redujo el tamaño de la paleta de nodos para ceder mayor espacio al lienzo, se redefinió la geometría de los nodos para hacerla más compacta y se mejoró la delimitación visual de la consola para distinguir con claridad el área de construcción lógica del área de salida. El resultado de este refinamiento puede apreciarse en la figura~\ref{fig:editor-incr2}.
 
@@ -87,7 +88,7 @@ Se implementaron los cuatro nodos diseñados en la fase de modelado, cuyo compor
 \begin{itemize}
     \item \textbf{Distribuir (Scatter):} Recibe una estructura de datos tipo lista y, al activarse, la fragmenta equitativamente entre los dispositivos de procesamiento conectados, enrutando a cada uno su porción correspondiente. Reproduce así la semántica de la operación \textit{Scatter} de MPI, en la que un proceso raíz distribuye secciones de un arreglo a los demás procesos del comunicador.
     \item \textbf{Reunir (Gather):} Actúa como punto de sincronización: aguarda a que todos los nodos distribuidos concluyan su procesamiento y recolecta sus resultados individuales, empaquetándolos en una única lista de salida. Su semántica corresponde a la operación \textit{Gather} de MPI, donde múltiples procesos envían sus datos parciales a un proceso central que los consolida.
-    \item \textbf{Replicar flujo (Broadcast):} Permite que un mismo subflujo sea enviado simultáneamente a múltiples dispositivos de procesamiento. Previo a este incremento, la paralelización de un algoritmo exigía que el usuario duplicara visualmente el flujo para cada dispositivo destino, lo cual saturaba el lienzo y dificultaba la comprensión del programa. Con este nodo, el flujo se define una sola vez y se especifican los dispositivos que lo ejecutarán concurrentemente, replicando la semántica de \textit{Broadcast} en MPI.
+    \item \textbf{Dispersar flujo:} Permite que un mismo subflujo sea enviado simultáneamente a múltiples dispositivos de procesamiento. Previo a este incremento, la paralelización de un algoritmo exigía que el usuario duplicara visualmente el flujo para cada dispositivo destino, lo cual saturaba el lienzo y dificultaba la comprensión del programa. Con este nodo, el flujo se define una sola vez y se especifican los dispositivos que lo ejecutarán concurrentemente.
     \item \textbf{Barrera:} Funciona como mecanismo de sincronización para flujos concurrentes. Espera a que todas sus entradas hayan concluido antes de emitir los resultados de forma individual. Esto garantiza que etapas posteriores del programa no avancen hasta completarse todas las tareas paralelas previas, previniendo resultados inconsistentes.
 \end{itemize}
 

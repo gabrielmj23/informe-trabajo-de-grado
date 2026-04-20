@@ -22,7 +22,7 @@ Para la integración de sensores, se planificó una actualización del protocolo
 
 El sistema de niveles de abstracción se diseñó para permitir al usuario alternar entre tres niveles de complejidad creciente, determinando dinámicamente el subconjunto de nodos disponibles: a medida que se incrementa el nivel, se incorporan herramientas más potentes y abstractas, mientras que se ocultan los nodos más elementales.
 
-Como parte de la consolidación de la herramienta, se planteó una reestructuración de su identidad gráfica y conceptual. La plataforma pasó a denominarse oficialmente ``NodeLand''. Esta elección encuentra su justificación teórica en el concepto de ``MathLand'' introducido por \citeA{mindstorms1980}, quien argumenta que, así como aprender francés es un proceso natural para un niño que vive en Francia y lo asimila en su día a día, el aprendizaje de las matemáticas y la computación debería ser igualmente intuitivo si el aprendiz habita un entorno donde la comunicación computacional es un lenguaje vivo y natural. Siguiendo esta premisa, ``NodeLand'' (Tierra de Nodos) se concibe como un entorno inmersivo donde los niños y jóvenes pueden asimilar el paradigma de dataflow, la concurrencia y la programación interactuando en su propio ecosistema colaborativo. En la figura \ref{fig:nodeland-logo} se muestra el logotipo final de la plataforma.
+Como parte de la consolidación de la herramienta, se planteó una reestructuración de su identidad gráfica y conceptual. La plataforma pasó a denominarse oficialmente ``NodeLand''. Esta elección encuentra su justificación teórica en el concepto de ``MathLand'' introducido por \citeA{mindstorms1980}, quien argumenta que, así como aprender francés es un proceso natural para un niño que vive en Francia y lo asimila en su día a día, el aprendizaje de las matemáticas y la computación debería ser igualmente intuitivo si el aprendiz habita un entorno donde la comunicación computacional es un lenguaje vivo y natural.
 
 \begin{figure}[H]
     \centering
@@ -30,6 +30,9 @@ Como parte de la consolidación de la herramienta, se planteó una reestructurac
     \caption[Logotipo de NodeLand]{\normalfont Logotipo de NodeLand}
     \label{fig:nodeland-logo}
 \end{figure}
+
+Siguiendo esta premisa, ``NodeLand'' (Tierra de Nodos) se concibe como un entorno inmersivo donde los niños y jóvenes pueden asimilar el paradigma de dataflow, la concurrencia y la programación interactuando en su propio ecosistema colaborativo. En la figura \ref{fig:nodeland-logo} se muestra el logotipo final de la plataforma.
+
 
 La API se desarrolló con Node.js y Express, integrada con la base de datos Postgres según el modelo definido. Se implementó el flujo completo de registro, autenticación y almacenamiento de proyectos en la nube, así como la gestión anónima de proyectos mediante cookies para usuarios no registrados. La funcionalidad de compartición y remezcla se materializó según el modelo diseñado, y el sistema de extensiones se implementó permitiendo guardar, compartir e incorporar dinámicamente paquetes de nodos temáticos o funcionales al entorno de desarrollo para operar junto con los nodos nativos del sistema.
 
