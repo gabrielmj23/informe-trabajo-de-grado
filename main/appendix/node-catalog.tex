@@ -191,11 +191,11 @@
     \caption{Nodos de Distribución}
     \begin{tabularx}{\textwidth}{ l X X X c }
         \hline
-        \textbf{Nodo}  & \textbf{Entradas}                     & \textbf{Proceso}                                                                                   & \textbf{Salida}                 & \textbf{Nivel de Abstracción} \\ \hline
-        Barrera        & Múltiples entradas                    & Espera a que todas las entradas hayan recibido un valor antes de emitir sus valores                & Valores de las entradas         & 2                             \\
-        Replicar flujo & Flujo, Entradas para cada dispositivo & Define un flujo reutilizable y su configuración para ejecutarlo en varios dispositivos o destinos. & Resultados de todos los flujos  & 3                             \\
-        Distribuir     & Lista                                 & Distribuye los elementos de una lista entre múltiples salidas.                                     & Múltiples salidas con elementos & 2                             \\
-        Reunir         & Múltiples entradas                    & Recolecta valores de varias entradas y los agrupa en una lista.                                    & Lista con valores reunidos      & 2                             \\
+        \textbf{Nodo}   & \textbf{Entradas}                     & \textbf{Proceso}                                                                                   & \textbf{Salida}                 & \textbf{Nivel de Abstracción} \\ \hline
+        Barrera         & Múltiples entradas                    & Espera a que todas las entradas hayan recibido un valor antes de emitir sus valores                & Valores de las entradas         & 2                             \\
+        Dispersar flujo & Flujo, Entradas para cada dispositivo & Define un flujo reutilizable y su configuración para ejecutarlo en varios dispositivos o destinos. & Resultados de todos los flujos  & 3                             \\
+        Distribuir      & Lista                                 & Distribuye los elementos de una lista entre múltiples salidas.                                     & Múltiples salidas con elementos & 2                             \\
+        Reunir          & Múltiples entradas                    & Recolecta valores de varias entradas y los agrupa en una lista.                                    & Lista con valores reunidos      & 2                             \\
         \hline
     \end{tabularx}
 \end{table}

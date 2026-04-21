@@ -1,4 +1,4 @@
-\usubsection{Incremento 3: Módulo de desafíos}
+\usubsection{Incremento 3: Módulo de desafíos y nodos para computación distribuida}
 
 El tercer incremento fue planificado con un doble propósito. Por una parte, se recogió la necesidad de incorporar un módulo de apoyo pedagógico que facilitara la introducción progresiva del usuario al lenguaje y al paradigma de dataflow. Por otra, se identificó la oportunidad de ampliar el modelo de distribución mediante abstracciones de mayor nivel, atendiendo a las limitaciones detectadas en el incremento anterior respecto a la orquestación de tareas distribuidas sobre listas de datos. Adicionalmente, se priorizó un refinamiento general de la interfaz del editor para mejorar su ergonomía y adaptación al público objetivo.
 
@@ -83,7 +83,7 @@ El proceso de validación se implementó para ser transparente y formativo. Al a
     \label{fig:editor-desafio}
 \end{figure}
 
-Se implementaron los cuatro nodos diseñados en la fase de modelado, cuyo comportamiento detallado se describe a continuación:
+Asimismo, en el incremento se implementaron los cuatro nodos para computación distribuida, diseñados en la fase de modelado, cuyo comportamiento detallado se describe a continuación:
 
 \begin{itemize}
     \item \textbf{Distribuir (Scatter):} Recibe una estructura de datos tipo lista y, al activarse, la fragmenta equitativamente entre los dispositivos de procesamiento conectados, enrutando a cada uno su porción correspondiente. Reproduce así la semántica de la operación \textit{Scatter} de MPI, en la que un proceso raíz distribuye secciones de un arreglo a los demás procesos del comunicador.
