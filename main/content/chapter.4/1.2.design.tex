@@ -16,7 +16,27 @@ Bajo conceptos de la teoría de lenguajes de programación Dataflow, se definier
 
 \usubsection{Arquitectura del entorno de ejecución}
 
-Para facilitar la interactividad necesaria en el ámbito educativo, se optó por una arquitectura basada en un intérprete en lugar de un compilador. Esto permite ciclos de prueba rápidos (“imaginación, construcción y pruebas”) esenciales para el aprendizaje iterativo.
+Para dar soporte al ciclo de desarrollo y permitir tanto la ejecución en el navegador como la delegación de cómputo a dispositivos físicos, el sistema se diseñó bajo una arquitectura distribuida en tres subsistemas principales: el \textbf{Cliente}, el \textbf{Servidor} y el dispositivo embebido \textbf{micro:bit}. En la figura~\ref{fig:arquitectura-sistema} se ilustra la organización por capas de cada uno de estos entornos.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/arquitectura-sistema.png}
+    \caption[Arquitectura general del sistema]{Arquitectura general y organización por capas del sistema.}
+    \label{fig:arquitectura-sistema}
+\end{figure}
+
+A nivel estructural, cada subsistema cumple roles claramente delimitados:
+
+\begin{itemize}
+    \item \textbf{Cliente (Entorno de Usuario):} Se ejecuta sobre el navegador web y contiene la interfaz gráfica de usuario dividida en vistas de alto nivel (\emph{Landing Page}, gestión de proyectos y desafíos) y herramientas específicas del entorno de desarrollo (editor visual de grafos, validador de programas, consola de usuario y gestor de extensiones). En su núcleo incorpora el \emph{Motor de Evaluación} local y el módulo de \emph{Gestión de Programas Remotos}, el cual se apoya en la capa de comunicación web para coordinar la persistencia con el servidor o la delegación de tareas hacia hardware externo.
+    
+    \item \textbf{Servidor (Backend y Servicios):} Provee la infraestructura centralizada mediante servicios web y un sistema gestor de bases de datos. Expone APIs dedicadas para la administración de usuarios, la persistencia de proyectos y el catálogo de extensiones. Asimismo, cuenta con su propio \emph{Gestor de programas remotos} para mediar la sincronización y la comunicación entre los clientes conectados y los servicios de red.
+    
+    \item \textbf{micro:bit (Dispositivo Embebido):} Actúa como un nodo de computación física externa. Sobre el hardware y el \emph{runtime} del dispositivo se despliega una versión adaptada del \emph{Motor de Evaluación} y del gestor de ejecución remota. Esta integración permite interpretar o ejecutar de forma autónoma los subgrafos delegados desde el cliente a través del canal de comunicación establecido, habilitando la interacción tangible con el dispositivo.
+\end{itemize}
+
+
+Por otro lado, para facilitar la interactividad necesaria en el ámbito educativo, se optó por una arquitectura basada en un intérprete en lugar de un compilador. Esto permite ciclos de prueba rápidos (“imaginación, construcción y pruebas”) esenciales para el aprendizaje iterativo.
 
 El motor de ejecución se diseñó bajo el principio de activación por disponibilidad de datos. A diferencia de los modelos imperativos tradicionales que siguen un contador de programa secuencial, este motor examina continuamente el grafo de nodos para identificar cuáles poseen todos sus datos de entrada listos para ser procesados. Este enfoque permite explotar el paralelismo implícito, ya que múltiples nodos pueden activarse simultáneamente sin que el estudiante deba gestionar hilos de ejecución manualmente, eliminando la carga cognitiva existente en muchos lenguajes de programación tradicionales.
 
@@ -31,7 +51,7 @@ El motor se diseñó para iniciar con la traducción del grafo visual a un grafo
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{../images/traduccion-programas.png}
+    \includegraphics[width=0.45\textwidth]{../images/traduccion-programas.png}
     \caption[Proceso de traducción de programas]{\normalfont Proceso de traducción de programas}
     \label{fig:traduccion-programas}
 \end{figure}
@@ -48,7 +68,7 @@ Una vez construido el grafo semántico, el motor de ejecución gestiona el ciclo
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{../images/ejecucion-programas.png}
+    \includegraphics[width=0.45\textwidth]{../images/ejecucion-programas.png}
     \caption[Proceso de ejecución de programas]{\normalfont Proceso de ejecución de programas}
     \label{fig:ejecucion-programas}
 \end{figure}
